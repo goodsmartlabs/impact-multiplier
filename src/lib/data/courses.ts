@@ -224,7 +224,7 @@ export const COURSES: Course[] = [
     shortDescription: "Build your first real automation and learn to spot where AI fits in a workflow.",
     coverGradient: "from-blue to-ink",
     instructor: "Innergency Labs",
-    instructorTitle: "Impact Multiplier Academy",
+    instructorTitle: "Impact Academia",
     builds: "The ability to map a manual process and build a working automation that removes it.",
     whoItsFor: "Anyone doing repeated manual work who wants to remove it with simple tools, no coding required.",
     whatYoullBeAbleToDo: [
@@ -422,7 +422,7 @@ export const COURSES: Course[] = [
     shortDescription: "Turn raw spreadsheets into dashboards that make decisions easier.",
     coverGradient: "from-blue-dim to-blue",
     instructor: "Innergency Labs",
-    instructorTitle: "Impact Multiplier Academy",
+    instructorTitle: "Impact Academia",
     builds: "The ability to clean raw data and present it as a clear, decision-ready dashboard.",
     whoItsFor: "Anyone who works with spreadsheets and wants to present data more clearly.",
     whatYoullBeAbleToDo: ["Clean a messy dataset", "Build pivot tables", "Design a one-page dashboard with charts and filters"],

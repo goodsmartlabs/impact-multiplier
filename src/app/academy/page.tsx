@@ -58,7 +58,7 @@ export default function AcademyPage() {
     <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 md:px-6 md:pt-10">
       <div className="mb-6 max-w-2xl">
         <h1 className="font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
-          Impact Multiplier Academy
+          Impact Academia
         </h1>
         <p className="mt-2 text-sm text-muted md:text-base">
           Don&apos;t tell us what you learned. Show us what you can do.

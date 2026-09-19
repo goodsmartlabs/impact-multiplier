@@ -29,8 +29,8 @@ export const DISCOVERY_ITEMS: DiscoveryItem[] = [
     ],
     whatYouCouldDoWithIt:
       "Automate your own reporting or admin work, then offer the same service to a small business as a paid project.",
-    howToGetStarted: "Start with the Impact Multiplier Academy course below, or pick one manual task you do weekly and try to automate just that one step.",
-    howToLearnIt: "Impact Multiplier Academy — AI Automation Foundations (below), or freely available tutorials from Zapier and Make.",
+    howToGetStarted: "Start with the Impact Academia course below, or pick one manual task you do weekly and try to automate just that one step.",
+    howToLearnIt: "Impact Academia — AI Automation Foundations (below), or freely available tutorials from Zapier and Make.",
     howToProveIt: "Build one working automation that removes a real task from your week or someone else's.",
     economicApplication:
       "Offer automation-building as a freelance service to small businesses drowning in manual admin work. Typical first projects: automated reporting, lead follow-up, or inbox triage.",
@@ -83,7 +83,7 @@ export const DISCOVERY_ITEMS: DiscoveryItem[] = [
     title: "Building You, The Brand",
     type: "course",
     filterKeys: ["for_you", "learn", "trending"],
-    categoryLabel: "COURSE • IMPACT MULTIPLIER ACADEMY",
+    categoryLabel: "COURSE • IMPACT ACADEMIA",
     shortDescription: "Learn how to build real capability underneath your personal brand.",
     fullDescription:
       "A personal-brand course with a twist: instead of teaching you how to look impressive online, it teaches you how to build the underlying capability that makes a brand true. You'll define your positioning, build proof of your work, and design a simple system to keep showing it.",

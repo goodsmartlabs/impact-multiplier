@@ -4,15 +4,15 @@
   --background: #ffffff;
   --foreground: #0b0b0c;
 
-  /* Impact Multiplier brand */
+  /* Impact Academia brand, sampled from the supplied logo */
   --im-ink: #0b0b0c;
   --im-paper: #ffffff;
   --im-cream: #faf9f7;
-  --im-pink: #ee2a7b;
-  --im-pink-dim: #fce4ef;
-  --im-blue: #1e4feb;
-  --im-blue-dim: #e5ebfd;
-  --im-line: #e7e5e1;
+  --im-pink: #f72d79;
+  --im-pink-dim: #fff0f6;
+  --im-blue: #0964f5;
+  --im-blue-dim: #edf4ff;
+  --im-line: #e8e8ec;
   --im-muted: #6b6b6e;
 }
 
@@ -28,8 +28,8 @@
   --color-blue-dim: var(--im-blue-dim);
   --color-line: var(--im-line);
   --color-muted: var(--im-muted);
-  --font-sans: var(--font-body);
-  --font-display: var(--font-serif);
+  --font-sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
 }
 
 * {
@@ -41,9 +41,20 @@ html {
 }
 
 body {
-  background: var(--im-cream);
+  background:
+    radial-gradient(circle at 8% 6%, rgba(247, 45, 121, 0.07), transparent 24rem),
+    radial-gradient(circle at 92% 18%, rgba(9, 100, 245, 0.07), transparent 26rem),
+    var(--im-cream);
   color: var(--im-ink);
-  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans);
+}
+
+.brand-card {
+  box-shadow: 0 1px 0 rgba(11, 11, 12, 0.04), 0 12px 32px rgba(11, 11, 12, 0.05);
+}
+
+.brand-card:hover {
+  box-shadow: 0 18px 42px rgba(11, 11, 12, 0.11);
 }
 
 ::selection {

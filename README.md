@@ -1,6 +1,6 @@
-# Impact Multiplier
+# Impact Academia
 
-Impact Multiplier is a personalized hub for opportunity, growth, learning, capability, wealth,
+Impact Academia is a personalized hub for opportunity, growth, learning, capability, wealth,
 productivity, leverage and influence. It helps people answer: **"What's out there that could
 increase me?"**
 
@@ -14,7 +14,7 @@ An Innergency product.
   increase-area tagging, requirements, deadlines, and "why this may fit you" personalization.
 - **Impact Cart** — a personal shelf of saved possibilities with notes, filters, and a gentle
   nudge (plus a comparison view) once it grows large (`/cart`).
-- **Impact Multiplier Academy** — a real learning platform with courses, modules, lessons,
+- **Impact Academia** — a real learning platform with courses, modules, lessons,
   quizzes, assignments, materials and proof projects (`/academy`), including a focused lesson
   player with progress tracking (`/academy/[slug]/learn/[lessonSlug]`).
 - **Impact Engine** — the Build → Capacity → Value → Proof → Money → Action → Impact → Multiply

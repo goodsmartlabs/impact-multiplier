@@ -43,7 +43,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
       <div className={cn("mb-6 h-36 w-full rounded-3xl bg-gradient-to-br", course.coverGradient)} />
 
       <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-muted">
-        <span>{isExternal ? "External Course" : "Impact Multiplier Academy"}</span>
+        <span>{isExternal ? "External Course" : "Impact Academia"}</span>
         <span>•</span>
         <span className="capitalize">{course.level}</span>
       </div>
@@ -140,7 +140,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
           <DetailSection title="Why We Recommend This">
             <p>{course.whyWeRecommend}</p>
             <p className="mt-3 text-xs text-muted">
-              Provided by {course.externalProvider}. Impact Multiplier does not teach this course
+              Provided by {course.externalProvider}. Impact Academia does not teach this course
               directly — it links to the official provider.
             </p>
           </DetailSection>
