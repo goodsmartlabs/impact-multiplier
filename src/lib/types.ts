@@ -1,4 +1,4 @@
-// Core data model for Impact Multiplier
+// Core data model for Impact Academia
 
 export type IncreaseArea = "capacity" | "wealth" | "leverage" | "influence";
 

@@ -3,14 +3,15 @@
 import Link from "next/link";
 import { ShoppingBag, Search } from "lucide-react";
 import { useCartCount } from "./cart-badge";
+import { BrandLogo } from "@/components/brand-logo";
 
 export function MobileTopBar() {
   const cartCount = useCartCount();
 
   return (
     <header className="sticky top-0 z-40 flex items-center justify-between border-b border-line bg-paper/90 px-4 py-3 backdrop-blur md:hidden">
-      <Link href="/" className="font-display text-base font-semibold tracking-tight">
-        <span className="text-pink">Impact</span> <span className="text-blue">Multiplier</span>
+      <Link href="/" aria-label="Impact Academia home">
+        <BrandLogo className="w-[104px]" />
       </Link>
       <div className="flex items-center gap-2">
         <Link

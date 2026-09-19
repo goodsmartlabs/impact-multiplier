@@ -6,6 +6,7 @@ import { ShoppingBag, Search } from "lucide-react";
 import { NAV_LINKS } from "./nav-links";
 import { cn } from "@/lib/utils";
 import { useCartCount } from "./cart-badge";
+import { BrandLogo } from "@/components/brand-logo";
 
 export function TopNav() {
   const pathname = usePathname();
@@ -14,11 +15,8 @@ export function TopNav() {
   return (
     <header className="sticky top-0 z-40 hidden border-b border-line bg-paper/90 backdrop-blur md:block">
       <div className="mx-auto flex max-w-6xl items-center gap-8 px-6 py-3">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <span className="font-display text-lg font-semibold tracking-tight">
-            <span className="text-pink">Impact</span>{" "}
-            <span className="text-blue">Multiplier</span>
-          </span>
+        <Link href="/" className="flex shrink-0 items-center" aria-label="Impact Academia home">
+          <BrandLogo className="w-[118px]" />
         </Link>
 
         <nav className="flex flex-1 items-center gap-1">
