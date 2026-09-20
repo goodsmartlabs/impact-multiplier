@@ -16,6 +16,8 @@ import { SaveButton } from "@/components/ui/save-button";
 import { StartImpactMoveButton } from "@/components/discovery/start-impact-move-button";
 import { cn } from "@/lib/utils";
 import { COURSE_ACCESS_LABELS } from "@/lib/data/constants";
+import { pathsForCourse } from "@/lib/data/learning-paths";
+import { LearningPathCard } from "@/components/academy/learning-path-card";
 
 export default function CourseDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -32,6 +34,8 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
   const firstLesson = course.modules[0]?.lessons[0];
   const isExternal = course.origin === "external";
   const isComingSoon = course.access === "coming_soon";
+  const isStudent = course.access === "student";
+  const learningPaths = pathsForCourse(course.slug);
 
   return (
     <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 md:px-6 md:pt-10">
@@ -67,6 +71,13 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
           <span className="inline-flex items-center rounded-full border border-ink bg-ink/5 px-4 py-2 text-sm font-semibold text-ink">
             Coming Soon
           </span>
+        ) : isStudent ? (
+          <Link
+            href={`/interest?course=${course.slug}`}
+            className="inline-flex items-center gap-1.5 rounded-full bg-pink px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+          >
+            I&apos;m Interested
+          </Link>
         ) : isExternal ? (
           <a
             href={course.externalUrl}
@@ -93,7 +104,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
             onClick={() => enroll(course.slug)}
             className="inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper hover:opacity-90"
           >
-            Enroll
+            Start Free Course
           </button>
         )}
         <SaveButton itemId={course.id} itemKind="course" size="md" />
@@ -113,6 +124,15 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
           </p>
           <IncreaseTags areas={course.increaseAreas} />
         </div>
+      )}
+
+      {learningPaths.length > 0 && (
+        <section className="mt-10" aria-labelledby="your-learning-path">
+          <h2 id="your-learning-path" className="mb-4 font-display text-2xl font-semibold text-ink">Your learning path</h2>
+          <div className="grid gap-5">
+            {learningPaths.map((path) => <LearningPathCard key={path.id} path={path} currentSlug={course.slug} />)}
+          </div>
+        </section>
       )}
 
       <div className="mt-6">
@@ -152,7 +172,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
           </DetailSection>
         )}
 
-        {course.modules.length > 0 && (
+        {!isStudent && course.modules.length > 0 && (
           <DetailSection title="Modules">
             <div className="space-y-4">
               {course.modules.map((mod, mi) => (
@@ -194,7 +214,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
           </DetailSection>
         )}
 
-        {course.materials.length > 0 && (
+        {!isStudent && course.materials.length > 0 && (
           <DetailSection title="Course Materials">
             <ul className="space-y-2">
               {course.materials.map((m) => (
@@ -207,7 +227,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
           </DetailSection>
         )}
 
-        {course.proofProject && (
+        {!isStudent && course.proofProject && (
           <DetailSection title="Proof Project">
             <p className="font-display text-lg text-ink">{course.proofProject.title}</p>
             <p className="mt-1 text-sm">{course.proofProject.description}</p>

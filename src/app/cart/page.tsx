@@ -41,6 +41,7 @@ export default function CartPage() {
     if (filter === "tools") return r.discoveryItem.type === "tool";
     return r.discoveryItem.filterKeys.includes(filter);
   });
+  const courseSlugs = resolved.flatMap((r) => r.course ? [r.course.slug] : []);
 
   if (!mounted) return null;
 
@@ -48,10 +49,10 @@ export default function CartPage() {
     <div className="mx-auto max-w-6xl px-4 pb-24 pt-6 md:px-6 md:pt-10">
       <div className="mb-6 max-w-2xl">
         <h1 className="font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
-          My Impact Cart
+          Your Impact Cart
         </h1>
         <p className="mt-2 text-sm text-muted md:text-base">
-          Not an ecommerce cart — this is your personal shelf of possibilities.
+          Your saved learning interests, ready to shape into a focused path. This is not a checkout.
         </p>
       </div>
 
@@ -122,6 +123,11 @@ export default function CartPage() {
             {filtered.map((r) => (
               <CartItemCard key={r.entry.itemId} resolved={r} />
             ))}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3 rounded-3xl border border-ink bg-blue-dim p-5">
+            <Link href={`/interest${courseSlugs.length ? `?courses=${courseSlugs.join(",")}` : ""}`} className="rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white">Talk to us about my learning path</Link>
+            <button type="button" className="rounded-full border border-ink bg-white px-5 py-3 text-sm font-semibold text-ink" onClick={() => window.alert("Your cart is saved on this device.")}>Save My Cart</button>
+            <p className="w-full text-xs text-muted">Your cart is stored on this device. You do not need an account to keep exploring.</p>
           </div>
         </>
       )}
