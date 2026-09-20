@@ -186,7 +186,7 @@ export const DISCOVERY_ITEMS: DiscoveryItem[] = [
     title: "Excel Dashboards for Beginners",
     type: "course",
     filterKeys: ["learn", "skills", "for_you"],
-    categoryLabel: "COURSE • IMPACT MULTIPLIER ACADEMY",
+    categoryLabel: "COURSE • IMPACT ACADEMIA",
     shortDescription: "Turn raw spreadsheets into dashboards that make decisions easier.",
     fullDescription:
       "A short, hands-on course that takes you from a messy spreadsheet to a working dashboard with charts, summary metrics and filters — the exact skill behind most 'data analyst junior' job postings.",
