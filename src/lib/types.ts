@@ -47,6 +47,7 @@ export interface DiscoveryItem {
   filterKeys: DiscoveryFilterKey[];
   categoryLabel: string; // small eyebrow label shown on card, e.g. "SKILL • TRENDING"
   shortDescription: string;
+  coverImage?: string;
   fullDescription: string;
   whyItMatters?: string;
   whyNow?: string;
@@ -161,6 +162,7 @@ export interface Course {
   title: string;
   shortDescription: string;
   coverGradient: string; // css gradient class token for cover
+  coverImage?: string;
   instructor: string;
   instructorTitle?: string;
   builds: string; // "what this course builds"
