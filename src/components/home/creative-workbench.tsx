@@ -35,7 +35,7 @@ export function CreativeWorkbench() {
             <i className="absolute -right-1.5 -top-1.5 h-3 w-3 border border-blue bg-white" />
             <i className="absolute -bottom-1.5 -left-1.5 h-3 w-3 border border-blue bg-white" />
             <i className="absolute -bottom-1.5 -right-1.5 h-3 w-3 border border-blue bg-white" />
-            <p className="text-3xl font-black leading-none tracking-[-0.065em] md:text-[2.65rem]"><span className="text-pink">Craft</span><span className="text-blue">Fool</span></p>
+            <p className="text-3xl font-black leading-none tracking-[-0.065em] md:text-[2.65rem]"><span className="text-pink">Craft</span><span className="text-blue">Fools</span></p>
             <p className="mt-1 text-[12px] font-bold uppercase tracking-[0.27em] text-blue md:text-[14px]" style={{ fontFamily: '"Century Gothic", CenturyGothic, AppleGothic, sans-serif' }}>Academia</p>
           </div>
 

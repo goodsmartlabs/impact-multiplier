@@ -54,8 +54,8 @@ export const DISCOVERY_ITEMS: DiscoveryItem[] = [
     ],
     whatYouCouldDoWithIt:
       "Automate your own reporting or admin work, then offer the same service to a small business as a paid project.",
-    howToGetStarted: "Start with the CraftFool Academia course below, or pick one manual task you do weekly and try to automate just that one step.",
-    howToLearnIt: "CraftFool Academia — AI Automation Foundations (below), or freely available tutorials from Zapier and Make.",
+    howToGetStarted: "Start with the CraftFools Academia course below, or pick one manual task you do weekly and try to automate just that one step.",
+    howToLearnIt: "CraftFools Academia — AI Automation Foundations (below), or freely available tutorials from Zapier and Make.",
     howToProveIt: "Build one working automation that removes a real task from your week or someone else's.",
     economicApplication:
       "Offer automation-building as a freelance service to small businesses drowning in manual admin work. Typical first projects: automated reporting, lead follow-up, or inbox triage.",

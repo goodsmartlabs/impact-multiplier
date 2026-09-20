@@ -62,7 +62,7 @@ export function ContentMenu() {
           className="absolute right-0 top-12 z-50 w-[min(21rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-ink bg-paper shadow-[6px_6px_0_0_var(--color-ink)]"
         >
           <div className="border-b border-ink bg-pink-dim px-5 py-4">
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-pink">Explore CraftFool Academia</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-pink">Explore CraftFools Academia</p>
             <p className="mt-1 text-sm font-semibold text-ink">What do you want to find?</p>
           </div>
 

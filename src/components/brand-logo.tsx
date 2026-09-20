@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 export function BrandLogo({ className }: { className?: string }) {
   return (
     <Image
-      src="/craftfool-academia-logo-v2.png"
-      alt="CraftFool Academia"
+      src="/craftfools-academia-logo.jpeg"
+      alt="CraftFools Academia"
       width={1080}
       height={1080}
       priority
