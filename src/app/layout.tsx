@@ -5,7 +5,7 @@ import { BottomNav } from "@/components/nav/bottom-nav";
 import { MobileTopBar } from "@/components/nav/mobile-top-bar";
 
 export const metadata: Metadata = {
-  title: "Impact Academia — Grow what makes you valuable.",
+  title: "CraftFool Academia — Grow what makes you valuable.",
   description:
     "A personalized hub for opportunity, growth, learning, capability, wealth, productivity, leverage and influence. An Innergency product.",
 };

@@ -476,7 +476,7 @@ export const COMING_SOON_COURSES: Omit<Course, "learningAreas">[] = CATALOGUE_SE
   shortDescription: seed.shortDescription,
   category: seed.category,
   coverGradient: CATEGORY_GRADIENTS[seed.category],
-  instructor: "Impact Academia",
+  instructor: "CraftFool Academia",
   instructorTitle: "Course team",
   builds: seed.builds,
   whoItsFor: seed.whoItsFor,
