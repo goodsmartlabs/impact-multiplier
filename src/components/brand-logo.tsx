@@ -5,9 +5,9 @@ export function BrandLogo({ className }: { className?: string }) {
   return (
     <Image
       src="/impact-academia-logo.png"
-      alt="100impact academia"
-      width={1060}
-      height={638}
+      alt="Impact Academia"
+      width={987}
+      height={575}
       priority
       className={cn("h-auto w-[132px] object-contain", className)}
     />
