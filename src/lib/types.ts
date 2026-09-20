@@ -211,6 +211,7 @@ export interface Course {
   proofProject?: ProofProject;
   certificateAvailable?: boolean;
   featured?: boolean;
+  featuredOrder?: number;
   relatedItemSlugs?: string[];
   relatedCourseSlugs?: string[];
   isInnergencyClass?: boolean;
