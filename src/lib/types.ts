@@ -86,6 +86,15 @@ export interface DiscoveryItem {
 
 export type CourseLevel = "beginner" | "intermediate" | "advanced";
 export type CourseAccess = "free" | "student" | "coming_soon";
+export type LearningAreaId =
+  | "ai-technology"
+  | "finance-accounting"
+  | "business-operations"
+  | "marketing-sales"
+  | "design-creative"
+  | "web-digital-building"
+  | "career-income"
+  | "personal-brand-growth";
 export type CourseVisibility = "public" | "private";
 export type CourseStatusFlag = "draft" | "published";
 export type CourseCategory =
@@ -180,6 +189,7 @@ export interface Course {
   title: string;
   shortDescription: string;
   category: CourseCategory;
+  learningAreas: LearningAreaId[];
   coverGradient: string; // css gradient class token for cover
   coverImage?: string;
   instructor: string;

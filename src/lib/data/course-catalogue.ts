@@ -467,7 +467,7 @@ function approvedAccess(slug: string): CourseAccess {
   return "coming_soon";
 }
 
-export const COMING_SOON_COURSES: Course[] = CATALOGUE_SEEDS.map((seed) => {
+export const COMING_SOON_COURSES: Omit<Course, "learningAreas">[] = CATALOGUE_SEEDS.map((seed) => {
   const access = approvedAccess(seed.slug);
   return ({
   id: `c-${seed.slug}`,

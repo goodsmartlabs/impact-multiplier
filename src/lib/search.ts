@@ -2,6 +2,7 @@ import type { Course, DiscoveryItem } from "@/lib/types";
 import { DISCOVERY_ITEMS } from "@/lib/data/discovery-items";
 import { COURSES } from "@/lib/data/courses";
 import { TYPE_LABELS, INCREASE_AREA_LABELS } from "@/lib/data/constants";
+import { LEARNING_AREAS } from "@/lib/data/learning-areas";
 
 function haystack(item: DiscoveryItem) {
   return [
@@ -75,6 +76,10 @@ export function searchCourses(query: string): Course[] {
       course.whoItsFor,
       ...course.whatYoullBeAbleToDo,
       ...course.tracks,
+      ...course.learningAreas.flatMap((areaId) => {
+        const area = LEARNING_AREAS.find((candidate) => candidate.id === areaId);
+        return area ? [area.name, area.shortName, area.shortDescription] : [];
+      }),
     ]
       .join(" ")
       .toLowerCase();

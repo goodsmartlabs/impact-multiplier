@@ -1,7 +1,8 @@
 import type { Course } from "@/lib/types";
 import { COMING_SOON_COURSES } from "@/lib/data/course-catalogue";
+import { learningAreasForCourse } from "@/lib/data/learning-areas";
 
-export const COURSES: Course[] = [
+const COURSE_RECORDS: Omit<Course, "learningAreas">[] = [
   {
     id: "c-ai-dramas",
     slug: "ai-dramas",
@@ -627,6 +628,11 @@ export const COURSES: Course[] = [
   },
   ...COMING_SOON_COURSES,
 ];
+
+export const COURSES: Course[] = COURSE_RECORDS.map((course) => ({
+  ...course,
+  learningAreas: learningAreasForCourse(course.slug),
+}));
 
 export function getCourseBySlug(slug: string) {
   return COURSES.find((c) => c.slug === slug);
