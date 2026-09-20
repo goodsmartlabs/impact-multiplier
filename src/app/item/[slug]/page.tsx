@@ -213,8 +213,8 @@ export default async function ItemDetailPage({
         {related.length > 0 && (
           <DetailSection title="Related">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {related.map((r) => (
-                <DiscoveryCard key={r.id} item={r} />
+              {related.map((r, index) => (
+                <DiscoveryCard key={r.id} item={r} index={index} />
               ))}
             </div>
           </DetailSection>

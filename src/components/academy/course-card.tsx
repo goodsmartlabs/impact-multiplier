@@ -18,11 +18,12 @@ export function CourseCard({ course }: { course: Course }) {
   return (
     <Link
       href={`/academy/${course.slug}`}
-      className="brand-card group flex flex-col overflow-hidden rounded-3xl border border-line bg-paper transition-all duration-300 hover:-translate-y-1"
+      className="brand-card group flex flex-col overflow-hidden rounded-2xl border border-ink bg-paper transition-all duration-300"
     >
-      <div className={cn("relative h-32 w-full overflow-hidden bg-gradient-to-br", course.coverGradient)}>
-        <div className="absolute -right-8 -top-10 h-32 w-32 rounded-full border-[18px] border-white/20" />
-        <div className="absolute bottom-3 left-5 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-ink">Course</div>
+      <div className={cn("relative h-40 w-full overflow-hidden bg-gradient-to-br", course.coverGradient)}>
+        <div className="absolute -right-8 -top-10 h-36 w-36 rounded-full border-[22px] border-white/35" />
+        <div className="absolute -left-8 bottom-5 h-5 w-[120%] -rotate-6 rounded-full bg-white/55 transition-transform duration-500 group-hover:-rotate-3" />
+        <div className="absolute bottom-4 left-5 rounded-full border border-ink bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-[0.15em] text-ink">Impact Academia Course</div>
       </div>
       <div className="flex flex-1 flex-col p-5">
         <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-muted">
