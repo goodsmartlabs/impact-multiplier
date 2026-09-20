@@ -69,7 +69,7 @@ export default function Home() {
           <div className="mt-8 rounded-2xl border border-dashed border-ink p-10 text-center text-sm text-muted">Nothing here yet — try another filter.</div>
         ) : (
           <div className="mt-8 grid grid-cols-1 gap-8">
-            {items.map((item, index) => <DiscoveryCard key={item.id} item={item} index={index} className="animate-fade-up" />)}
+            {items.map((item, index) => <DiscoveryCard key={item.id} item={item} index={index} variant="featured" className="animate-fade-up" />)}
           </div>
         )}
       </section>
