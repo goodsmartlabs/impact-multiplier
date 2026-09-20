@@ -1,5 +1,4 @@
 import { Brackets, Crop, Folder, MousePointer2, PenTool, Sparkles } from "lucide-react";
-import { BrandLogo } from "@/components/brand-logo";
 
 export function CreativeWorkbench() {
   return (
@@ -25,8 +24,16 @@ export function CreativeWorkbench() {
         <span className="absolute -right-3 -top-3 h-3 w-3 border border-blue bg-white" />
         <span className="absolute -bottom-3 -left-3 h-3 w-3 border border-blue bg-white" />
         <span className="absolute -bottom-3 -right-3 h-3 w-3 border border-blue bg-white" />
-        <div className="border border-dashed border-blue p-4 md:p-6">
-          <BrandLogo className="w-full" />
+        <div className="relative h-56 overflow-hidden border border-dashed border-blue bg-white p-4 md:h-64 md:p-5">
+          <div className="absolute left-5 top-5 w-[72%] rounded-lg border border-ink bg-paper shadow-[4px_4px_0_#bfe8ed]">
+            <div className="flex gap-1 border-b border-ink px-2 py-1.5"><i className="h-1.5 w-1.5 rounded-full bg-pink" /><i className="h-1.5 w-1.5 rounded-full bg-blue" /></div>
+            <div className="grid grid-cols-[0.7fr_1fr] gap-2 p-3"><div className="h-20 rounded bg-pink-dim" /><div className="space-y-2 pt-2"><div className="h-3 w-4/5 bg-ink" /><div className="h-2 bg-blue-dim" /><div className="h-2 w-2/3 bg-blue-dim" /></div></div>
+          </div>
+          <div className="absolute bottom-5 right-5 w-28 rotate-3 border border-ink bg-blue p-3 text-white shadow-[3px_3px_0_#111]">
+            <p className="font-display text-4xl font-semibold leading-none">Aa</p>
+            <div className="mt-3 flex gap-1"><i className="h-3 w-3 rounded-full bg-pink" /><i className="h-3 w-3 rounded-full bg-white" /><i className="h-3 w-3 rounded-full bg-blue-dim" /></div>
+          </div>
+          <div className="absolute bottom-5 left-7 grid grid-cols-2 gap-1"><i className="h-6 w-6 border border-ink bg-pink" /><i className="h-6 w-6 border border-ink bg-blue-dim" /><i className="h-6 w-6 border border-ink bg-white" /><i className="h-6 w-6 border border-ink bg-blue" /></div>
         </div>
       </div>
 
