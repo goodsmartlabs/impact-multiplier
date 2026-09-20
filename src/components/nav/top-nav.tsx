@@ -13,8 +13,8 @@ export function TopNav() {
   const cartCount = useCartCount();
 
   return (
-    <header className="sticky top-0 z-40 hidden border-b border-line bg-paper/90 backdrop-blur md:block">
-      <div className="mx-auto flex max-w-6xl items-center gap-8 px-6 py-3">
+    <header className="sticky top-0 z-40 hidden bg-pink-dim px-6 py-3 md:block">
+      <div className="mx-auto flex max-w-7xl items-center gap-8 rounded-lg border border-ink/50 bg-paper px-5 py-2.5">
         <Link href="/" className="flex shrink-0 items-center" aria-label="Impact Academia home">
           <BrandLogo className="w-[118px]" />
         </Link>
@@ -28,10 +28,10 @@ export function TopNav() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors",
+                  "border-b px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors",
                   active
-                    ? "bg-ink text-paper"
-                    : "text-muted hover:bg-ink/5 hover:text-ink"
+                    ? "border-ink text-ink"
+                    : "border-transparent text-muted hover:border-ink hover:text-ink"
                 )}
               >
                 {link.label}

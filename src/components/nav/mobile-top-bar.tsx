@@ -9,7 +9,7 @@ export function MobileTopBar() {
   const cartCount = useCartCount();
 
   return (
-    <header className="sticky top-0 z-40 flex items-center justify-between border-b border-line bg-paper/90 px-4 py-3 backdrop-blur md:hidden">
+    <header className="sticky top-0 z-40 flex items-center justify-between border-b border-ink bg-pink-dim px-4 py-3 md:hidden">
       <Link href="/" aria-label="Impact Academia home">
         <BrandLogo className="w-[104px]" />
       </Link>

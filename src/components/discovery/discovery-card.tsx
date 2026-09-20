@@ -9,39 +9,32 @@ export function DiscoveryCard({ item, className }: { item: DiscoveryItem; classN
   const status = isTimeSensitive(item) ? computeOpportunityStatus(item) : undefined;
   const isCourse = item.type === "course";
   const isOpportunity = ["career_opportunity", "business_opportunity", "grant", "scholarship", "fellowship"].includes(item.type);
-  const accent = isCourse ? "bg-pink" : isOpportunity ? "bg-blue" : "bg-gradient-to-r from-pink to-blue";
-  const surface = isCourse ? "bg-pink-dim/45" : isOpportunity ? "bg-blue-dim/55" : "bg-paper";
+  const infoSurface = isCourse ? "bg-pink-dim" : isOpportunity ? "bg-blue-dim" : "bg-paper";
+  const artSurface = isCourse ? "bg-blue-dim" : "bg-pink-dim";
+  const typeLabel = item.type.replaceAll("_", " ");
 
   return (
-    <div
-      className={cn(
-        "brand-card group relative flex min-h-[250px] flex-col overflow-hidden rounded-3xl border border-line p-5 transition-all duration-300 hover:-translate-y-1",
-        surface,
-        className
-      )}
-    >
-      <div className={cn("absolute inset-x-0 top-0 h-1.5", accent)} />
-      <Link href={`/item/${item.slug}`} className="flex flex-1 flex-col">
-        <div className="mb-3 flex items-center justify-between gap-2">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-muted">
-            {item.categoryLabel}
-          </span>
-          {status && <StatusPill status={status} />}
-        </div>
-        <h3 className="font-display text-[1.35rem] font-medium leading-snug text-ink transition-colors group-hover:text-blue">{item.title}</h3>
-        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted">
-          {item.shortDescription}
-        </p>
-      </Link>
-      <div className="mt-4 flex items-center justify-between gap-2">
-        <Link
-          href={`/item/${item.slug}`}
-          className="text-xs font-semibold text-ink underline-offset-4 hover:underline"
-        >
-          {isCourse ? "View course →" : "Learn more →"}
+    <article className={cn("brand-card group grid min-h-[310px] overflow-hidden rounded-2xl border border-ink transition-all duration-300 md:grid-cols-2", className)}>
+      <div className={cn("flex flex-col justify-between p-7 md:p-10", infoSurface)}>
+        <Link href={`/item/${item.slug}`} className="block">
+          <div className="mb-8 flex items-center justify-between gap-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em]">{item.categoryLabel}</span>
+            {status && <StatusPill status={status} />}
+          </div>
+          <h3 className="max-w-xl font-display text-4xl font-semibold leading-[0.95] tracking-tight text-ink md:text-5xl">{item.title}</h3>
+          <p className="mt-5 max-w-xl text-sm leading-relaxed text-ink/75">{item.shortDescription}</p>
         </Link>
-        <SaveButton itemId={item.id} itemKind="discovery" />
+        <div className="mt-8 flex items-center justify-between gap-3">
+          <Link href={`/item/${item.slug}`} className="rounded-full border border-ink bg-paper px-4 py-2 text-xs font-bold transition-transform hover:-translate-y-0.5">{isCourse ? "View course →" : "Learn more →"}</Link>
+          <SaveButton itemId={item.id} itemKind="discovery" />
+        </div>
       </div>
-    </div>
+      <Link href={`/item/${item.slug}`} className={cn("editorial-grid flex min-h-[240px] items-center justify-center border-t border-ink p-8 md:border-l md:border-t-0", artSurface)} aria-label={`Explore ${item.title}`}>
+        <div className="text-center">
+          <span className="inline-block -rotate-3 border border-ink bg-paper px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em]">Impact Academia</span>
+          <p className="mt-5 max-w-lg font-display text-6xl font-bold leading-[0.78] tracking-[-0.055em] text-ink md:text-7xl lg:text-8xl">{typeLabel}</p>
+        </div>
+      </Link>
+    </article>
   );
 }
