@@ -3,6 +3,7 @@ import "./globals.css";
 import { TopNav } from "@/components/nav/top-nav";
 import { BottomNav } from "@/components/nav/bottom-nav";
 import { MobileTopBar } from "@/components/nav/mobile-top-bar";
+import { ChatWithOlivia } from "@/components/chat/chat-with-olivia";
 
 export const metadata: Metadata = {
   title: "CraftFool Academia — Grow what makes you valuable.",
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <TopNav />
         <MobileTopBar />
         <main className="flex-1 pb-20 md:pb-0">{children}</main>
+        <ChatWithOlivia />
         <BottomNav />
       </body>
     </html>
