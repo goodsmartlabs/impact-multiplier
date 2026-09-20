@@ -65,7 +65,6 @@ export function DiscoveryCard({
         <Link href={`/item/${item.slug}`} className={cn("relative isolate flex h-48 shrink-0 overflow-hidden border-b border-ink p-6", artSurface)} aria-label={`Explore ${item.title}`}>
           <span className={cn("absolute left-[-12%] top-1/2 h-5 w-[125%] -rotate-6 rounded-full opacity-90 transition-transform duration-500 group-hover:-rotate-3", accent)} />
           <span className="absolute -right-10 -top-12 h-36 w-36 rounded-full border-[26px] border-paper/55" />
-          <span className="absolute bottom-4 right-5 font-display text-7xl font-semibold leading-none tracking-[-0.08em] text-ink/15">{number}</span>
           <div className="relative z-10 flex w-full items-end justify-between gap-3">
             <p className="max-w-[75%] font-display text-[clamp(2rem,3.3vw,3.2rem)] font-semibold capitalize leading-[0.82] tracking-[-0.045em] text-ink">{typeLabel}</p>
             <span className="mb-1 rounded-full border border-ink bg-paper px-2.5 py-1 text-[8px] font-bold uppercase tracking-[0.14em]">{number}</span>
