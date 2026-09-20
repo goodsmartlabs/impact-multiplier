@@ -1,6 +1,6 @@
-# Impact Academia
+# CraftFool Academia
 
-Impact Academia is a personalized hub for opportunity, growth, learning, capability, wealth,
+CraftFool Academia is a creative hub for opportunity, growth, learning, capability, wealth,
 productivity, leverage and influence. It helps people answer: **"What's out there that could
 increase me?"**
 
@@ -14,7 +14,7 @@ An Innergency product.
   increase-area tagging, requirements, deadlines, and "why this may fit you" personalization.
 - **Impact Cart** — a personal shelf of saved possibilities with notes, filters, and a gentle
   nudge (plus a comparison view) once it grows large (`/cart`).
-- **Impact Academia** — a real learning platform with courses, modules, lessons,
+- **CraftFool Academia** — a real learning platform with courses, modules, lessons,
   quizzes, assignments, materials and proof projects (`/academy`), including a focused lesson
   player with progress tracking (`/academy/[slug]/learn/[lessonSlug]`).
 - **Impact Engine** — the Build → Capacity → Value → Proof → Money → Action → Impact → Multiply
@@ -46,6 +46,18 @@ Open [http://localhost:3000](http://localhost:3000).
 npm run build   # production build
 npm run lint    # eslint
 ```
+
+## Chat integration
+
+The global **Chat with Olivia** interface keeps drafts in the visitor's browser. To enable message
+delivery, configure `NEXT_PUBLIC_OLIVIA_CHAT_ENDPOINT` with an HTTPS endpoint that accepts:
+
+```json
+{ "message": "Visitor question" }
+```
+
+The endpoint must return `{ "messageId": "..." }` after successful delivery. Without an endpoint,
+the interface explicitly marks the message as not sent rather than simulating a reply.
 
 ## Notes on data
 

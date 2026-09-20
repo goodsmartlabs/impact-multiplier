@@ -68,6 +68,33 @@ body {
   background-size: 18px 18px;
 }
 
+.design-sticker {
+  transform-origin: center;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.design-sticker:hover {
+  transform: translateY(-3px) rotate(-2deg);
+}
+
+.creative-float {
+  animation: creative-float 5s ease-in-out infinite;
+}
+
+@keyframes creative-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 ::selection {
   background: var(--im-pink);
   color: white;
