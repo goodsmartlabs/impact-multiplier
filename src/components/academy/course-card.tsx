@@ -7,6 +7,7 @@ import { computeProgressPercent } from "@/lib/academy";
 import { useHydrated } from "@/lib/use-hydrated";
 import { ProgressBar } from "./progress-bar";
 import { cn } from "@/lib/utils";
+import { COURSE_ACCESS_LABELS } from "@/lib/data/constants";
 
 export function CourseCard({ course }: { course: Course }) {
   const mounted = useHydrated();
@@ -26,7 +27,8 @@ export function CourseCard({ course }: { course: Course }) {
       >
         <div className="absolute -right-8 -top-10 h-36 w-36 rounded-full border-[22px] border-white/35" />
         <div className="absolute -left-8 bottom-5 h-5 w-[120%] -rotate-6 rounded-full bg-white/55 transition-transform duration-500 group-hover:-rotate-3" />
-        <div className="absolute left-5 top-4 rounded-full border border-ink bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-[0.15em] text-ink">Impact Academia Course</div>
+        <div className="absolute left-5 top-4 rounded-full border border-ink bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-[0.15em] text-ink">{course.category}</div>
+        <div className="absolute right-5 top-4 rounded-full border border-ink bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-[0.15em] text-ink">{COURSE_ACCESS_LABELS[course.access]}</div>
         {course.coverImage && (
           <h3 className="absolute inset-x-5 bottom-5 font-display text-4xl font-semibold leading-[0.85] tracking-[-0.035em] text-white">{course.title}</h3>
         )}
@@ -51,7 +53,7 @@ export function CourseCard({ course }: { course: Course }) {
           ) : (
             <div className="flex items-center justify-between text-xs font-medium text-muted">
               <span>{course.durationLabel}</span>
-              <span>{course.price ?? (course.access === "free" ? "Free" : "Paid")}</span>
+              <span>{course.price ?? COURSE_ACCESS_LABELS[course.access]}</span>
             </div>
           )}
         </div>

@@ -16,7 +16,8 @@ const DISCOVER_LINKS = [
 const COURSE_LINKS = [
   { label: "All Courses", href: "/academy?access=all" },
   { label: "Free Courses", href: "/academy?access=free" },
-  { label: "Paid Courses", href: "/academy?access=paid" },
+  { label: "Student Courses", href: "/academy?access=student" },
+  { label: "Coming Soon", href: "/academy?access=coming_soon" },
 ] as const;
 
 export function ContentMenu() {

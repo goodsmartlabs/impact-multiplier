@@ -105,7 +105,7 @@ export const DISCOVERY_ITEMS: DiscoveryItem[] = [
   {
     id: "d-building-you-the-brand",
     slug: "building-you-the-brand-course",
-    title: "Building You, The Brand",
+    title: "Building YOU, The Brand",
     type: "course",
     coverImage: "/course-covers/building-you-brand.webp",
     filterKeys: ["for_you", "learn", "trending"],

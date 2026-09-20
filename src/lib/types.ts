@@ -85,9 +85,21 @@ export interface DiscoveryItem {
 // ---------------- Academy ----------------
 
 export type CourseLevel = "beginner" | "intermediate" | "advanced";
-export type CourseAccess = "free" | "paid";
+export type CourseAccess = "free" | "student" | "coming_soon";
 export type CourseVisibility = "public" | "private";
 export type CourseStatusFlag = "draft" | "published";
+export type CourseCategory =
+  | "AI"
+  | "Finance"
+  | "Business"
+  | "Marketing"
+  | "Sales"
+  | "Design"
+  | "Digital Skills"
+  | "Wealth"
+  | "Personal Branding"
+  | "Productivity"
+  | "Career";
 export type CourseTrack =
   | "capacity"
   | "wealth"
@@ -98,6 +110,12 @@ export type CourseTrack =
   | "money"
   | "ai"
   | "technology"
+  | "finance"
+  | "marketing"
+  | "sales"
+  | "design"
+  | "digital_skills"
+  | "personal_branding"
   | "productivity"
   | "personal_growth";
 
@@ -161,6 +179,7 @@ export interface Course {
   slug: string;
   title: string;
   shortDescription: string;
+  category: CourseCategory;
   coverGradient: string; // css gradient class token for cover
   coverImage?: string;
   instructor: string;

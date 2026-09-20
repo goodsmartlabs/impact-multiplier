@@ -1,4 +1,4 @@
-import type { DiscoveryFilterKey, DiscoveryType, IncreaseArea, OpportunityStatus, CourseTrack } from "@/lib/types";
+import type { CourseAccess, DiscoveryFilterKey, DiscoveryType, IncreaseArea, OpportunityStatus, CourseTrack } from "@/lib/types";
 
 export const DISCOVERY_FILTERS: { key: DiscoveryFilterKey; label: string }[] = [
   { key: "for_you", label: "For You" },
@@ -72,8 +72,20 @@ export const COURSE_TRACK_LABELS: Record<CourseTrack, string> = {
   money: "Money",
   ai: "AI",
   technology: "Technology",
+  finance: "Finance",
+  marketing: "Marketing",
+  sales: "Sales",
+  design: "Design",
+  digital_skills: "Digital Skills",
+  personal_branding: "Personal Branding",
   productivity: "Productivity",
   personal_growth: "Personal Growth",
+};
+
+export const COURSE_ACCESS_LABELS: Record<CourseAccess, string> = {
+  free: "Free",
+  student: "Student",
+  coming_soon: "Coming Soon",
 };
 
 export const ECONOMIC_OUTCOME_OPTIONS = [
