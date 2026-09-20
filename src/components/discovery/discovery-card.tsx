@@ -66,7 +66,7 @@ export function DiscoveryCard({
           <span className={cn("absolute left-[-12%] top-1/2 h-5 w-[125%] -rotate-6 rounded-full opacity-90 transition-transform duration-500 group-hover:-rotate-3", accent)} />
           <span className="absolute -right-10 -top-12 h-36 w-36 rounded-full border-[26px] border-paper/55" />
           <div className="relative z-10 flex w-full items-end justify-between gap-3">
-            <p className="max-w-[75%] font-display text-[clamp(2rem,3.3vw,3.2rem)] font-semibold capitalize leading-[0.82] tracking-[-0.045em] text-ink">{typeLabel}</p>
+            <p className={cn("max-w-[78%] px-2 font-display text-[clamp(2rem,3.3vw,3.2rem)] font-semibold capitalize leading-[0.82] tracking-[-0.045em] text-ink", artSurface)}>{typeLabel}</p>
             <span className="mb-1 rounded-full border border-ink bg-paper px-2.5 py-1 text-[8px] font-bold uppercase tracking-[0.14em]">{number}</span>
           </div>
         </Link>
@@ -109,7 +109,7 @@ export function DiscoveryCard({
             <span className="rounded-full border border-ink bg-paper px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.16em]">Impact Academia</span>
             <span className="font-display text-3xl font-semibold tracking-[-0.05em] text-ink/55">{number}</span>
           </div>
-          <p className="my-10 max-w-[90%] self-center text-center font-display text-[clamp(3.5rem,7vw,6.5rem)] font-semibold capitalize leading-[0.78] tracking-[-0.055em] text-ink">{typeLabel}</p>
+          <p className={cn("my-10 max-w-[90%] self-center px-5 py-1 text-center font-display text-[clamp(3.5rem,7vw,6.5rem)] font-semibold capitalize leading-[0.78] tracking-[-0.055em] text-ink", artSurface)}>{typeLabel}</p>
           <p className="self-end text-[9px] font-bold uppercase tracking-[0.18em] text-ink/60">Learn · Build · Prove</p>
         </div>
       </Link>
