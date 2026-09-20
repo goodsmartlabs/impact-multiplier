@@ -51,7 +51,7 @@ export function CourseCard({ course }: { course: Course }) {
           <span className="rounded-full border border-white/70 bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-[0.15em] text-ink">{COURSE_ACCESS_LABELS[course.access]}</span>
         </div>
         <div className="absolute inset-x-5 bottom-5">
-          <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.2em] text-white/75">{course.origin === "external" ? "External" : "CraftFool Academia"}</p>
+          <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.2em] text-white/75">{course.origin === "external" ? "External" : "CraftFools Academia"}</p>
           <h3 className="font-display text-[2.45rem] font-semibold leading-[0.82] tracking-[-0.035em] text-white">{course.title}</h3>
         </div>
       </div>

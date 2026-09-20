@@ -11,7 +11,7 @@ export function MobileTopBar() {
 
   return (
     <header className="sticky top-0 z-40 flex items-center justify-between border-b border-ink bg-pink-dim px-4 py-3 md:hidden">
-      <Link href="/" aria-label="CraftFool Academia home">
+      <Link href="/" aria-label="CraftFools Academia home">
         <BrandLogo className="w-[60px]" />
       </Link>
       <div className="flex items-center gap-2">

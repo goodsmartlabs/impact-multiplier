@@ -1,4 +1,4 @@
-// Core data model for CraftFool Academia
+// Core data model for CraftFools Academia
 
 export type IncreaseArea = "capacity" | "wealth" | "leverage" | "influence";
 

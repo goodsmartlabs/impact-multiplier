@@ -26,13 +26,13 @@ export default function Home() {
           <div className="relative flex min-h-[390px] flex-col justify-center py-8 md:min-h-[500px] md:py-12">
             <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em]">
               <Pencil aria-hidden="true" className="h-4 w-4 text-pink" strokeWidth={2.25} />
-              <p>CraftFool</p>
+              <p>CraftFools</p>
             </div>
             <h1 className="mt-5 max-w-2xl font-display text-[4.7rem] font-semibold uppercase leading-[0.76] tracking-[-0.06em] text-ink sm:text-8xl lg:text-[7.7rem]">
               Master<br />your craft.
             </h1>
             <p className="mt-7 font-display text-2xl font-semibold italic md:text-3xl">Learn it. Build it. Prove it.</p>
-            <Link href="#discover" className="mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-ink bg-ink px-5 py-3 text-sm font-bold text-white shadow-[4px_4px_0_#0964f5] transition-transform hover:-translate-y-1">Explore CraftFool <ArrowRight className="h-4 w-4" /></Link>
+            <Link href="#discover" className="mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-ink bg-ink px-5 py-3 text-sm font-bold text-white shadow-[4px_4px_0_#0964f5] transition-transform hover:-translate-y-1">Explore CraftFools <ArrowRight className="h-4 w-4" /></Link>
 
             <div aria-hidden="true" className="design-sticker absolute right-4 top-8 hidden rotate-[-10deg] rounded-xl border border-ink bg-blue-dim p-3 text-blue shadow-[3px_3px_0_#111] sm:block">
               <Ruler className="h-7 w-7" strokeWidth={1.8} />

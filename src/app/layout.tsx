@@ -6,7 +6,7 @@ import { MobileTopBar } from "@/components/nav/mobile-top-bar";
 import { ChatWithOlivia } from "@/components/chat/chat-with-olivia";
 
 export const metadata: Metadata = {
-  title: "CraftFool Academia — Grow what makes you valuable.",
+  title: "CraftFools Academia — Grow what makes you valuable.",
   description:
     "A personalized hub for opportunity, growth, learning, capability, wealth, productivity, leverage and influence. An Innergency product.",
 };
