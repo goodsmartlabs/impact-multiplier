@@ -10,6 +10,8 @@ import { useAcademyStore } from "@/lib/store/academy-store";
 import { useHydrated } from "@/lib/use-hydrated";
 import { COURSE_TRACK_LABELS } from "@/lib/data/constants";
 import type { CourseAccess, CourseTrack } from "@/lib/types";
+import { LEARNING_PATHS } from "@/lib/data/learning-paths";
+import { LearningPathCard } from "@/components/academy/learning-path-card";
 
 type Tab = "featured" | "all" | "my_learning" | "continue" | "completed";
 
@@ -93,6 +95,21 @@ function AcademyContent() {
       <div className="mb-4">
         <FilterPills options={TABS} active={effectiveTab} onChange={setTab} />
       </div>
+
+      {effectiveTab === "featured" && access === "all" && (
+        <section className="mb-10" aria-labelledby="learning-paths-heading">
+          <div className="mb-4 flex items-end justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">Choose a direction</p>
+              <h2 id="learning-paths-heading" className="font-display text-3xl font-semibold text-ink">Learning paths</h2>
+            </div>
+            <button type="button" onClick={() => setTab("all")} className="text-sm font-semibold text-ink underline underline-offset-4">Browse every course</button>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {LEARNING_PATHS.map((path) => <LearningPathCard key={path.id} path={path} />)}
+          </div>
+        </section>
+      )}
 
       <div className="mb-4">
         <FilterPills

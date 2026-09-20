@@ -35,8 +35,8 @@ const CATEGORY_GRADIENTS: Record<CourseCategory, string> = {
   Career: "from-pink-dim to-ink",
 };
 
-// Access is intentionally explicit on every seed so each course can be changed centrally
-// after the founder decides what is Free, Student, or Coming Soon.
+// Catalogue copy lives with each seed; the founder-approved access decisions live below
+// so similar courses are never merged or classified by accident.
 const CATALOGUE_SEEDS: CatalogueSeed[] = [
   {
     slug: "financial-flow",
@@ -428,7 +428,48 @@ const CATALOGUE_SEEDS: CatalogueSeed[] = [
   },
 ];
 
-export const COMING_SOON_COURSES: Course[] = CATALOGUE_SEEDS.map((seed) => ({
+const FREE_COURSE_SLUGS = new Set([
+  "financial-flow",
+  "ai-for-financial-clarity",
+  "claude-for-beginners",
+  "ai-tools-for-productivity",
+  "ai-side-hustle",
+  "seo-fundamentals",
+]);
+
+const STUDENT_COURSE_SLUGS = new Set([
+  "ai-tools-masterclass",
+  "master-claude-code",
+  "claude-for-excel",
+  "build-your-ai-assistant",
+  "build-a-strong-portfolio-with-ai",
+  "land-jobs-with-ai",
+  "ai-for-accountants",
+  "ai-accounting-judgment-assurance",
+  "no-code-websites",
+  "no-code-app-building",
+  "ai-marketing",
+  "boost-sales-with-ai",
+  "copywriting-fundamentals",
+  "ai-for-business-operations",
+  "ai-in-design",
+  "the-wealth-lab",
+  "building-you-the-brand",
+  "ai-tools-for-finance",
+  "ai-tools-for-marketing",
+  "ai-tools-for-business",
+  "ai-tools-for-design-content",
+]);
+
+function approvedAccess(slug: string): CourseAccess {
+  if (FREE_COURSE_SLUGS.has(slug)) return "free";
+  if (STUDENT_COURSE_SLUGS.has(slug)) return "student";
+  return "coming_soon";
+}
+
+export const COMING_SOON_COURSES: Course[] = CATALOGUE_SEEDS.map((seed) => {
+  const access = approvedAccess(seed.slug);
+  return ({
   id: `c-${seed.slug}`,
   slug: seed.slug,
   title: seed.title,
@@ -442,9 +483,9 @@ export const COMING_SOON_COURSES: Course[] = CATALOGUE_SEEDS.map((seed) => ({
   whatYoullBeAbleToDo: seed.outcomes,
   durationLabel: "Curriculum in development",
   level: seed.level ?? "beginner",
-  access: seed.access,
+  access,
   visibility: "public",
-  statusFlag: "draft",
+  statusFlag: access === "coming_soon" ? "draft" : "published",
   tracks: seed.tracks,
   increaseAreas: seed.increaseAreas,
   modules: [],
@@ -453,4 +494,5 @@ export const COMING_SOON_COURSES: Course[] = CATALOGUE_SEEDS.map((seed) => ({
   certificateAvailable: false,
   isInnergencyClass: true,
   origin: "academy",
-}));
+  });
+});

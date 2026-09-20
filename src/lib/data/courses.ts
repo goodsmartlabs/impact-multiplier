@@ -103,7 +103,7 @@ export const COURSES: Course[] = [
     requirements: ["A laptop or phone", "One piece of past work to draw from (any size)"],
     durationLabel: "~4 hours",
     level: "beginner",
-    access: "free",
+    access: "student",
     visibility: "public",
     statusFlag: "published",
     price: "Free",
