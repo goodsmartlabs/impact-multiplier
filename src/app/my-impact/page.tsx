@@ -9,10 +9,10 @@ import { getCourseBySlug } from "@/lib/data/courses";
 import { useProfileStore } from "@/lib/store/profile-store";
 import { useHydrated } from "@/lib/use-hydrated";
 
-function StatTile({ label, value }: { label: string; value: string | number }) {
+function StatTile({ label, value, tone }: { label: string; value: string | number; tone: "pink" | "blue" }) {
   return (
-    <div className="rounded-2xl border border-line bg-paper p-4 text-center">
-      <p className="font-display text-2xl text-ink">{value}</p>
+    <div className={`rounded-2xl border border-ink p-4 text-center ${tone === "pink" ? "bg-pink-dim" : "bg-blue-dim"}`}>
+      <p className="font-display text-3xl font-semibold text-ink">{value}</p>
       <p className="mt-1 text-[11px] font-medium uppercase tracking-wide text-muted">{label}</p>
     </div>
   );
@@ -68,12 +68,13 @@ export default function MyImpactPage() {
       </div>
 
       <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatTile label="Impact Moves Completed" value={completed.length} />
-        <StatTile label="Courses Completed" value={completedCourses.length} />
-        <StatTile label="Currently Increasing" value={inProgress.length} />
+        <StatTile label="Impact Moves Completed" value={completed.length} tone="pink" />
+        <StatTile label="Courses Completed" value={completedCourses.length} tone="blue" />
+        <StatTile label="Currently Increasing" value={inProgress.length} tone="pink" />
         <StatTile
           label="Proof Projects"
           value={completed.filter((m) => m.proof?.completed).length}
+          tone="blue"
         />
       </div>
 
