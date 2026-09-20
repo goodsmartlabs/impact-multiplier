@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ShoppingBag, Search } from "lucide-react";
 import { useCartCount } from "./cart-badge";
 import { BrandLogo } from "@/components/brand-logo";
+import { ContentMenu } from "./content-menu";
 
 export function MobileTopBar() {
   const cartCount = useCartCount();
@@ -21,6 +22,7 @@ export function MobileTopBar() {
         >
           <Search className="h-4 w-4" />
         </Link>
+        <ContentMenu />
         <Link
           href="/cart"
           aria-label="Impact Cart"
