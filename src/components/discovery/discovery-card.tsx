@@ -58,6 +58,10 @@ export function DiscoveryCard({
   const artSurface = isCourse ? "bg-blue-dim" : isOpportunity ? "bg-pink-dim" : index % 2 === 0 ? "bg-pink-dim" : "bg-blue-dim";
   const accent = isCourse || index % 2 !== 0 ? "bg-blue" : "bg-pink";
   const typeLabel = formatType(item.type);
+  const hasCover = Boolean(item.coverImage);
+  const coverStyle = item.coverImage
+    ? { backgroundImage: `linear-gradient(90deg, rgba(7, 8, 14, 0.9), rgba(7, 8, 14, 0.42)), url(${item.coverImage})` }
+    : undefined;
 
   if (variant === "compact") {
     return (
@@ -71,14 +75,17 @@ export function DiscoveryCard({
           </div>
         </Link>
 
-        <div className="flex flex-1 flex-col p-6">
+        <div
+          className={cn("flex flex-1 flex-col bg-cover bg-center p-6", hasCover && "text-paper")}
+          style={coverStyle}
+        >
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[9px] font-bold uppercase tracking-[0.16em] text-ink/65">{item.categoryLabel}</span>
+            <span className={cn("text-[9px] font-bold uppercase tracking-[0.16em]", hasCover ? "text-paper/75" : "text-ink/65")}>{item.categoryLabel}</span>
             {status && <StatusPill status={status} />}
           </div>
           <Link href={`/item/${item.slug}`} className="mt-5">
-            <h3 className="font-display text-[2rem] font-semibold leading-[0.95] tracking-[-0.025em] text-ink">{item.title}</h3>
-            <p className="mt-4 line-clamp-3 text-sm leading-6 text-ink/65">{item.shortDescription}</p>
+            <h3 className={cn("font-display text-[2rem] font-semibold leading-[0.95] tracking-[-0.025em]", hasCover ? "text-paper" : "text-ink")}>{item.title}</h3>
+            <p className={cn("mt-4 line-clamp-3 text-sm leading-6", hasCover ? "text-paper/75" : "text-ink/65")}>{item.shortDescription}</p>
           </Link>
           <div className="mt-auto"><CardActions item={item} compact /></div>
         </div>
@@ -88,14 +95,17 @@ export function DiscoveryCard({
 
   return (
     <article className={cn("brand-card group grid min-h-[330px] overflow-hidden rounded-2xl border border-ink transition-all duration-300 md:grid-cols-[1.05fr_0.95fr]", className)}>
-      <div className={cn("flex flex-col p-7 md:p-10 lg:p-12", infoSurface)}>
+      <div
+        className={cn("flex flex-col bg-cover bg-center p-7 md:p-10 lg:p-12", infoSurface, hasCover && "text-paper")}
+        style={coverStyle}
+      >
         <div className="flex flex-wrap items-center gap-3">
-          <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-ink/65">{item.categoryLabel}</span>
+          <span className={cn("text-[10px] font-bold uppercase tracking-[0.18em]", hasCover ? "text-paper/75" : "text-ink/65")}>{item.categoryLabel}</span>
           {status && <StatusPill status={status} />}
         </div>
         <Link href={`/item/${item.slug}`} className="mt-8 max-w-2xl">
-          <h3 className="font-display text-4xl font-semibold leading-[0.95] tracking-[-0.025em] text-ink md:text-5xl">{item.title}</h3>
-          <p className="mt-5 max-w-xl text-sm leading-6 text-ink/65 md:text-[15px]">{item.shortDescription}</p>
+          <h3 className={cn("font-display text-4xl font-semibold leading-[0.95] tracking-[-0.025em] md:text-5xl", hasCover ? "text-paper" : "text-ink")}>{item.title}</h3>
+          <p className={cn("mt-5 max-w-xl text-sm leading-6 md:text-[15px]", hasCover ? "text-paper/75" : "text-ink/65")}>{item.shortDescription}</p>
         </Link>
         <div className="mt-auto"><CardActions item={item} /></div>
       </div>
