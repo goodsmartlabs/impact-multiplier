@@ -7,6 +7,7 @@ import { NAV_LINKS } from "./nav-links";
 import { cn } from "@/lib/utils";
 import { useCartCount } from "./cart-badge";
 import { BrandLogo } from "@/components/brand-logo";
+import { ContentMenu } from "./content-menu";
 
 export function TopNav() {
   const pathname = usePathname();
@@ -48,6 +49,7 @@ export function TopNav() {
           >
             <Search className="h-4 w-4" />
           </Link>
+          <ContentMenu />
           <Link
             href="/cart"
             aria-label="Impact Cart"

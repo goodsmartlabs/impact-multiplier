@@ -1,14 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { COURSES } from "@/lib/data/courses";
 import { CourseCard } from "@/components/academy/course-card";
 import { FilterPills } from "@/components/discovery/filter-pills";
 import { useAcademyStore } from "@/lib/store/academy-store";
 import { useHydrated } from "@/lib/use-hydrated";
 import { COURSE_TRACK_LABELS } from "@/lib/data/constants";
-import type { CourseTrack } from "@/lib/types";
+import type { CourseAccess, CourseTrack } from "@/lib/types";
 
 type Tab = "featured" | "all" | "my_learning" | "continue" | "completed";
 
@@ -28,11 +29,31 @@ const TRACK_OPTIONS: { key: CourseTrack | "all"; label: string }[] = [
   })),
 ];
 
+const ACCESS_OPTIONS: { key: CourseAccess | "all"; label: string }[] = [
+  { key: "all", label: "All access" },
+  { key: "free", label: "Free Courses" },
+  { key: "paid", label: "Paid Courses" },
+];
+
 export default function AcademyPage() {
+  return (
+    <Suspense fallback={<AcademyPageShell />}>
+      <AcademyContent />
+    </Suspense>
+  );
+}
+
+function AcademyContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const mounted = useHydrated();
   const [tab, setTab] = useState<Tab>("featured");
   const [track, setTrack] = useState<CourseTrack | "all">("all");
   const enrollments = useAcademyStore((s) => s.enrollments);
+  const requestedAccess = searchParams.get("access");
+  const access: CourseAccess | "all" =
+    requestedAccess === "free" || requestedAccess === "paid" ? requestedAccess : "all";
+  const effectiveTab: Tab = access !== "all" && tab === "featured" ? "all" : tab;
 
   const enrolledSlugs = useMemo(() => new Set(enrollments.map((e) => e.courseSlug)), [enrollments]);
   const inProgressSlugs = useMemo(
@@ -46,13 +67,14 @@ export default function AcademyPage() {
 
   const courses = useMemo(() => {
     let list = COURSES;
-    if (tab === "featured") list = list.filter((c) => c.featured);
-    if (tab === "all" && track !== "all") list = list.filter((c) => c.tracks.includes(track));
-    if (tab === "my_learning") list = mounted ? list.filter((c) => enrolledSlugs.has(c.slug)) : [];
-    if (tab === "continue") list = mounted ? list.filter((c) => inProgressSlugs.has(c.slug)) : [];
-    if (tab === "completed") list = mounted ? list.filter((c) => completedSlugs.has(c.slug)) : [];
+    if (effectiveTab === "featured") list = list.filter((c) => c.featured);
+    if (effectiveTab === "all" && track !== "all") list = list.filter((c) => c.tracks.includes(track));
+    if (effectiveTab === "my_learning") list = mounted ? list.filter((c) => enrolledSlugs.has(c.slug)) : [];
+    if (effectiveTab === "continue") list = mounted ? list.filter((c) => inProgressSlugs.has(c.slug)) : [];
+    if (effectiveTab === "completed") list = mounted ? list.filter((c) => completedSlugs.has(c.slug)) : [];
+    if (access !== "all") list = list.filter((c) => c.access === access);
     return list;
-  }, [tab, track, mounted, enrolledSlugs, inProgressSlugs, completedSlugs]);
+  }, [effectiveTab, track, access, mounted, enrolledSlugs, inProgressSlugs, completedSlugs]);
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 md:px-6 md:pt-10">
@@ -66,10 +88,20 @@ export default function AcademyPage() {
       </div>
 
       <div className="mb-4">
-        <FilterPills options={TABS} active={tab} onChange={setTab} />
+        <FilterPills options={TABS} active={effectiveTab} onChange={setTab} />
       </div>
 
-      {tab === "all" && (
+      <div className="mb-4">
+        <FilterPills
+          options={ACCESS_OPTIONS}
+          active={access}
+          onChange={(nextAccess) => {
+            router.replace(nextAccess === "all" ? "/academy" : `/academy?access=${nextAccess}`);
+          }}
+        />
+      </div>
+
+      {effectiveTab === "all" && (
         <div className="mb-6">
           <FilterPills options={TRACK_OPTIONS} active={track} onChange={setTrack} />
         </div>
@@ -77,10 +109,10 @@ export default function AcademyPage() {
 
       {courses.length === 0 ? (
         <div className="rounded-3xl border border-dashed border-line p-10 text-center text-sm text-muted">
-          {tab === "my_learning" && "You haven't enrolled in anything yet."}
-          {tab === "continue" && "Nothing in progress right now."}
-          {tab === "completed" && "Nothing completed yet — keep going."}
-          {(tab === "featured" || tab === "all") && "No courses match yet."}
+          {effectiveTab === "my_learning" && "You haven't enrolled in anything yet."}
+          {effectiveTab === "continue" && "Nothing in progress right now."}
+          {effectiveTab === "completed" && "Nothing completed yet — keep going."}
+          {(effectiveTab === "featured" || effectiveTab === "all") && "No courses match yet."}
           <div className="mt-3">
             <Link href="/academy" onClick={() => setTab("all")} className="text-ink underline">
               Browse all courses
@@ -96,4 +128,8 @@ export default function AcademyPage() {
       )}
     </div>
   );
+}
+
+function AcademyPageShell() {
+  return <div className="mx-auto min-h-[60vh] max-w-6xl px-4 py-10 md:px-6" />;
 }

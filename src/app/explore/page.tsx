@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { DiscoveryCard } from "@/components/discovery/discovery-card";
 import { FilterPills } from "@/components/discovery/filter-pills";
 import { SearchBar } from "@/components/discovery/search-bar";
@@ -24,18 +25,41 @@ const AREA_OPTIONS: { key: IncreaseArea | "all"; label: string }[] = [
   { key: "influence", label: INCREASE_AREA_LABELS.influence },
 ];
 
+const OPPORTUNITY_TYPES = new Set<DiscoveryType>([
+  "career_opportunity",
+  "business_opportunity",
+  "grant",
+  "scholarship",
+  "fellowship",
+]);
+
 export default function ExplorePage() {
-  const [type, setType] = useState<DiscoveryType | "all">("all");
+  return (
+    <Suspense fallback={<ExplorePageShell />}>
+      <ExploreContent />
+    </Suspense>
+  );
+}
+
+function ExploreContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [area, setArea] = useState<IncreaseArea | "all">("all");
+  const requestedType = searchParams.get("type");
+  const type = TYPE_OPTIONS.some((option) => option.key === requestedType)
+    ? (requestedType as DiscoveryType | "all")
+    : "all";
+  const group = searchParams.get("group") === "opportunities" ? "opportunities" : null;
 
   const items = useMemo(
     () =>
       DISCOVERY_ITEMS.filter((item) => {
         if (type !== "all" && item.type !== type) return false;
+        if (group === "opportunities" && !OPPORTUNITY_TYPES.has(item.type)) return false;
         if (area !== "all" && !item.increaseAreas.includes(area)) return false;
         return true;
       }),
-    [type, area]
+    [type, area, group]
   );
 
   return (
@@ -55,7 +79,13 @@ export default function ExplorePage() {
       </div>
 
       <div className="mb-3">
-        <FilterPills options={TYPE_OPTIONS} active={type} onChange={setType} />
+        <FilterPills
+          options={TYPE_OPTIONS}
+          active={type}
+          onChange={(nextType) => {
+            router.replace(nextType === "all" ? "/explore" : `/explore?type=${nextType}`);
+          }}
+        />
       </div>
       <div className="mb-6">
         <FilterPills options={AREA_OPTIONS} active={area} onChange={setArea} />
@@ -78,4 +108,8 @@ export default function ExplorePage() {
       )}
     </div>
   );
+}
+
+function ExplorePageShell() {
+  return <div className="mx-auto min-h-[60vh] max-w-6xl px-4 py-10 md:px-6" />;
 }
