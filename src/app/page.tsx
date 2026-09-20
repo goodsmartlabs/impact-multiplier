@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Pencil, Ruler } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { DiscoveryCard } from "@/components/discovery/discovery-card";
 import { FilterPills } from "@/components/discovery/filter-pills";
@@ -27,14 +28,20 @@ export default function Home() {
     <div className="pb-20">
       <section className="border-b border-ink bg-pink-dim px-4 py-10 md:px-6 md:py-14">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[1.05fr_0.95fr] md:items-stretch">
-          <div className="flex flex-col justify-center py-3 md:py-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em]">Impact Academia</p>
+          <div className="relative flex flex-col justify-center py-3 md:py-8">
+            <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em]">
+              <Pencil aria-hidden="true" className="h-4 w-4 text-pink" strokeWidth={2.25} />
+              <p>CraftFool</p>
+            </div>
             <h1 className="mt-5 max-w-2xl font-display text-6xl font-semibold leading-[0.82] tracking-[-0.055em] text-ink md:text-8xl lg:text-[7rem]">
               not another<br />learning platform.
             </h1>
             <p className="mt-7 max-w-xl text-base font-semibold leading-snug md:text-lg">
               Find the skills, courses, tools and opportunities worth your attention—then turn what you learn into proof, value and real impact.
             </p>
+            <div aria-hidden="true" className="absolute right-2 top-1 hidden rotate-[-10deg] rounded-xl border border-ink bg-blue-dim p-3 text-blue shadow-[3px_3px_0_0_#111] md:block">
+              <Ruler className="h-7 w-7" strokeWidth={1.8} />
+            </div>
           </div>
           <div className="editorial-grid flex min-h-[330px] flex-col items-center justify-center rounded-2xl border border-ink bg-paper p-8 text-center md:min-h-[420px]">
             <BrandLogo className="w-full max-w-[390px]" />

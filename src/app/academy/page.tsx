@@ -79,7 +79,7 @@ function AcademyContent() {
     <div className="mx-auto max-w-6xl px-4 pb-20 pt-7 md:px-6 md:pt-12">
       <header className="mb-9 flex flex-col justify-between gap-5 md:flex-row md:items-end">
         <div className="max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-pink">Impact Academia</p>
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-pink">CraftFool Academia</p>
           <h1 className="mt-2 font-display text-4xl font-semibold leading-none tracking-tight text-ink md:text-6xl">Don&apos;t tell us what you learned.</h1>
           <p className="mt-3 font-display text-3xl font-semibold leading-none text-blue md:text-4xl">Show us what you can do.</p>
         </div>
@@ -115,13 +115,13 @@ function CoursesLanding() {
   const otherFlagships = featuredCourses.filter((course) => !financeSlugs.includes(course.slug));
   return <>
     <section aria-labelledby="finance-flagships-heading">
-      <div className="mb-4"><p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">Featured by Impact Academia</p><h2 id="finance-flagships-heading" className="font-display text-3xl font-semibold text-ink">Flagship Finance Programs</h2><p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">Build financial clarity first, then apply AI with stronger accounting judgment and practical finance tools.</p></div>
+      <div className="mb-4"><p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">Featured by CraftFool Academia</p><h2 id="finance-flagships-heading" className="font-display text-3xl font-semibold text-ink">Flagship Finance Programs</h2><p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">Build financial clarity first, then apply AI with stronger accounting judgment and practical finance tools.</p></div>
       <div className="mb-6 flex flex-wrap items-center gap-2 rounded-2xl border border-ink bg-white p-4 text-xs font-bold uppercase tracking-wide text-ink">
         {["Financial FLOW", "AI for Financial Clarity", "AI for Accountants", "AI, Accounting Judgment & Assurance"].map((title, index) => <span key={title} className="inline-flex items-center gap-2"><span className="rounded-full bg-blue-dim px-3 py-2">{title}</span>{index < 3 && <ArrowRight className="h-3.5 w-3.5 text-pink" />}</span>)}
       </div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{financeFlagships.map((course) => <CourseCard key={course.id} course={course} />)}</div>
     </section>
-    <CourseShelf title="More Flagship Programs" eyebrow="Original Impact Academia courses" courses={otherFlagships} href="/academy?view=all" columns="four" />
+    <CourseShelf title="More Flagship Programs" eyebrow="Original CraftFool Academia courses" courses={otherFlagships} href="/academy?view=all" columns="four" />
     <section className="mt-14" aria-labelledby="areas-heading"><div className="mb-4"><p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">What do you want to learn?</p><h2 id="areas-heading" className="font-display text-3xl font-semibold text-ink">Learning Areas</h2></div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{LEARNING_AREAS.map((area, index) => { const count = coursesInLearningArea(COURSES, area.id).length; return <Link key={area.id} href={`/academy?area=${area.id}`} className="group flex min-h-56 flex-col rounded-3xl border border-ink bg-white p-5 transition-transform hover:-translate-y-1"><span className="text-xs font-bold text-muted">0{index + 1}</span><h3 className="mt-7 font-display text-2xl font-semibold uppercase leading-none text-ink">{area.name}</h3><p className="mt-3 text-sm leading-relaxed text-muted">{area.shortDescription}</p><div className="mt-auto flex items-end justify-between pt-5"><span className="text-xs font-bold uppercase tracking-wide text-pink">{count} {count === 1 ? "Course" : "Courses"}</span><span className="inline-flex items-center gap-1 text-sm font-semibold text-ink">Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></div></Link>; })}</div>
     </section>

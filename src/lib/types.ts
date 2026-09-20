@@ -1,4 +1,4 @@
-// Core data model for Impact Academia
+// Core data model for CraftFool Academia
 
 export type IncreaseArea = "capacity" | "wealth" | "leverage" | "influence";
 
