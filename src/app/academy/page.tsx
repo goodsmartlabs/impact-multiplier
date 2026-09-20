@@ -32,7 +32,8 @@ const TRACK_OPTIONS: { key: CourseTrack | "all"; label: string }[] = [
 const ACCESS_OPTIONS: { key: CourseAccess | "all"; label: string }[] = [
   { key: "all", label: "All access" },
   { key: "free", label: "Free Courses" },
-  { key: "paid", label: "Paid Courses" },
+  { key: "student", label: "Student Courses" },
+  { key: "coming_soon", label: "Coming Soon" },
 ];
 
 export default function AcademyPage() {
@@ -52,7 +53,9 @@ function AcademyContent() {
   const enrollments = useAcademyStore((s) => s.enrollments);
   const requestedAccess = searchParams.get("access");
   const access: CourseAccess | "all" =
-    requestedAccess === "free" || requestedAccess === "paid" ? requestedAccess : "all";
+    requestedAccess === "free" || requestedAccess === "student" || requestedAccess === "coming_soon"
+      ? requestedAccess
+      : "all";
   const effectiveTab: Tab = access !== "all" && tab === "featured" ? "all" : tab;
 
   const enrolledSlugs = useMemo(() => new Set(enrollments.map((e) => e.courseSlug)), [enrollments]);

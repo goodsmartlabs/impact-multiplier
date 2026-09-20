@@ -1,4 +1,5 @@
 import type { Course } from "@/lib/types";
+import { COMING_SOON_COURSES } from "@/lib/data/course-catalogue";
 
 export const COURSES: Course[] = [
   {
@@ -6,6 +7,7 @@ export const COURSES: Course[] = [
     slug: "ai-dramas",
     title: "AI DRAMAS",
     shortDescription: "Create cinematic AI stories with stronger characters, scripts, visuals, and scene continuity.",
+    category: "AI",
     coverGradient: "from-pink to-blue",
     coverImage: "/course-covers/ai-dramas.webp",
     instructor: "Olivia Byamukama",
@@ -82,8 +84,9 @@ export const COURSES: Course[] = [
   {
     id: "c-building-you-the-brand",
     slug: "building-you-the-brand",
-    title: "Building You, The Brand",
+    title: "Building YOU, The Brand",
     shortDescription: "Learn how to build real capability underneath your personal brand.",
+    category: "Personal Branding",
     coverGradient: "from-pink to-blue",
     coverImage: "/course-covers/building-you-brand.webp",
     instructor: "Olivia Byamukama",
@@ -301,6 +304,7 @@ export const COURSES: Course[] = [
     slug: "ai-automation-foundations",
     title: "AI Automation Foundations",
     shortDescription: "Build your first real automation and learn to spot where AI fits in a workflow.",
+    category: "AI",
     coverGradient: "from-blue to-ink",
     coverImage: "/course-covers/ai-automation.webp",
     instructor: "Innergency Labs",
@@ -500,6 +504,7 @@ export const COURSES: Course[] = [
     slug: "excel-dashboards-for-beginners",
     title: "Excel Dashboards for Beginners",
     shortDescription: "Turn raw spreadsheets into dashboards that make decisions easier.",
+    category: "Digital Skills",
     coverGradient: "from-blue-dim to-blue",
     coverImage: "/course-covers/excel-dashboards.webp",
     instructor: "Innergency Labs",
@@ -590,6 +595,7 @@ export const COURSES: Course[] = [
     slug: "video-editing-for-creators",
     title: "Video Editing for Creators",
     shortDescription: "A well-regarded external course on short-form video editing.",
+    category: "Digital Skills",
     coverGradient: "from-pink-dim to-pink",
     coverImage: "/course-covers/video-editing.webp",
     instructor: "External Provider",
@@ -598,7 +604,7 @@ export const COURSES: Course[] = [
     whatYoullBeAbleToDo: ["Cut and pace short-form video", "Add captions and text overlays", "Export correctly for each platform"],
     durationLabel: "~6 hours",
     level: "beginner",
-    access: "paid",
+    access: "student",
     visibility: "public",
     statusFlag: "published",
     price: "$49",
@@ -619,6 +625,7 @@ export const COURSES: Course[] = [
       deliverables: ["3 finished, exported short-form videos"],
     },
   },
+  ...COMING_SOON_COURSES,
 ];
 
 export function getCourseBySlug(slug: string) {

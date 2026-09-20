@@ -1,5 +1,6 @@
-import type { DiscoveryItem } from "@/lib/types";
+import type { Course, DiscoveryItem } from "@/lib/types";
 import { DISCOVERY_ITEMS } from "@/lib/data/discovery-items";
+import { COURSES } from "@/lib/data/courses";
 import { TYPE_LABELS, INCREASE_AREA_LABELS } from "@/lib/data/constants";
 
 function haystack(item: DiscoveryItem) {
@@ -58,4 +59,33 @@ export function searchDiscoveryItems(query: string): DiscoveryItem[] {
 
   scored.sort((a, b) => b.score - a.score);
   return scored.map((r) => r.item);
+}
+
+export function searchCourses(query: string): Course[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+  const words = q.split(/\s+/).filter((word) => word.length > 1 && !STOPWORDS.has(word));
+
+  return COURSES.map((course) => {
+    const text = [
+      course.title,
+      course.shortDescription,
+      course.category,
+      course.builds,
+      course.whoItsFor,
+      ...course.whatYoullBeAbleToDo,
+      ...course.tracks,
+    ]
+      .join(" ")
+      .toLowerCase();
+    let score = text.includes(q) ? 5 : 0;
+    for (const word of words) {
+      if (course.title.toLowerCase().includes(word)) score += 3;
+      if (text.includes(word)) score += 1;
+    }
+    return { course, score };
+  })
+    .filter((result) => result.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map((result) => result.course);
 }

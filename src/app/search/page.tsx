@@ -3,8 +3,9 @@
 import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { DiscoveryCard } from "@/components/discovery/discovery-card";
+import { CourseCard } from "@/components/academy/course-card";
 import { SearchBar } from "@/components/discovery/search-bar";
-import { searchDiscoveryItems } from "@/lib/search";
+import { searchCourses, searchDiscoveryItems } from "@/lib/search";
 
 const EXAMPLE_QUERIES = [
   "skills I can learn with my phone",
@@ -20,6 +21,8 @@ function SearchResults() {
   const params = useSearchParams();
   const q = params.get("q") ?? "";
   const results = useMemo(() => searchDiscoveryItems(q), [q]);
+  const courseResults = useMemo(() => searchCourses(q), [q]);
+  const totalResults = results.length + courseResults.length;
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 md:px-6 md:pt-10">
@@ -56,9 +59,9 @@ function SearchResults() {
       {q && (
         <>
           <p className="mb-4 text-xs font-medium uppercase tracking-wide text-muted">
-            {results.length} {results.length === 1 ? "result" : "results"} for &ldquo;{q}&rdquo;
+            {totalResults} {totalResults === 1 ? "result" : "results"} for &ldquo;{q}&rdquo;
           </p>
-          {results.length === 0 ? (
+          {totalResults === 0 ? (
             <div className="rounded-3xl border border-dashed border-line p-10 text-center text-sm text-muted">
               Nothing matched that search yet. Try a broader phrase, or browse{" "}
               <a href="/explore" className="underline">
@@ -67,10 +70,27 @@ function SearchResults() {
               .
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {results.map((item, index) => (
-                <DiscoveryCard key={item.id} item={item} index={index} />
-              ))}
+            <div className="space-y-10">
+              {courseResults.length > 0 && (
+                <section>
+                  <h2 className="mb-4 font-display text-2xl font-semibold text-ink">Courses</h2>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {courseResults.map((course) => (
+                      <CourseCard key={course.id} course={course} />
+                    ))}
+                  </div>
+                </section>
+              )}
+              {results.length > 0 && (
+                <section>
+                  <h2 className="mb-4 font-display text-2xl font-semibold text-ink">Explore</h2>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {results.map((item, index) => (
+                      <DiscoveryCard key={item.id} item={item} index={index} />
+                    ))}
+                  </div>
+                </section>
+              )}
             </div>
           )}
         </>

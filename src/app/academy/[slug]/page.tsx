@@ -15,6 +15,7 @@ import { IncreaseTags } from "@/components/ui/increase-tags";
 import { SaveButton } from "@/components/ui/save-button";
 import { StartImpactMoveButton } from "@/components/discovery/start-impact-move-button";
 import { cn } from "@/lib/utils";
+import { COURSE_ACCESS_LABELS } from "@/lib/data/constants";
 
 export default function CourseDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -30,6 +31,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
   const percent = mounted ? computeProgressPercent(course, enrollment) : 0;
   const firstLesson = course.modules[0]?.lessons[0];
   const isExternal = course.origin === "external";
+  const isComingSoon = course.access === "coming_soon";
 
   return (
     <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 md:px-6 md:pt-10">
@@ -57,11 +59,15 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
         <span>•</span>
         <span>{course.durationLabel}</span>
         <span>•</span>
-        <span>{course.price ?? (course.access === "free" ? "Free" : "Paid")}</span>
+        <span>{course.price ?? COURSE_ACCESS_LABELS[course.access]}</span>
       </div>
 
       <div className="mt-5 flex flex-wrap items-center gap-3">
-        {isExternal ? (
+        {isComingSoon ? (
+          <span className="inline-flex items-center rounded-full border border-ink bg-ink/5 px-4 py-2 text-sm font-semibold text-ink">
+            Coming Soon
+          </span>
+        ) : isExternal ? (
           <a
             href={course.externalUrl}
             target="_blank"
