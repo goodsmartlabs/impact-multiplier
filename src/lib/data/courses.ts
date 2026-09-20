@@ -629,9 +629,27 @@ const COURSE_RECORDS: Omit<Course, "learningAreas">[] = [
   ...COMING_SOON_COURSES,
 ];
 
+const FEATURED_ORDER: Record<string, number> = {
+  "financial-flow": 1,
+  "ai-for-financial-clarity": 2,
+  "ai-for-accountants": 3,
+  "ai-accounting-judgment-assurance": 4,
+  "the-wealth-lab": 5,
+  "ai-tools-for-finance": 6,
+  "claude-for-beginners": 7,
+  "ai-tools-masterclass": 8,
+  "build-strong-portfolio-with-ai": 9,
+  "master-claude-code": 10,
+  "no-code-websites": 11,
+  "ai-marketing": 12,
+  "build-your-ai-assistant": 13,
+};
+
 export const COURSES: Course[] = COURSE_RECORDS.map((course) => ({
   ...course,
   learningAreas: learningAreasForCourse(course.slug),
+  featured: FEATURED_ORDER[course.slug] ? true : course.featured,
+  featuredOrder: FEATURED_ORDER[course.slug],
 }));
 
 export function getCourseBySlug(slug: string) {
