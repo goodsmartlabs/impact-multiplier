@@ -8,6 +8,7 @@ import { FilterPills } from "@/components/discovery/filter-pills";
 import { SearchBar } from "@/components/discovery/search-bar";
 import { CreativeWorkbench } from "@/components/home/creative-workbench";
 import { OfferWorlds } from "@/components/home/offer-worlds";
+import { NeedDiscovery } from "@/components/home/need-discovery";
 import { DISCOVERY_FILTERS } from "@/lib/data/constants";
 import { DISCOVERY_ITEMS } from "@/lib/data/discovery-items";
 import type { DiscoveryFilterKey } from "@/lib/types";
@@ -45,6 +46,8 @@ export default function Home() {
       </section>
 
       <OfferWorlds />
+
+      <NeedDiscovery />
 
       <section id="discover" className="mx-auto max-w-7xl scroll-mt-28 px-4 py-14 md:px-6 md:py-20">
         <div className="mb-8 flex items-end justify-between gap-4"><div><p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-pink"><Asterisk className="h-4 w-4" /> The Academy</p><h2 className="mt-2 font-display text-5xl font-semibold leading-none md:text-7xl">Find your next craft</h2></div><span className="hidden rounded-full border border-ink bg-blue-dim px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] sm:inline">Courses · Skills · Challenges · Opportunities</span></div>
