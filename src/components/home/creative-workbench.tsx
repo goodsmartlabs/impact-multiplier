@@ -1,4 +1,7 @@
+import Image from "next/image";
 import { Brackets, Crop, Folder, MousePointer2, PenTool, Sparkles } from "lucide-react";
+
+const ACADEMIA_LETTERS = "ACADEMIA".split("");
 
 export function CreativeWorkbench() {
   return (
@@ -30,13 +33,30 @@ export function CreativeWorkbench() {
             <div className="grid grid-cols-[0.7fr_1fr] gap-2 p-3"><div className="h-16 rounded bg-pink-dim" /><div className="space-y-2 pt-1"><div className="h-3 w-4/5 bg-ink" /><div className="h-2 bg-blue-dim" /><div className="h-2 w-2/3 bg-blue-dim" /></div></div>
           </div>
 
-          <div className="absolute left-1/2 top-[43%] z-20 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap border border-blue bg-white/95 px-4 py-3 text-center shadow-[4px_4px_0_#111]">
+          <div className="absolute left-1/2 top-1/2 z-20 flex w-[72%] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center">
             <i className="absolute -left-1.5 -top-1.5 h-3 w-3 border border-blue bg-white" />
             <i className="absolute -right-1.5 -top-1.5 h-3 w-3 border border-blue bg-white" />
             <i className="absolute -bottom-1.5 -left-1.5 h-3 w-3 border border-blue bg-white" />
             <i className="absolute -bottom-1.5 -right-1.5 h-3 w-3 border border-blue bg-white" />
-            <p className="text-3xl font-black leading-none tracking-[-0.065em] md:text-[2.65rem]"><span className="text-pink">Craft</span><span className="text-blue">Fools</span></p>
-            <p className="mt-1 text-[12px] font-bold uppercase tracking-[0.27em] text-blue md:text-[14px]" style={{ fontFamily: '"Century Gothic", CenturyGothic, AppleGothic, sans-serif' }}>Academia</p>
+            <Image
+              src="/craftfool-icon.png"
+              alt=""
+              width={640}
+              height={640}
+              className="h-20 w-20 object-contain md:h-[94px] md:w-[94px]"
+            />
+            <p className="whitespace-nowrap text-[2rem] font-black leading-[0.9] tracking-[-0.065em] md:text-[2.45rem]">
+              <span className="text-pink">Craft</span><span className="text-blue">Fools</span>
+            </p>
+            <p
+              aria-label="Academia"
+              className="mt-2 flex w-full items-center justify-between text-[14px] font-bold uppercase leading-none text-blue md:text-[16px]"
+              style={{ fontFamily: '"Century Gothic", CenturyGothic, AppleGothic, sans-serif' }}
+            >
+              {ACADEMIA_LETTERS.map((letter, index) => (
+                <span aria-hidden="true" key={`${letter}-${index}`}>{letter}</span>
+              ))}
+            </p>
           </div>
 
           <div className="absolute bottom-4 right-5 w-28 rotate-3 border border-ink bg-blue p-3 text-white shadow-[3px_3px_0_#111]">
