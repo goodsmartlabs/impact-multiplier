@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { ChevronDown, MessageCircle, Send, X } from "lucide-react";
 import { oliviaChatProvider } from "@/lib/chat-provider";
 
-const CHAT_STORAGE_KEY = "craftfool-olivia-chat-draft";
+const CHAT_STORAGE_KEY = "impactfools-olivia-chat-draft";
 const PROMPTS = ["Ask about a course", "Ask about a service", "Need help choosing?"] as const;
 
 export function ChatWithOlivia() {

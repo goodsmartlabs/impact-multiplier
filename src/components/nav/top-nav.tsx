@@ -15,12 +15,15 @@ export function TopNav() {
 
   return (
     <header className="sticky top-0 z-40 hidden bg-pink-dim px-6 py-3 md:block">
-      <div className="mx-auto flex max-w-7xl items-center gap-8 rounded-lg border border-ink/50 bg-paper px-5 py-2.5">
-        <Link href="/" className="flex shrink-0 items-center" aria-label="CraftFools Academia home">
-          <BrandLogo className="w-[72px]" />
+      <div className="mx-auto flex max-w-7xl items-center rounded-lg border border-ink/50 bg-paper px-5 py-2.5">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="ImpactFools Academia home">
+          <BrandLogo className="w-11" />
+          <span className="font-playful text-xl font-semibold tracking-[-0.035em] text-ink">
+            <span className="text-pink">Impact</span><span className="text-blue">Fools</span>
+          </span>
         </Link>
 
-        <nav className="flex flex-1 items-center gap-1">
+        <nav className="ml-12 flex flex-1 items-center gap-1">
           {NAV_LINKS.map((link) => {
             const active =
               link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);

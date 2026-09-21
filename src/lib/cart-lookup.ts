@@ -33,6 +33,6 @@ export function resolveCartEntry(entry: ImpactCartEntry): ResolvedCartEntry | nu
     title: course.title,
     slug: course.slug,
     href: `/academy/${course.slug}`,
-    categoryLabel: "COURSE • CRAFTFOOL ACADEMIA",
+    categoryLabel: "COURSE • IMPACTFOOLS ACADEMIA",
   };
 }

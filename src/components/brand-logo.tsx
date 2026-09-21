@@ -4,12 +4,12 @@ import { cn } from "@/lib/utils";
 export function BrandLogo({ className }: { className?: string }) {
   return (
     <Image
-      src="/craftfools-academia-logo.jpeg"
-      alt="CraftFools Academia"
-      width={1080}
-      height={1080}
+      src="/impactfools-icon.png"
+      alt=""
+      width={1536}
+      height={1536}
       priority
-      className={cn("h-auto w-[72px] object-contain", className)}
+      className={cn("h-auto w-12 object-contain", className)}
     />
   );
 }

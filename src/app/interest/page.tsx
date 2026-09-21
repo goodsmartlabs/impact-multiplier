@@ -46,14 +46,14 @@ function InterestForm() {
   }
 
   if (state === "sent") {
-    return <div className="rounded-3xl border border-ink bg-blue-dim p-8 text-center"><CheckCircle2 className="mx-auto h-10 w-10 text-blue" /><h1 className="mt-4 font-display text-3xl font-semibold text-ink">Your interest is saved.</h1><p className="mt-2 text-muted">CraftFools Academia can now follow up about the right learning path for you.</p><Link href="/academy" className="mt-6 inline-flex rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white">Back to courses</Link></div>;
+    return <div className="rounded-3xl border border-ink bg-blue-dim p-8 text-center"><CheckCircle2 className="mx-auto h-10 w-10 text-blue" /><h1 className="mt-4 font-display text-3xl font-semibold text-ink">Your interest is saved.</h1><p className="mt-2 text-muted">ImpactFools Academia can now follow up about the right learning path for you.</p><Link href="/academy" className="mt-6 inline-flex rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white">Back to courses</Link></div>;
   }
 
   return (
     <>
       <div className="mb-7 max-w-2xl">
         <p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">No payment required</p>
-        <h1 className="mt-2 font-display text-4xl font-semibold leading-none text-ink">Talk to CraftFools Academia</h1>
+        <h1 className="mt-2 font-display text-4xl font-semibold leading-none text-ink">Talk to ImpactFools Academia</h1>
         <p className="mt-3 text-muted">Tell us what you want to build. This is an interest conversation, not a checkout or a promise of enrolment.</p>
       </div>
       {courses.length > 0 && <div className="mb-6 rounded-2xl border border-line bg-blue-dim p-4"><p className="text-xs font-bold uppercase tracking-wide text-muted">Your learning interests</p><ul className="mt-2 space-y-1">{courses.map((course) => <li key={course!.slug} className="font-semibold text-ink">{course!.title}</li>)}</ul></div>}

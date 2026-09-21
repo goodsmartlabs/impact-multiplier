@@ -7,7 +7,7 @@ export const DISCOVERY_ITEMS: DiscoveryItem[] = [
     title: "AI DRAMAS",
     type: "course",
     filterKeys: ["for_you", "trending", "learn", "skills", "build"],
-    categoryLabel: "COURSE • CRAFTFOOL ACADEMIA",
+    categoryLabel: "COURSE • IMPACTFOOLS ACADEMIA",
     shortDescription: "Create cinematic AI stories with stronger characters, scripts, visuals, and scene continuity.",
     coverImage: "/course-covers/ai-dramas.webp",
     fullDescription: "AI DRAMAS is a practical production course for turning original story ideas into cinematic AI-assisted scenes and episodes. It brings story development, character continuity, visual prompting, motion direction, voice, editing, and publishing into one repeatable workflow.",
@@ -54,8 +54,8 @@ export const DISCOVERY_ITEMS: DiscoveryItem[] = [
     ],
     whatYouCouldDoWithIt:
       "Automate your own reporting or admin work, then offer the same service to a small business as a paid project.",
-    howToGetStarted: "Start with the CraftFools Academia course below, or pick one manual task you do weekly and try to automate just that one step.",
-    howToLearnIt: "CraftFools Academia — AI Automation Foundations (below), or freely available tutorials from Zapier and Make.",
+    howToGetStarted: "Start with the ImpactFools Academia course below, or pick one manual task you do weekly and try to automate just that one step.",
+    howToLearnIt: "ImpactFools Academia — AI Automation Foundations (below), or freely available tutorials from Zapier and Make.",
     howToProveIt: "Build one working automation that removes a real task from your week or someone else's.",
     economicApplication:
       "Offer automation-building as a freelance service to small businesses drowning in manual admin work. Typical first projects: automated reporting, lead follow-up, or inbox triage.",
@@ -109,7 +109,7 @@ export const DISCOVERY_ITEMS: DiscoveryItem[] = [
     type: "course",
     coverImage: "/course-covers/building-you-brand.webp",
     filterKeys: ["for_you", "learn", "trending"],
-    categoryLabel: "COURSE • CRAFTFOOL ACADEMIA",
+    categoryLabel: "COURSE • IMPACTFOOLS ACADEMIA",
     shortDescription: "Learn how to build real capability underneath your personal brand.",
     fullDescription:
       "A personal-brand course with a twist: instead of teaching you how to look impressive online, it teaches you how to build the underlying capability that makes a brand true. You'll define your positioning, build proof of your work, and design a simple system to keep showing it.",
@@ -214,7 +214,7 @@ export const DISCOVERY_ITEMS: DiscoveryItem[] = [
     type: "course",
     coverImage: "/course-covers/excel-dashboards.webp",
     filterKeys: ["learn", "skills", "for_you"],
-    categoryLabel: "COURSE • CRAFTFOOL ACADEMIA",
+    categoryLabel: "COURSE • IMPACTFOOLS ACADEMIA",
     shortDescription: "Turn raw spreadsheets into dashboards that make decisions easier.",
     fullDescription:
       "A short, hands-on course that takes you from a messy spreadsheet to a working dashboard with charts, summary metrics and filters — the exact skill behind most 'data analyst junior' job postings.",

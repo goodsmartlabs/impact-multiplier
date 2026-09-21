@@ -116,7 +116,7 @@ export function DiscoveryCard({
         <span className="absolute -bottom-16 -left-14 h-40 w-40 rounded-full border-[28px] border-paper/40" />
         <div className="relative z-10 flex w-full flex-col justify-between">
           <div className="flex items-center justify-between gap-4">
-            <span className="rounded-full border border-ink bg-paper px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.16em]">CraftFools Academia</span>
+            <span className="rounded-full border border-ink bg-paper px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.16em]">ImpactFools Academia</span>
             <span className="font-display text-3xl font-semibold tracking-[-0.05em] text-ink/55">{number}</span>
           </div>
           <p className={cn("my-10 max-w-[90%] self-center px-5 py-1 text-center font-display text-[clamp(3.5rem,7vw,6.5rem)] font-semibold capitalize leading-[0.78] tracking-[-0.055em] text-ink", artSurface)}>{typeLabel}</p>
