@@ -6,8 +6,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, Search } from "lucide-react";
 import { COURSES } from "@/lib/data/courses";
 import { LEARNING_AREAS, coursesInLearningArea, getLearningArea } from "@/lib/data/learning-areas";
-import { LEARNING_PATHS } from "@/lib/data/learning-paths";
+import { CRAFT_PATHS } from "@/lib/data/craft-paths";
 import { CourseCard } from "@/components/academy/course-card";
+import { CraftPathCard } from "@/components/craft-paths/craft-path-card";
 import { FilterPills } from "@/components/discovery/filter-pills";
 import { useAcademyStore } from "@/lib/store/academy-store";
 import { useHydrated } from "@/lib/use-hydrated";
@@ -126,8 +127,9 @@ function CoursesLanding() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{LEARNING_AREAS.map((area, index) => { const count = coursesInLearningArea(COURSES, area.id).length; return <Link key={area.id} href={`/academy?area=${area.id}`} className="group flex min-h-56 flex-col rounded-3xl border border-ink bg-white p-5 transition-transform hover:-translate-y-1"><span className="text-xs font-bold text-muted">0{index + 1}</span><h3 className="mt-7 font-display text-2xl font-semibold uppercase leading-none text-ink">{area.name}</h3><p className="mt-3 text-sm leading-relaxed text-muted">{area.shortDescription}</p><div className="mt-auto flex items-end justify-between pt-5"><span className="text-xs font-bold uppercase tracking-wide text-pink">{count} {count === 1 ? "Course" : "Courses"}</span><span className="inline-flex items-center gap-1 text-sm font-semibold text-ink">Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></div></Link>; })}</div>
     </section>
     <CourseShelf title="Start Free" eyebrow="Start somewhere useful" courses={freeCourses} href="/academy?access=free" />
-    <section className="mt-14 border-t border-line pt-10" aria-labelledby="paths-heading"><div className="mb-4"><p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">Not sure where to start?</p><h2 id="paths-heading" className="font-display text-3xl font-semibold text-ink">Follow a Learning Path</h2></div>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{LEARNING_PATHS.map((path) => <Link key={path.id} href={`/academy/${path.courseSlugs[0]}`} className="rounded-2xl border border-line bg-white p-4 hover:border-ink"><h3 className="font-display text-xl font-semibold text-ink">{path.title}</h3><p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted">{path.description}</p><span className="mt-4 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wide text-pink">View path <ArrowRight className="h-3.5 w-3.5" /></span></Link>)}</div>
+    <section className="mt-14 border-t border-line pt-10" aria-labelledby="paths-heading"><div className="mb-5 flex flex-wrap items-end justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">Need an outcome, not just a course?</p><h2 id="paths-heading" className="font-display text-4xl font-semibold text-ink">Craft Paths</h2><p className="mt-2 max-w-2xl text-sm text-muted">Guided journeys combining the right courses, tools, practical work and proof.</p></div><Link href="/craft-paths" className="inline-flex items-center gap-2 text-sm font-bold">View all paths <ArrowRight className="h-4 w-4" /></Link></div>
+      <div className="grid gap-5 lg:grid-cols-3">{CRAFT_PATHS.slice(0, 3).map((path) => <CraftPathCard key={path.id} path={path} />)}</div>
+      <div className="mt-5 rounded-2xl border border-ink bg-pink-dim p-5 sm:flex sm:items-center sm:justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[0.18em] text-pink">Not sure what to choose?</p><p className="mt-1 font-display text-2xl font-semibold">Start with Redirection.</p></div><Link href="/redirection" className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-bold text-white sm:mt-0">Take the check <ArrowRight className="h-4 w-4" /></Link></div>
     </section>
     <div className="mt-12 text-center"><Link href="/academy?view=all" className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-bold text-white">View All Courses <ArrowRight className="h-4 w-4" /></Link></div>
   </>;

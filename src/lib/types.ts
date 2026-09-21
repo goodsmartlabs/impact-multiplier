@@ -223,6 +223,92 @@ export interface Course {
   whyWeRecommend?: string;
 }
 
+// ---------------- Craft Paths + Redirection ----------------
+
+export type ProblemTypeId =
+  | "clarity"
+  | "direction"
+  | "capability"
+  | "application"
+  | "proof"
+  | "income"
+  | "visibility"
+  | "building"
+  | "career"
+  | "business"
+  | "money-wealth"
+  | "growth";
+
+export type SolutionType =
+  | "course"
+  | "craft_path"
+  | "digital_product"
+  | "challenge"
+  | "consulting"
+  | "service"
+  | "project";
+
+export interface ProblemType {
+  id: ProblemTypeId;
+  label: string;
+  statement: string;
+}
+
+export interface PathStep {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  solutionType: SolutionType;
+  referenceSlug?: string;
+  output?: string;
+}
+
+export interface CraftPath {
+  id: string;
+  slug: string;
+  title: string;
+  shortOutcome: string;
+  whoItsFor: string;
+  problem: string;
+  desiredOutcome: string;
+  problemTypes: ProblemTypeId[];
+  courseSlugs: string[];
+  tools: string[];
+  challenges: string[];
+  finalProject: string;
+  proof: string[];
+  estimatedJourney: string;
+  steps: PathStep[];
+  featured?: boolean;
+  accent: "pink" | "blue" | "ink";
+}
+
+export interface RedirectionAnswers {
+  current: string;
+  change: ProblemTypeId[];
+  strengths: string[];
+  leaks: string[];
+  desiredOutcome: ProblemTypeId[];
+}
+
+export interface Recommendation {
+  pathSlug: string;
+  score: number;
+  reasons: string[];
+  solutionTypes: SolutionType[];
+}
+
+export interface RedirectionResult {
+  whereYouAre: string;
+  whatYouHave: string[];
+  whatIsNotWorking: string[];
+  whatToRedirect: string;
+  whatToBuildNext: string;
+  nextMove: string;
+  recommendation: Recommendation;
+}
+
 // ---------------- Impact Cart ----------------
 
 export interface ImpactCartEntry {
