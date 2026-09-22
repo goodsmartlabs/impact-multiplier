@@ -35,16 +35,16 @@ export function CreativeWorkbench() {
           <Ruler className="h-6 w-12 text-ink md:w-14" aria-hidden="true" />
         </div>
 
-        <div className="absolute left-1/2 top-1/2 z-10 w-[88%] -translate-x-1/2 -translate-y-1/2 text-center">
-          <div className="relative inline-flex flex-col items-center px-4 py-3">
+        <div className="absolute left-1/2 top-1/2 z-10 w-[91%] -translate-x-1/2 -translate-y-1/2 text-center">
+          <div className="relative inline-flex w-full flex-col items-center px-3 py-4">
             <i className="absolute -left-1 -top-1 h-2.5 w-2.5 border border-blue bg-white" />
             <i className="absolute -right-1 -top-1 h-2.5 w-2.5 border border-blue bg-white" />
             <i className="absolute -bottom-1 -left-1 h-2.5 w-2.5 border border-blue bg-white" />
             <i className="absolute -bottom-1 -right-1 h-2.5 w-2.5 border border-blue bg-white" />
-            <p className="font-playful whitespace-nowrap text-[2.3rem] font-semibold leading-[0.9] tracking-[-0.025em] sm:text-[2.75rem] md:text-[3.35rem]">
+            <p className="font-playful whitespace-nowrap text-[2.35rem] font-semibold leading-[0.88] tracking-[-0.04em] sm:text-[2.9rem] md:text-[3.55rem]">
               <span className="text-pink">Impact</span><span className="text-blue">Fools</span>
             </p>
-            <p className="mt-2 w-full pl-[0.28em] font-sans text-[0.64rem] font-medium uppercase leading-none tracking-[0.56em] text-blue sm:text-xs md:text-sm">
+            <p className="mt-3 w-[92%] text-center font-sans text-[0.7rem] font-medium uppercase leading-none tracking-[0.48em] text-blue sm:text-[0.8rem] md:text-[0.95rem]">
               Academia
             </p>
           </div>
