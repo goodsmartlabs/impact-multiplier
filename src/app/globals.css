@@ -56,6 +56,14 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Reference display face used ONLY for the hero words “craft.” and “impact.”
+   It deliberately does not replace the site-wide display typography. */
+.font-impactfools {
+  font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
 .brand-card {
   box-shadow: none;
 }
