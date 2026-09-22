@@ -6,10 +6,10 @@ export function BrandLogo({ className }: { className?: string }) {
     <Image
       src="/impactfools-icon.png"
       alt=""
-      width={1536}
-      height={1536}
+      width={512}
+      height={512}
       priority
-      className={cn("h-auto w-12 object-contain", className)}
+      className={cn("aspect-square h-12 w-12 shrink-0 object-contain", className)}
     />
   );
 }

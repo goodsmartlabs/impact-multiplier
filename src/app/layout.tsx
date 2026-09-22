@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   title: "ImpactFools Academia — Grow what makes you valuable.",
   description:
     "A personalized hub for opportunity, growth, learning, capability, wealth, productivity, leverage and influence. An Innergency product.",
+  icons: {
+    icon: [{ url: "/impactfools-icon.png", type: "image/png" }],
+    shortcut: "/impactfools-icon.png",
+    apple: "/impactfools-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
