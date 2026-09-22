@@ -48,6 +48,7 @@ export function CreativeWorkbench() {
               width={1048}
               height={247}
               priority
+              unoptimized
               className="h-auto w-[94%] object-contain"
             />
           </div>
