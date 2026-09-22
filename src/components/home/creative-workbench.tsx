@@ -36,13 +36,16 @@ export function CreativeWorkbench() {
         </div>
 
         <div className="absolute left-1/2 top-1/2 z-10 w-[88%] -translate-x-1/2 -translate-y-1/2 text-center">
-          <div className="relative inline-block px-3 py-2">
+          <div className="relative inline-flex flex-col items-center px-4 py-3">
             <i className="absolute -left-1 -top-1 h-2.5 w-2.5 border border-blue bg-white" />
             <i className="absolute -right-1 -top-1 h-2.5 w-2.5 border border-blue bg-white" />
             <i className="absolute -bottom-1 -left-1 h-2.5 w-2.5 border border-blue bg-white" />
             <i className="absolute -bottom-1 -right-1 h-2.5 w-2.5 border border-blue bg-white" />
-            <p className="font-playful whitespace-nowrap text-[2.45rem] font-semibold leading-none tracking-[-0.07em] sm:text-[2.8rem] md:text-[3.45rem]">
-              <span className="text-ink">Impact</span><span className="text-blue">Fools</span>
+            <p className="font-playful whitespace-nowrap text-[2.3rem] font-semibold leading-[0.9] tracking-[-0.025em] sm:text-[2.75rem] md:text-[3.35rem]">
+              <span className="text-pink">Impact</span><span className="text-blue">Fools</span>
+            </p>
+            <p className="mt-2 w-full pl-[0.28em] font-sans text-[0.64rem] font-medium uppercase leading-none tracking-[0.56em] text-blue sm:text-xs md:text-sm">
+              Academia
             </p>
           </div>
         </div>

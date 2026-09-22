@@ -12,8 +12,8 @@ export function MobileTopBar() {
   return (
     <header className="sticky top-0 z-40 flex items-center justify-between border-b border-ink bg-pink-dim px-4 py-3 md:hidden">
       <Link href="/" className="flex min-w-0 items-center gap-2" aria-label="ImpactFools Academia home">
-        <BrandLogo className="w-10 shrink-0" />
-        <span className="font-playful truncate text-lg font-semibold tracking-[-0.04em]">
+        <BrandLogo className="h-10 w-10" />
+        <span className="font-playful truncate text-lg font-semibold leading-none tracking-[-0.025em]">
           <span className="text-pink">Impact</span><span className="text-blue">Fools</span>
         </span>
       </Link>
