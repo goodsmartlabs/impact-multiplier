@@ -5,7 +5,7 @@ import { CraftPathCard } from "@/components/craft-paths/craft-path-card";
 import { CRAFT_PATHS } from "@/lib/data/craft-paths";
 
 export const metadata: Metadata = {
-  title: "Craft Paths — CraftFools Academia",
+  title: "Craft Paths — ImpactFools Academia",
   description: "Outcome-based journeys that connect the right learning, tools, challenges and proof.",
 };
 
@@ -19,7 +19,7 @@ export default function CraftPathsPage() {
         <div className="relative mx-auto max-w-7xl">
           <Route className="creative-float absolute right-[8%] top-0 hidden h-16 w-16 text-blue md:block" aria-hidden="true" />
           <MousePointer2 className="absolute bottom-0 right-[28%] hidden h-9 w-9 -rotate-12 fill-white md:block" aria-hidden="true" />
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-pink">CraftFools Academia · Guided outcomes</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-pink">ImpactFools Academia · Guided outcomes</p>
           <h1 className="mt-4 max-w-4xl font-display text-6xl font-semibold uppercase leading-[0.78] tracking-[-0.055em] md:text-8xl lg:text-[9rem]">Don’t choose blindly.<br /><span className="text-blue">Follow a path.</span></h1>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-ink/75">Courses teach a skill. Craft Paths connect the learning, tools, action and proof needed to reach an outcome.</p>
         </div>

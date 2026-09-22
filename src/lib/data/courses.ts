@@ -309,7 +309,7 @@ const COURSE_RECORDS: Omit<Course, "learningAreas">[] = [
     coverGradient: "from-blue to-ink",
     coverImage: "/course-covers/ai-automation.webp",
     instructor: "Innergency Labs",
-    instructorTitle: "CraftFools Academia",
+    instructorTitle: "ImpactFools Academia",
     builds: "The ability to map a manual process and build a working automation that removes it.",
     whoItsFor: "Anyone doing repeated manual work who wants to remove it with simple tools, no coding required.",
     whatYoullBeAbleToDo: [
@@ -509,7 +509,7 @@ const COURSE_RECORDS: Omit<Course, "learningAreas">[] = [
     coverGradient: "from-blue-dim to-blue",
     coverImage: "/course-covers/excel-dashboards.webp",
     instructor: "Innergency Labs",
-    instructorTitle: "CraftFools Academia",
+    instructorTitle: "ImpactFools Academia",
     builds: "The ability to clean raw data and present it as a clear, decision-ready dashboard.",
     whoItsFor: "Anyone who works with spreadsheets and wants to present data more clearly.",
     whatYoullBeAbleToDo: ["Clean a messy dataset", "Build pivot tables", "Design a one-page dashboard with charts and filters"],

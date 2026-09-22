@@ -78,7 +78,7 @@ export function OfferWorlds() {
     <section id="what-we-offer" className="relative overflow-hidden border-b border-ink px-4 py-14 md:px-6 md:py-20" aria-labelledby="what-we-offer-title">
       <div className="mx-auto max-w-7xl">
         <div className="mb-9 flex flex-wrap items-end justify-between gap-4">
-          <div><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-pink">CraftFools creative ecosystem</p><h2 id="what-we-offer-title" className="mt-2 font-display text-5xl font-semibold leading-none md:text-7xl">What we offer</h2></div>
+          <div><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-pink">ImpactFools creative ecosystem</p><h2 id="what-we-offer-title" className="mt-2 font-display text-5xl font-semibold leading-none md:text-7xl">What we offer</h2></div>
           <p className="max-w-xs text-right text-xs font-bold uppercase leading-relaxed tracking-[0.12em]">Built for you · learned by you · ready when you are</p>
         </div>
 

@@ -11,7 +11,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const path = getCraftPath((await params).slug);
-  return path ? { title: `${path.title} — CraftFools Academia`, description: path.shortOutcome } : {};
+  return path ? { title: `${path.title} — ImpactFools Academia`, description: path.shortOutcome } : {};
 }
 
 export default async function CraftPathPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -56,7 +56,7 @@ export default async function CraftPathPage({ params }: { params: Promise<{ slug
         </section>
 
         {courses.length > 0 && <section className="mt-16" aria-labelledby="learning-title">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue">Existing CraftFools learning</p><h2 id="learning-title" className="mt-2 font-display text-4xl font-semibold md:text-6xl">Courses in this path</h2>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue">Existing ImpactFools learning</p><h2 id="learning-title" className="mt-2 font-display text-4xl font-semibold md:text-6xl">Courses in this path</h2>
           <div className="mt-7 grid gap-3 md:grid-cols-2">{courses.map((course, index) => course && <Link key={course.id} href={`/academy/${course.slug}`} className="group flex items-center gap-4 rounded-2xl border border-ink bg-white p-4 hover:bg-blue-dim"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink bg-pink-dim font-bold">{index + 1}</span><span><strong className="block font-display text-2xl leading-none">{course.title}</strong><small className="mt-1 block text-muted">{course.durationLabel} · {course.level}</small></span><ArrowRight className="ml-auto h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>)}</div>
         </section>}
 

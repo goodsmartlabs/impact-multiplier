@@ -232,7 +232,7 @@ export default function ProfilePage() {
       </div>
 
       <p className="mt-6 text-center text-xs text-muted">
-        CraftFools Academia is an Innergency product.
+        ImpactFools Academia is an Innergency product.
       </p>
     </div>
   );

@@ -27,13 +27,16 @@ export default function Home() {
           <div className="relative flex min-h-[390px] flex-col justify-center py-8 md:min-h-[500px] md:py-12">
             <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em]">
               <Pencil aria-hidden="true" className="h-4 w-4 text-pink" strokeWidth={2.25} />
-              <p>CraftFools</p>
+              <p>ImpactFools</p>
             </div>
-            <h1 className="mt-5 max-w-2xl font-display text-[4.7rem] font-semibold uppercase leading-[0.76] tracking-[-0.06em] text-ink sm:text-8xl lg:text-[7.7rem]">
-              Master<br />your craft.
+            <h1 className="mt-5 max-w-2xl uppercase text-ink">
+              <span className="block font-display text-[4.2rem] font-semibold leading-[0.76] tracking-[-0.055em] sm:text-7xl lg:text-[6.2rem]">Master your</span>
+              <span className="font-playful block text-[4.35rem] font-semibold leading-[0.86] tracking-[-0.065em] text-blue sm:text-[5rem] lg:text-[6.7rem]">craft.</span>
+              <span className="mt-3 block font-display text-[3.55rem] font-semibold leading-[0.78] tracking-[-0.05em] sm:text-6xl lg:text-[5.25rem]">Make your</span>
+              <span className="font-playful block text-[4.2rem] font-semibold leading-[0.86] tracking-[-0.065em] text-pink sm:text-[4.8rem] lg:text-[6.35rem]">impact.</span>
             </h1>
             <p className="mt-7 font-display text-2xl font-semibold italic md:text-3xl">Learn it. Build it. Prove it.</p>
-            <Link href="#discover" className="mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-ink bg-ink px-5 py-3 text-sm font-bold text-white shadow-[4px_4px_0_#0964f5] transition-transform hover:-translate-y-1">Explore CraftFools <ArrowRight className="h-4 w-4" /></Link>
+            <Link href="#discover" className="mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-ink bg-ink px-5 py-3 text-sm font-bold text-white shadow-[4px_4px_0_#0964f5] transition-transform hover:-translate-y-1">Explore ImpactFools <ArrowRight className="h-4 w-4" /></Link>
 
             <div aria-hidden="true" className="design-sticker absolute right-4 top-8 hidden rotate-[-10deg] rounded-xl border border-ink bg-blue-dim p-3 text-blue shadow-[3px_3px_0_#111] sm:block">
               <Ruler className="h-7 w-7" strokeWidth={1.8} />
