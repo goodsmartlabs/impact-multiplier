@@ -1,12 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShoppingBag, Search } from "lucide-react";
 import { NAV_LINKS } from "./nav-links";
 import { cn } from "@/lib/utils";
 import { useCartCount } from "./cart-badge";
-import { BrandLogo } from "@/components/brand-logo";
 import { ContentMenu } from "./content-menu";
 
 export function TopNav() {
@@ -17,10 +17,15 @@ export function TopNav() {
     <header className="sticky top-0 z-40 hidden bg-pink-dim px-6 py-3 md:block">
       <div className="mx-auto flex max-w-7xl items-center rounded-lg border border-ink/50 bg-paper px-5 py-2.5">
         <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="ImpactFools Academia home">
-          <BrandLogo className="h-11 w-11" />
-          <span className="text-xl font-semibold leading-none tracking-[-0.025em] text-ink">
-            <span className="text-pink">Impact</span><span className="text-blue">Fools</span>
-          </span>
+          <Image
+            src="/impactfools-wordmark.svg"
+            alt="ImpactFools Academia"
+            width={1048}
+            height={247}
+            priority
+            unoptimized
+            className="h-12 w-auto object-contain"
+          />
         </Link>
 
         <nav className="ml-12 flex flex-1 items-center gap-1">

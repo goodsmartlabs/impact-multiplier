@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   description:
     "A personalized hub for opportunity, growth, learning, capability, wealth, productivity, leverage and influence. An Innergency product.",
   icons: {
-    icon: [{ url: "/impactfools-icon.png", type: "image/png" }],
-    shortcut: "/impactfools-icon.png",
-    apple: "/impactfools-icon.png",
+    icon: [{ url: "/impactfools-icon.png?v=20260924", type: "image/png" }],
+    shortcut: "/impactfools-icon.png?v=20260924",
+    apple: "/impactfools-icon.png?v=20260924",
   },
 };
 
