@@ -10,6 +10,7 @@ import type { ImpactMoveStage } from "@/lib/types";
 import { StageStepper } from "@/components/impact-moves/stage-stepper";
 import { GROWTH_AREA_OPTIONS } from "@/lib/data/constants";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/motion/reveal";
 
 const MONEY_PATHS: { key: "earn" | "save" | "increase" | "create" | "unlock"; label: string; copy: string }[] = [
   { key: "earn", label: "Earn", copy: "Sell the capability." },
@@ -118,9 +119,9 @@ export default function ImpactMoveStagePage({ params }: { params: Promise<{ id: 
         <ArrowLeft className="h-4 w-4" /> Impact Moves
       </Link>
 
-      <h1 className="mb-1 font-display text-2xl font-medium tracking-tight text-ink md:text-3xl">
+      <Reveal as="h1" immediate className="mb-1 font-display text-2xl font-medium tracking-tight text-ink md:text-3xl">
         {move.title}
-      </h1>
+      </Reveal>
 
       {viewStage !== "action" && (
         <StageStepper

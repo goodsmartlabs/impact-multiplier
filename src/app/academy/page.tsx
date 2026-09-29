@@ -10,6 +10,8 @@ import { CRAFT_PATHS } from "@/lib/data/craft-paths";
 import { CourseCard } from "@/components/academy/course-card";
 import { CraftPathCard } from "@/components/craft-paths/craft-path-card";
 import { FilterPills } from "@/components/discovery/filter-pills";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
 import { useAcademyStore } from "@/lib/store/academy-store";
 import { useHydrated } from "@/lib/use-hydrated";
 import type { CourseAccess, CourseLevel } from "@/lib/types";
@@ -80,11 +82,13 @@ function AcademyContent() {
     <div className="mx-auto max-w-6xl px-4 pb-20 pt-7 md:px-6 md:pt-12">
       <header className="mb-9 flex flex-col justify-between gap-5 md:flex-row md:items-end">
         <div className="max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-pink">ImpactFools Academia</p>
-          <h1 className="mt-2 font-display text-4xl font-semibold leading-none tracking-tight text-ink md:text-6xl">Don&apos;t tell us what you learned.</h1>
-          <p className="mt-3 font-display text-3xl font-semibold leading-none text-blue md:text-4xl">Show us what you can do.</p>
+          <Reveal immediate variant="fadeIn" as="p" className="text-xs font-bold uppercase tracking-[0.2em] text-pink">ImpactFools Academia</Reveal>
+          <TextReveal as="h1" immediate delay={0.05} text="Don’t tell us what you learned." className="mt-2 font-display text-4xl font-semibold leading-none text-ink md:text-6xl" />
+          <TextReveal as="p" immediate delay={0.45} text="Show us what you can do." className="mt-3 font-display text-3xl font-semibold leading-none text-blue md:text-4xl" />
         </div>
-        <Link href="/search" className="inline-flex w-fit items-center gap-2 rounded-full border border-ink bg-white px-4 py-2.5 text-sm font-semibold text-ink"><Search className="h-4 w-4" /> Search courses</Link>
+        <Reveal immediate delay={0.6}>
+          <Link href="/search" className="im-lift group inline-flex w-fit items-center gap-2 rounded-full border border-ink bg-white px-4 py-2.5 text-sm font-semibold text-ink hover:shadow-[3px_3px_0_#111]"><Search className="h-4 w-4 transition-transform duration-300 group-hover:-rotate-12" /> Search courses</Link>
+        </Reveal>
       </header>
 
       {!isCatalogue ? <CoursesLanding /> : (
@@ -100,7 +104,7 @@ function AcademyContent() {
           <div className="mb-4"><FilterPills options={ACCESS_OPTIONS} active={access} onChange={(value) => updateQuery({ access: value })} /></div>
           <div className="mb-4"><FilterPills options={LEVEL_OPTIONS} active={level} onChange={(value) => updateQuery({ level: value })} /></div>
           <div className="mb-7"><FilterPills options={LEARNING_TABS} active={tab} onChange={(value) => updateQuery({ tab: value })} /></div>
-          {filteredCourses.length ? <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">{filteredCourses.map((course) => <CourseCard key={course.id} course={course} />)}</div> : <div className="rounded-3xl border border-dashed border-line p-10 text-center text-sm text-muted">No courses match these filters. <button type="button" onClick={() => router.replace(selectedArea ? `/academy?area=${selectedArea.id}` : "/academy?view=all")} className="ml-1 font-semibold text-ink underline">Clear filters</button></div>}
+          {filteredCourses.length ? <Stagger key={`${selectedArea?.id ?? "all"}-${access}-${level}-${tab}`} amount={0.02} stagger={0.05} className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">{filteredCourses.map((course) => <StaggerItem key={course.id}><CourseCard course={course} /></StaggerItem>)}</Stagger> : <div className="rounded-3xl border border-dashed border-line p-10 text-center text-sm text-muted">No courses match these filters. <button type="button" onClick={() => router.replace(selectedArea ? `/academy?area=${selectedArea.id}` : "/academy?view=all")} className="ml-1 font-semibold text-ink underline">Clear filters</button></div>}
         </section>
       )}
     </div>
@@ -116,27 +120,27 @@ function CoursesLanding() {
   const otherFlagships = featuredCourses.filter((course) => !financeSlugs.includes(course.slug));
   return <>
     <section aria-labelledby="finance-flagships-heading">
-      <div className="mb-4"><p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">Featured by ImpactFools Academia</p><h2 id="finance-flagships-heading" className="font-display text-3xl font-semibold text-ink">Flagship Finance Programs</h2><p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">Build financial clarity first, then apply AI with stronger accounting judgment and practical finance tools.</p></div>
-      <div className="mb-6 flex flex-wrap items-center gap-2 rounded-2xl border border-ink bg-white p-4 text-xs font-bold uppercase tracking-wide text-ink">
-        {["Financial FLOW", "AI for Financial Clarity", "AI for Accountants", "AI, Accounting Judgment & Assurance"].map((title, index) => <span key={title} className="inline-flex items-center gap-2"><span className="rounded-full bg-blue-dim px-3 py-2">{title}</span>{index < 3 && <ArrowRight className="h-3.5 w-3.5 text-pink" />}</span>)}
-      </div>
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{financeFlagships.map((course) => <CourseCard key={course.id} course={course} />)}</div>
+      <div className="mb-4"><Reveal variant="fadeIn" as="p" className="text-xs font-bold uppercase tracking-[0.18em] text-pink">Featured by ImpactFools Academia</Reveal><TextReveal as="h2" id="finance-flagships-heading" text="Flagship Finance Programs" className="font-display text-3xl font-semibold text-ink" /><Reveal delay={0.2} as="p" className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">Build financial clarity first, then apply AI with stronger accounting judgment and practical finance tools.</Reveal></div>
+      <Stagger stagger={0.1} className="mb-6 flex flex-wrap items-center gap-2 rounded-2xl border border-ink bg-white p-4 text-xs font-bold uppercase tracking-wide text-ink">
+        {["Financial FLOW", "AI for Financial Clarity", "AI for Accountants", "AI, Accounting Judgment & Assurance"].map((title, index) => <StaggerItem as="span" variant="slideReveal" key={title} className="inline-flex items-center gap-2"><span className="rounded-full bg-blue-dim px-3 py-2">{title}</span>{index < 3 && <ArrowRight className="h-3.5 w-3.5 text-pink" />}</StaggerItem>)}
+      </Stagger>
+      <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{financeFlagships.map((course) => <StaggerItem key={course.id}><CourseCard course={course} /></StaggerItem>)}</Stagger>
     </section>
     <CourseShelf title="More Flagship Programs" eyebrow="Original ImpactFools Academia courses" courses={otherFlagships} href="/academy?view=all" columns="four" />
-    <section className="mt-14" aria-labelledby="areas-heading"><div className="mb-4"><p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">What do you want to learn?</p><h2 id="areas-heading" className="font-display text-3xl font-semibold text-ink">Learning Areas</h2></div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{LEARNING_AREAS.map((area, index) => { const count = coursesInLearningArea(COURSES, area.id).length; return <Link key={area.id} href={`/academy?area=${area.id}`} className="group flex min-h-56 flex-col rounded-3xl border border-ink bg-white p-5 transition-transform hover:-translate-y-1"><span className="text-xs font-bold text-muted">0{index + 1}</span><h3 className="mt-7 font-display text-2xl font-semibold uppercase leading-none text-ink">{area.name}</h3><p className="mt-3 text-sm leading-relaxed text-muted">{area.shortDescription}</p><div className="mt-auto flex items-end justify-between pt-5"><span className="text-xs font-bold uppercase tracking-wide text-pink">{count} {count === 1 ? "Course" : "Courses"}</span><span className="inline-flex items-center gap-1 text-sm font-semibold text-ink">Explore <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></div></Link>; })}</div>
+    <section className="mt-14" aria-labelledby="areas-heading"><div className="mb-4"><Reveal variant="fadeIn" as="p" className="text-xs font-bold uppercase tracking-[0.18em] text-pink">What do you want to learn?</Reveal><TextReveal as="h2" id="areas-heading" text="Learning Areas" className="font-display text-3xl font-semibold text-ink" /></div>
+      <Stagger stagger={0.06} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{LEARNING_AREAS.map((area, index) => { const count = coursesInLearningArea(COURSES, area.id).length; return <StaggerItem key={area.id}><Link href={`/academy?area=${area.id}`} className="im-lift group flex h-full min-h-56 flex-col rounded-3xl border border-ink bg-white p-5 hover:bg-blue-dim/40 hover:shadow-[5px_5px_0_#111]"><span className="text-xs font-bold text-muted transition-colors group-hover:text-pink">0{index + 1}</span><h3 className="mt-7 font-display text-2xl font-semibold uppercase leading-none text-ink">{area.name}</h3><p className="mt-3 text-sm leading-relaxed text-muted">{area.shortDescription}</p><div className="mt-auto flex items-end justify-between pt-5"><span className="text-xs font-bold uppercase tracking-wide text-pink">{count} {count === 1 ? "Course" : "Courses"}</span><span className="inline-flex items-center gap-1 text-sm font-semibold text-ink"><span className="im-underline">Explore</span> <ArrowRight className="im-nudge h-4 w-4" /></span></div></Link></StaggerItem>; })}</Stagger>
     </section>
     <CourseShelf title="Start Free" eyebrow="Start somewhere useful" courses={freeCourses} href="/academy?access=free" />
-    <section className="mt-14 border-t border-line pt-10" aria-labelledby="paths-heading"><div className="mb-5 flex flex-wrap items-end justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">Need an outcome, not just a course?</p><h2 id="paths-heading" className="font-display text-4xl font-semibold text-ink">Craft Paths</h2><p className="mt-2 max-w-2xl text-sm text-muted">Guided journeys combining the right courses, tools, practical work and proof.</p></div><Link href="/craft-paths" className="inline-flex items-center gap-2 text-sm font-bold">View all paths <ArrowRight className="h-4 w-4" /></Link></div>
-      <div className="grid gap-5 lg:grid-cols-3">{CRAFT_PATHS.slice(0, 3).map((path) => <CraftPathCard key={path.id} path={path} />)}</div>
-      <div className="mt-5 rounded-2xl border border-ink bg-pink-dim p-5 sm:flex sm:items-center sm:justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[0.18em] text-pink">Not sure what to choose?</p><p className="mt-1 font-display text-2xl font-semibold">Start with Redirection.</p></div><Link href="/redirection" className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-bold text-white sm:mt-0">Take the check <ArrowRight className="h-4 w-4" /></Link></div>
+    <section className="mt-14 border-t border-line pt-10" aria-labelledby="paths-heading"><div className="mb-5 flex flex-wrap items-end justify-between gap-4"><div><Reveal variant="fadeIn" as="p" className="text-xs font-bold uppercase tracking-[0.18em] text-pink">Need an outcome, not just a course?</Reveal><TextReveal as="h2" id="paths-heading" text="Craft Paths" className="font-display text-4xl font-semibold text-ink" /><Reveal delay={0.2} as="p" className="mt-2 max-w-2xl text-sm text-muted">Guided journeys combining the right courses, tools, practical work and proof.</Reveal></div><Link href="/craft-paths" className="group inline-flex items-center gap-2 text-sm font-bold"><span className="im-underline">View all paths</span> <ArrowRight className="im-nudge h-4 w-4" /></Link></div>
+      <Stagger className="grid gap-5 lg:grid-cols-3">{CRAFT_PATHS.slice(0, 3).map((path) => <StaggerItem key={path.id}><CraftPathCard path={path} /></StaggerItem>)}</Stagger>
+      <Reveal variant="scaleIn" className="mt-5 rounded-2xl border border-ink bg-pink-dim p-5 sm:flex sm:items-center sm:justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[0.18em] text-pink">Not sure what to choose?</p><p className="mt-1 font-display text-2xl font-semibold">Start with Redirection.</p></div><Link href="/redirection" className="im-lift group mt-4 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-bold text-white hover:bg-blue sm:mt-0">Take the check <ArrowRight className="im-nudge h-4 w-4" /></Link></Reveal>
     </section>
-    <div className="mt-12 text-center"><Link href="/academy?view=all" className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-bold text-white">View All Courses <ArrowRight className="h-4 w-4" /></Link></div>
+    <Reveal className="mt-12 text-center"><Link href="/academy?view=all" className="im-lift group inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-bold text-white shadow-[0_0_0_#0964f5] hover:shadow-[4px_4px_0_#0964f5]">View All Courses <ArrowRight className="im-nudge h-4 w-4" /></Link></Reveal>
   </>;
 }
 
 function CourseShelf({ title, eyebrow, courses, href, columns = "three" }: { title: string; eyebrow: string; courses: typeof COURSES; href: string; columns?: "three" | "four" }) {
-  return <section className="mt-14 first:mt-0"><div className="mb-4 flex items-end justify-between gap-4"><div><p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">{eyebrow}</p><h2 className="font-display text-3xl font-semibold text-ink">{title}</h2></div><Link href={href} className="shrink-0 text-sm font-semibold text-ink underline underline-offset-4">View all</Link></div><div className={`grid gap-5 sm:grid-cols-2 ${columns === "four" ? "xl:grid-cols-4" : "lg:grid-cols-3"}`}>{courses.map((course) => <CourseCard key={course.id} course={course} />)}</div></section>;
+  return <section className="mt-14 first:mt-0"><div className="mb-4 flex items-end justify-between gap-4"><div><Reveal variant="fadeIn" as="p" className="text-xs font-bold uppercase tracking-[0.18em] text-pink">{eyebrow}</Reveal><TextReveal as="h2" text={title} className="font-display text-3xl font-semibold text-ink" /></div><Link href={href} className="shrink-0 text-sm font-semibold text-ink underline underline-offset-4 transition-colors hover:text-pink">View all</Link></div><Stagger className={`grid gap-5 sm:grid-cols-2 ${columns === "four" ? "xl:grid-cols-4" : "lg:grid-cols-3"}`}>{courses.map((course) => <StaggerItem key={course.id}><CourseCard course={course} /></StaggerItem>)}</Stagger></section>;
 }
 
 function AcademyPageShell() { return <div className="mx-auto min-h-[60vh] max-w-6xl px-4 py-10 md:px-6" />; }

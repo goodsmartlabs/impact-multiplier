@@ -11,6 +11,7 @@ import { useAcademyStore } from "@/lib/store/academy-store";
 import { useHydrated } from "@/lib/use-hydrated";
 import { QuizBlock } from "@/components/academy/quiz-block";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/motion/reveal";
 
 const KIND_ICON = {
   video: PlayCircle,
@@ -77,9 +78,9 @@ export default function LessonPage({
 
       <div className="mb-6 flex items-center gap-2">
         <Icon className="h-5 w-5 text-blue" />
-        <h1 className="font-display text-2xl font-medium tracking-tight text-ink md:text-3xl">
+        <Reveal as="h1" immediate className="font-display text-2xl font-medium tracking-tight text-ink md:text-3xl">
           {lesson.title}
-        </h1>
+        </Reveal>
       </div>
 
       {lesson.kind === "video" && (

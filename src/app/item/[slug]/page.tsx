@@ -13,6 +13,7 @@ import { DiscoveryCard } from "@/components/discovery/discovery-card";
 import { TYPE_LABELS } from "@/lib/data/constants";
 import { computeOpportunityStatus, isTimeSensitive } from "@/lib/opportunity";
 import { formatDate } from "@/lib/utils";
+import { Reveal } from "@/components/motion/reveal";
 
 export function generateStaticParams() {
   return DISCOVERY_ITEMS.map((item) => ({ slug: item.slug }));
@@ -57,9 +58,9 @@ export default async function ItemDetailPage({
         {status && <StatusPill status={status} />}
       </div>
 
-      <h1 className="font-display text-3xl font-medium leading-tight tracking-tight text-ink md:text-4xl">
+      <Reveal as="h1" immediate className="font-display text-3xl font-medium leading-tight tracking-tight text-ink md:text-4xl">
         {item.title}
-      </h1>
+      </Reveal>
       <p className="mt-3 text-lg leading-relaxed text-muted">{item.shortDescription}</p>
 
       <div className="mt-5 flex flex-wrap items-center gap-3">

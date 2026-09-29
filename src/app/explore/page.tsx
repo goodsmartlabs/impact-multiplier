@@ -5,6 +5,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { DiscoveryCard } from "@/components/discovery/discovery-card";
 import { FilterPills } from "@/components/discovery/filter-pills";
 import { SearchBar } from "@/components/discovery/search-bar";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
 import { DISCOVERY_ITEMS } from "@/lib/data/discovery-items";
 import { TYPE_LABELS, INCREASE_AREA_LABELS } from "@/lib/data/constants";
 import type { DiscoveryType, IncreaseArea } from "@/lib/types";
@@ -65,18 +67,16 @@ function ExploreContent() {
   return (
     <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 md:px-6 md:pt-10">
       <div className="mb-6 max-w-2xl">
-        <h1 className="font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
-          Explore everything
-        </h1>
-        <p className="mt-2 text-sm text-muted md:text-base">
+        <TextReveal as="h1" immediate text="Explore everything" className="font-display text-3xl font-medium text-ink md:text-4xl" />
+        <Reveal immediate delay={0.25} as="p" className="mt-2 text-sm text-muted md:text-base">
           Skills, courses, tools, opportunities, ideas — browse by category or by what it could
           increase.
-        </p>
+        </Reveal>
       </div>
 
-      <div className="mb-4">
+      <Reveal immediate delay={0.35} className="mb-4">
         <SearchBar />
-      </div>
+      </Reveal>
 
       <div className="mb-3">
         <FilterPills
@@ -100,11 +100,13 @@ function ExploreContent() {
           Nothing matches those filters yet.
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger key={`${type}-${area}-${group ?? "all"}`} amount={0.02} stagger={0.05} className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => (
-            <DiscoveryCard key={item.id} item={item} index={index} />
+            <StaggerItem key={item.id}>
+              <DiscoveryCard item={item} index={index} className="h-full" />
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       )}
     </div>
   );

@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
 import { NAV_LINKS } from "./nav-links";
 import { cn } from "@/lib/utils";
+import { SPRING_SOFT } from "@/lib/motion";
 
 export function BottomNav() {
   const pathname = usePathname();
@@ -19,13 +21,22 @@ export function BottomNav() {
             <Link
               key={link.href}
               href={link.href}
-              className="flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium"
+              aria-current={active ? "page" : undefined}
+              className="im-press relative flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium"
             >
+              {active && (
+                <motion.span
+                  layoutId="bottom-nav-active"
+                  aria-hidden="true"
+                  transition={SPRING_SOFT}
+                  className="absolute top-[5px] h-7 w-12 rounded-full bg-pink-dim"
+                />
+              )}
               <Icon
-                className={cn("h-5 w-5", active ? "text-pink" : "text-muted")}
+                className={cn("relative h-5 w-5 transition-colors", active ? "text-pink" : "text-muted")}
                 strokeWidth={active ? 2.4 : 2}
               />
-              <span className={cn(active ? "text-ink" : "text-muted")}>{link.label}</span>
+              <span className={cn("relative transition-colors", active ? "text-ink" : "text-muted")}>{link.label}</span>
             </Link>
           );
         })}
