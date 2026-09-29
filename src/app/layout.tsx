@@ -10,11 +10,7 @@ export const metadata: Metadata = {
   title: "ImpactFools Academia — Grow what makes you valuable.",
   description:
     "A personalized hub for opportunity, growth, learning, capability, wealth, productivity, leverage and influence. An Innergency product.",
-  icons: {
-    icon: [{ url: "/impactfools-icon.png?v=20260924", type: "image/png" }],
-    shortcut: "/impactfools-icon.png?v=20260924",
-    apple: "/impactfools-icon.png?v=20260924",
-  },
+  // Favicons come from src/app/icon.png and src/app/apple-icon.png (the ImpactFools mascot).
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
