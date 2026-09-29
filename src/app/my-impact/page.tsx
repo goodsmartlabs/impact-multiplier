@@ -8,6 +8,7 @@ import { useAcademyStore } from "@/lib/store/academy-store";
 import { getCourseBySlug } from "@/lib/data/courses";
 import { useProfileStore } from "@/lib/store/profile-store";
 import { useHydrated } from "@/lib/use-hydrated";
+import { Reveal } from "@/components/motion/reveal";
 
 function StatTile({ label, value, tone }: { label: string; value: string | number; tone: "pink" | "blue" }) {
   return (
@@ -59,9 +60,9 @@ export default function MyImpactPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 md:px-6 md:pt-10">
       <div className="mb-6 max-w-2xl">
-        <h1 className="font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
+        <Reveal as="h1" immediate className="font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
           {name}&apos;s Impact
-        </h1>
+        </Reveal>
         <p className="mt-2 text-sm text-muted md:text-base">
           Proven capability, not just intentions. Learning and proof are kept separate.
         </p>

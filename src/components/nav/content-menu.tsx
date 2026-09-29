@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion, type Variants } from "motion/react";
 import { ChevronRight, Menu, X } from "lucide-react";
+import { DURATION, EASE_OUT, STAGGER } from "@/lib/motion";
 
 const DISCOVER_LINKS = [
   { label: "Skills", href: "/explore?type=skill" },
@@ -22,6 +24,21 @@ const COURSE_LINKS = [
   { label: "Student Courses", href: "/academy?access=student" },
   { label: "Coming Soon", href: "/academy?access=coming_soon" },
 ] as const;
+
+const panel: Variants = {
+  closed: { opacity: 0, scale: 0.96, y: -8, transition: { duration: DURATION.micro, ease: EASE_OUT } },
+  open: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: DURATION.fast, ease: EASE_OUT, staggerChildren: STAGGER.tight * 0.5, delayChildren: 0.04 },
+  },
+};
+
+const linkItem: Variants = {
+  closed: { opacity: 0, x: -6 },
+  open: { opacity: 1, x: 0, transition: { duration: DURATION.fast, ease: EASE_OUT } },
+};
 
 export function ContentMenu() {
   const [open, setOpen] = useState(false);
@@ -54,25 +71,43 @@ export function ContentMenu() {
         aria-expanded={open}
         aria-controls="content-menu-panel"
         onClick={() => setOpen((current) => !current)}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+        className="im-press flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink hover:border-ink hover:bg-blue-dim focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
       >
-        {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={open ? "close" : "open"}
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: 90, opacity: 0 }}
+            transition={{ duration: DURATION.micro }}
+            className="flex"
+          >
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </motion.span>
+        </AnimatePresence>
       </button>
 
-      {open && (
-        <div
-          id="content-menu-panel"
-          className="absolute right-0 top-12 z-50 w-[min(21rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-ink bg-paper shadow-[6px_6px_0_0_var(--color-ink)]"
-        >
-          <div className="border-b border-ink bg-pink-dim px-5 py-4">
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-pink">Explore ImpactFools Academia</p>
-            <p className="mt-1 text-sm font-semibold text-ink">What do you want to find?</p>
-          </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="content-menu-panel"
+            variants={panel}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            style={{ transformOrigin: "top right" }}
+            className="absolute right-0 top-12 z-50 w-[min(21rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-ink bg-paper shadow-[6px_6px_0_0_var(--color-ink)]"
+          >
+            <div className="border-b border-ink bg-pink-dim px-5 py-4">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-pink">Explore ImpactFools Academia</p>
+              <p className="mt-1 text-sm font-semibold text-ink">What do you want to find?</p>
+            </div>
 
-          <MenuSection title="Discover" links={DISCOVER_LINKS} onNavigate={() => setOpen(false)} />
-          <MenuSection title="Courses" links={COURSE_LINKS} onNavigate={() => setOpen(false)} bordered />
-        </div>
-      )}
+            <MenuSection title="Discover" links={DISCOVER_LINKS} onNavigate={() => setOpen(false)} />
+            <MenuSection title="Courses" links={COURSE_LINKS} onNavigate={() => setOpen(false)} bordered />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -93,15 +128,16 @@ function MenuSection({
       <p className="px-2 pb-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-muted">{title}</p>
       <div className="grid grid-cols-1 gap-0.5">
         {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            onClick={onNavigate}
-            className="group flex min-h-10 items-center justify-between rounded-lg px-2 py-2 text-sm font-semibold text-ink transition-colors hover:bg-blue-dim focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ink"
-          >
-            {link.label}
-            <ChevronRight className="h-4 w-4 text-muted transition-transform group-hover:translate-x-0.5" />
-          </Link>
+          <motion.div key={link.href} variants={linkItem}>
+            <Link
+              href={link.href}
+              onClick={onNavigate}
+              className="group flex min-h-10 items-center justify-between rounded-lg px-2 py-2 text-sm font-semibold text-ink transition-colors hover:bg-blue-dim focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ink"
+            >
+              {link.label}
+              <ChevronRight className="im-nudge h-4 w-4 text-muted group-hover:text-ink" />
+            </Link>
+          </motion.div>
         ))}
       </div>
     </div>

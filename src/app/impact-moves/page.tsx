@@ -7,6 +7,7 @@ import { Plus, Zap } from "lucide-react";
 import { useImpactMovesStore, STAGE_ORDER } from "@/lib/store/impact-moves-store";
 import { useHydrated } from "@/lib/use-hydrated";
 import { ProgressBar } from "@/components/academy/progress-bar";
+import { Reveal } from "@/components/motion/reveal";
 
 const STAGE_LABELS: Record<string, string> = {
   build: "Build",
@@ -36,9 +37,9 @@ export default function ImpactMovesPage() {
     <div className="mx-auto max-w-3xl px-4 pb-24 pt-6 md:px-6 md:pt-10">
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>
-          <h1 className="font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
+          <Reveal as="h1" immediate className="font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
             Impact Moves
-          </h1>
+          </Reveal>
           <p className="mt-2 text-sm text-muted md:text-base">
             Build. Prove it. Create value. Multiply.
           </p>

@@ -31,19 +31,21 @@ export function CourseCard({ course }: { course: Course }) {
   return (
     <Link
       href={`/academy/${course.slug}`}
-      className="brand-card group flex h-full flex-col overflow-hidden rounded-2xl border border-ink bg-paper transition-all duration-300"
+      className="brand-card group flex h-full flex-col overflow-hidden rounded-2xl border border-ink bg-paper"
     >
-      <div
-        className="relative h-64 w-full overflow-hidden bg-ink bg-cover bg-center"
-        style={course.coverImage
-          ? { backgroundImage: `linear-gradient(0deg, rgba(7, 8, 14, 0.9), rgba(7, 8, 14, 0.12)), url(${course.coverImage})` }
-          : { backgroundImage: "linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
-      >
+      <div className="relative h-64 w-full overflow-hidden bg-ink">
+        <div
+          aria-hidden="true"
+          className="im-zoom absolute inset-0 bg-cover bg-center"
+          style={course.coverImage
+            ? { backgroundImage: `linear-gradient(0deg, rgba(7, 8, 14, 0.9), rgba(7, 8, 14, 0.12)), url(${course.coverImage})` }
+            : { backgroundImage: "linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+        />
         {!course.coverImage && !editorialArt && <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full border-[20px] border-pink/80" />}
         {!course.coverImage && !editorialArt && <div className="absolute bottom-0 left-0 h-2 w-3/5 bg-blue" />}
         {!course.coverImage && editorialArt && <>
           <div className="absolute inset-x-0 top-[4.5rem] h-px bg-white/15" />
-          <div className="absolute right-5 top-[4.75rem] grid h-24 w-24 place-items-center rounded-full border border-white/20 bg-white/5 sm:h-28 sm:w-28"><CoverIcon className="h-12 w-12 text-white/75 sm:h-14 sm:w-14" strokeWidth={1.25} /></div>
+          <div className="absolute right-5 top-[4.75rem] grid h-24 w-24 place-items-center rounded-full border border-white/20 bg-white/5 transition-transform duration-700 ease-out group-hover:-rotate-6 group-hover:scale-105 sm:h-28 sm:w-28"><CoverIcon className="h-12 w-12 text-white/75 sm:h-14 sm:w-14" strokeWidth={1.25} /></div>
           <div className={`absolute bottom-0 left-0 h-2 w-3/5 ${editorialArt.accent}`} />
           <p className="absolute left-5 top-[5.25rem] max-w-[45%] text-[9px] font-bold uppercase leading-relaxed tracking-[0.17em] text-white/55">{editorialArt.label}</p>
         </>}

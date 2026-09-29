@@ -22,9 +22,9 @@ export function SearchBar({
         e.preventDefault();
         if (value.trim()) router.push(`/search?q=${encodeURIComponent(value.trim())}`);
       }}
-      className="flex items-center gap-3 rounded-full border border-ink bg-paper px-5 py-4 transition-all focus-within:-translate-y-0.5 focus-within:shadow-[4px_4px_0_#0b0b0c]"
+      className="group flex items-center gap-3 rounded-full border border-ink bg-paper px-5 py-4 transition-all duration-300 ease-out hover:shadow-[3px_3px_0_#0b0b0c] focus-within:-translate-y-0.5 focus-within:shadow-[4px_4px_0_#0964f5]"
     >
-      <Search className="h-5 w-5 shrink-0 text-muted" />
+      <Search className="h-5 w-5 shrink-0 text-muted transition-[color,rotate] duration-300 group-focus-within:-rotate-12 group-focus-within:text-blue" />
       <input
         value={value}
         onChange={(e) => setValue(e.target.value)}

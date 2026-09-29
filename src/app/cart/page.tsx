@@ -8,6 +8,7 @@ import { CartItemCard } from "@/components/cart/cart-item-card";
 import { FilterPills } from "@/components/discovery/filter-pills";
 import { useHydrated } from "@/lib/use-hydrated";
 import { formatDate } from "@/lib/utils";
+import { Reveal } from "@/components/motion/reveal";
 
 type CartFilterKey = "all" | "skills" | "learning" | "opportunities" | "tools" | "mind" | "money" | "build";
 
@@ -48,9 +49,9 @@ export default function CartPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 pb-24 pt-6 md:px-6 md:pt-10">
       <div className="mb-6 max-w-2xl">
-        <h1 className="font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
+        <Reveal as="h1" immediate className="font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
           Your Impact Cart
-        </h1>
+        </Reveal>
         <p className="mt-2 text-sm text-muted md:text-base">
           Your saved learning interests, ready to shape into a focused path. This is not a checkout.
         </p>

@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import { COURSE_ACCESS_LABELS } from "@/lib/data/constants";
 import { pathsForCourse } from "@/lib/data/learning-paths";
 import { LearningPathCard } from "@/components/academy/learning-path-card";
+import { Reveal } from "@/components/motion/reveal";
 
 export default function CourseDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -53,9 +54,9 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
         <span>•</span>
         <span className="capitalize">{course.level}</span>
       </div>
-      <h1 className="font-display text-3xl font-medium leading-tight tracking-tight text-ink md:text-4xl">
+      <Reveal as="h1" immediate className="font-display text-3xl font-medium leading-tight tracking-tight text-ink md:text-4xl">
         {course.title}
-      </h1>
+      </Reveal>
       <p className="mt-3 text-lg leading-relaxed text-muted">{course.shortDescription}</p>
 
       <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-muted">

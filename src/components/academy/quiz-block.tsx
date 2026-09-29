@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Check, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { SPRING_POP } from "@/lib/motion";
 import type { Quiz } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -39,7 +41,7 @@ export function QuizBlock({
                     disabled={submitted}
                     onClick={() => setAnswers((a) => ({ ...a, [q.id]: oi }))}
                     className={cn(
-                      "flex w-full items-center justify-between rounded-xl border px-3 py-2 text-left text-sm transition-colors",
+                      "im-press flex w-full items-center justify-between rounded-xl border px-3 py-2 text-left text-sm transition-colors duration-300",
                       selected && !submitted && "border-ink",
                       !selected && !submitted && "border-line hover:border-ink/40",
                       isCorrect && "border-blue bg-blue-dim text-blue",
@@ -47,8 +49,13 @@ export function QuizBlock({
                     )}
                   >
                     {opt}
-                    {isCorrect && <Check className="h-4 w-4" />}
-                    {isWrongSelected && <X className="h-4 w-4" />}
+                    <AnimatePresence>
+                      {(isCorrect || isWrongSelected) && (
+                        <motion.span key="mark" initial={{ scale: 0, rotate: -45 }} animate={{ scale: 1, rotate: 0 }} transition={{ ...SPRING_POP, delay: qi * 0.08 }} className="flex">
+                          {isCorrect ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
                   </button>
                 );
               })}
@@ -65,14 +72,14 @@ export function QuizBlock({
             setSubmitted(true);
             onComplete?.(scorePercent);
           }}
-          className="mt-5 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper disabled:opacity-30"
+          className="im-press mt-5 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper transition-[background-color,opacity] enabled:hover:bg-blue disabled:opacity-30"
         >
           Submit
         </button>
       ) : (
-        <p className="mt-5 text-sm font-semibold text-ink">
+        <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-5 text-sm font-semibold text-ink">
           You got {correctCount} of {quiz.questions.length} correct ({scorePercent}%).
-        </p>
+        </motion.p>
       )}
     </div>
   );

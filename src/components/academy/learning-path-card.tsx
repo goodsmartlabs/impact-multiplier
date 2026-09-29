@@ -17,14 +17,14 @@ export function LearningPathCard({ path, currentSlug }: { path: LearningPath; cu
           const current = course.slug === currentSlug;
           return (
             <li key={course.slug}>
-              <Link href={`/academy/${course.slug}`} className={cn("flex items-center gap-3 rounded-2xl border px-3 py-2.5 transition-colors hover:border-blue", current ? "border-pink bg-pink-dim" : "border-line bg-paper")}>
+              <Link href={`/academy/${course.slug}`} className={cn("im-press group flex items-center gap-3 rounded-2xl border px-3 py-2.5 transition-colors hover:border-blue hover:bg-blue-dim/40", current ? "border-pink bg-pink-dim" : "border-line bg-paper")}>
                 <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-ink text-xs font-bold text-white">{index + 1}</span>
                 <span className="min-w-0 flex-1">
                   {current && <span className="block text-[9px] font-bold uppercase tracking-wider text-pink">You are here</span>}
                   <span className="block text-sm font-semibold text-ink">{course.title}</span>
                   <span className="text-[10px] font-semibold uppercase tracking-wide text-muted">{COURSE_ACCESS_LABELS[course.access]}</span>
                 </span>
-                <ArrowRight className="h-4 w-4 shrink-0 text-muted" />
+                <ArrowRight className="im-nudge h-4 w-4 shrink-0 text-muted group-hover:text-blue" />
               </Link>
             </li>
           );

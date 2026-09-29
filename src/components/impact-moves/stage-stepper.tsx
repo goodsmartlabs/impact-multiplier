@@ -38,7 +38,7 @@ export function StageStepper({
             disabled={!unlocked}
             onClick={() => onSelect(stage)}
             className={cn(
-              "flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors",
+              "im-press flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors duration-300",
               active && "border-ink bg-ink text-paper",
               !active && done && "border-blue bg-blue-dim text-blue",
               !active && !done && unlocked && "border-line text-muted hover:border-ink",

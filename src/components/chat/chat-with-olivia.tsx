@@ -2,6 +2,8 @@
 
 import { FormEvent, useState } from "react";
 import { ChevronDown, MessageCircle, Send, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { DURATION, EASE_OUT, SPRING_POP } from "@/lib/motion";
 import { oliviaChatProvider } from "@/lib/chat-provider";
 
 const CHAT_STORAGE_KEY = "impactfools-olivia-chat-draft";
@@ -43,8 +45,17 @@ export function ChatWithOlivia() {
 
   return (
     <aside className="fixed bottom-20 right-4 z-50 flex flex-col items-end gap-3 md:bottom-6 md:right-6" aria-label="Chat with Olivia">
+      <AnimatePresence>
       {open ? (
-        <div className="w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-3xl border border-ink bg-paper shadow-[7px_7px_0_#111]">
+        <motion.div
+          key="chat-panel"
+          initial={{ opacity: 0, y: 16, scale: 0.94 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 12, scale: 0.96, transition: { duration: DURATION.micro } }}
+          transition={{ duration: DURATION.fast, ease: EASE_OUT }}
+          style={{ transformOrigin: "bottom right" }}
+          className="w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-3xl border border-ink bg-paper shadow-[7px_7px_0_#111]"
+        >
           <div className="flex items-center justify-between border-b border-ink bg-pink-dim px-4 py-3">
             <div className="flex items-center gap-2"><span className="flex h-8 w-8 items-center justify-center rounded-full border border-ink bg-pink text-white"><MessageCircle className="h-4 w-4" /></span><div><p className="text-sm font-bold">Chat with Olivia</p><p className="text-[10px] text-muted">Keep browsing while you write</p></div></div>
             <div className="flex items-center gap-1">
@@ -56,7 +67,7 @@ export function ChatWithOlivia() {
           <div className="p-4">
             <p className="font-display text-2xl font-semibold leading-none">What are you trying to make?</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {PROMPTS.map((prompt) => <button key={prompt} type="button" onClick={() => updateDraft(prompt)} className="rounded-full border border-ink bg-blue-dim px-3 py-1.5 text-[10px] font-semibold hover:bg-pink-dim">{prompt}</button>)}
+              {PROMPTS.map((prompt) => <button key={prompt} type="button" onClick={() => updateDraft(prompt)} className="im-press rounded-full border border-ink bg-blue-dim px-3 py-1.5 text-[10px] font-semibold hover:bg-pink-dim">{prompt}</button>)}
             </div>
 
             <form className="mt-4" onSubmit={handleSubmit}>
@@ -64,7 +75,7 @@ export function ChatWithOlivia() {
               <textarea id="olivia-chat-message" value={draft} onChange={(event) => updateDraft(event.target.value)} rows={4} maxLength={1000} placeholder="Type your question…" className="w-full resize-none rounded-2xl border border-ink bg-white p-3 text-sm outline-none transition-shadow focus:shadow-[3px_3px_0_#0964f5]" />
               <div className="mt-2 flex items-center justify-between gap-3">
                 <span className="text-[10px] text-muted">Draft stays here if minimized.</span>
-                <button type="submit" disabled={!draft.trim() || status === "sending"} className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-xs font-bold text-white disabled:cursor-not-allowed disabled:opacity-40">{status === "sending" ? "Sending…" : "Send"}<Send className="h-3.5 w-3.5" /></button>
+                <button type="submit" disabled={!draft.trim() || status === "sending"} className="im-press group inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-xs font-bold text-white hover:bg-blue disabled:cursor-not-allowed disabled:opacity-40">{status === "sending" ? "Sending…" : "Send"}<Send className="im-nudge-diag h-3.5 w-3.5" /></button>
               </div>
             </form>
 
@@ -74,12 +85,21 @@ export function ChatWithOlivia() {
               {status === "error" ? <p className="rounded-xl bg-pink-dim p-2">That message could not be sent. Your draft is still saved.</p> : null}
             </div>
           </div>
-        </div>
+        </motion.div>
       ) : null}
+      </AnimatePresence>
 
-      <button type="button" onClick={toggleChat} aria-expanded={open} className="design-sticker inline-flex items-center gap-2 rounded-full border border-ink bg-pink px-4 py-3 text-sm font-bold text-white shadow-[4px_4px_0_#111] transition-transform hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue">
-        <MessageCircle className="h-5 w-5" /> Chat with Olivia
-      </button>
+      <motion.button
+        type="button"
+        onClick={toggleChat}
+        aria-expanded={open}
+        initial={{ opacity: 0, y: 24, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ ...SPRING_POP, delay: 1.6 }}
+        className="im-lift group inline-flex items-center gap-2 rounded-full border border-ink bg-pink px-4 py-3 text-sm font-bold text-white shadow-[4px_4px_0_#111] hover:shadow-[6px_7px_0_#111] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue"
+      >
+        <MessageCircle className="h-5 w-5 transition-transform duration-500 group-hover:-rotate-12" /> Chat with Olivia
+      </motion.button>
     </aside>
   );
 }
