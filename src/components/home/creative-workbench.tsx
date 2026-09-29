@@ -14,7 +14,7 @@ import {
   Triangle,
 } from "lucide-react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform, type MotionValue } from "motion/react";
-import { BrandLogo, BrandWordmark } from "@/components/brand-logo";
+import { BrandWordmark } from "@/components/brand-logo";
 import { MaskGroup, MaskLine } from "@/components/motion/text-reveal";
 import { Parallax } from "@/components/motion/parallax";
 import { imageReveal, popIn, scaleIn, withDelay } from "@/lib/motion";
@@ -113,13 +113,12 @@ export function CreativeWorkbench() {
             <div className="absolute inset-x-0 top-1/2 z-10 flex -translate-y-1/2 justify-center">
               <Layer className="relative" depth={-6} delay={0.55}>
                 <div className="flex flex-col items-center">
-                  <BrandLogo priority className="mascot-bob h-[84px] md:h-[118px]" />
-                  <div className="relative mt-2 px-3 pb-1.5 pt-1">
+                  <div className="relative px-3 pb-1.5 pt-1">
                     <i className="absolute -left-1 -top-1 h-2.5 w-2.5 border border-blue bg-white" />
                     <i className="absolute -right-1 -top-1 h-2.5 w-2.5 border border-blue bg-white" />
                     <i className="absolute -bottom-1 -left-1 h-2.5 w-2.5 border border-blue bg-white" />
                     <i className="absolute -bottom-1 -right-1 h-2.5 w-2.5 border border-blue bg-white" />
-                    <MaskGroup as="p" delay={0.85} immediate className="text-[2.3rem] sm:text-[2.6rem] md:text-[3rem]">
+                    <MaskGroup as="p" delay={0.85} immediate className="text-[2.6rem] sm:text-[3rem] md:text-[3.5rem]">
                       <MaskLine inline innerClassName="leading-none">
                         <BrandWordmark />
                       </MaskLine>

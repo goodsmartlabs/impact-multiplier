@@ -35,7 +35,7 @@ export function TopNav() {
       >
         <Link href="/" className="group flex shrink-0 items-center gap-2.5" aria-label="ImpactFools Academia home">
           <BrandLogo priority className="im-mascot h-11" />
-          <BrandWordmark academia className="text-[1.75rem]" />
+          <BrandWordmark className="text-[1.75rem]" />
         </Link>
 
         <nav className="ml-12 flex flex-1 items-center gap-1">
