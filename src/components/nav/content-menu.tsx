@@ -7,6 +7,7 @@ import { ChevronRight, Menu, X } from "lucide-react";
 import { DURATION, EASE_OUT, STAGGER } from "@/lib/motion";
 
 const DISCOVER_LINKS = [
+  { label: "Capacity Guide", href: "/capacity-guide" },
   { label: "Skills", href: "/explore?type=skill" },
   { label: "Mental Models", href: "/explore?type=mental_model" },
   { label: "Productivity Systems", href: "/explore?type=productivity_system" },

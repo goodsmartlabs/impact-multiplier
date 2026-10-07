@@ -295,3 +295,33 @@ body {
 .animate-fade-up {
   animation: fade-up 0.45s var(--ease-out) both;
 }
+
+@media print {
+  body {
+    background: white !important;
+  }
+
+  body > div > div:first-child,
+  header,
+  nav,
+  .no-print,
+  button,
+  [data-chat-widget] {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  .capacity-profile {
+    color: #111 !important;
+  }
+
+  .capacity-profile section,
+  .capacity-profile article,
+  .capacity-profile header {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+}
