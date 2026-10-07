@@ -73,6 +73,17 @@ export default function Home() {
 
       <NeedDiscovery />
 
+      <section className="border-y border-ink bg-blue-dim px-4 py-12 md:px-6 md:py-16">
+        <div className="mx-auto flex max-w-7xl flex-col gap-7 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-3xl">
+            <Reveal as="p" className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue">Don’t know what to learn—or what your niche is?</Reveal>
+            <TextReveal as="h2" text="Find what you can build." className="mt-2 font-display text-5xl font-semibold leading-none md:text-7xl" />
+            <Reveal as="p" delay={0.12} className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">Use what you already know, what you could become good at and where it could create value to choose your next capacity direction.</Reveal>
+          </div>
+          <Reveal delay={0.18} className="shrink-0"><Link href="/capacity-guide" className="im-lift group inline-flex min-h-14 items-center gap-2 rounded-full border border-ink bg-ink px-6 py-4 text-sm font-bold text-white shadow-[4px_4px_0_var(--color-pink)]">Start the Capacity Guide <ArrowRight className="im-nudge h-4 w-4" /></Link></Reveal>
+        </div>
+      </section>
+
       <section id="discover" className="mx-auto max-w-7xl scroll-mt-28 px-4 py-14 md:px-6 md:py-20">
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
