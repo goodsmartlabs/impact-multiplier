@@ -18,6 +18,7 @@ const DISCOVER_LINKS = [
 
 const COURSE_LINKS = [
   { label: "All Courses", href: "/academy?access=all" },
+  { label: "7-Day Skill Challenge", href: "/academy/challenge" },
   { label: "Craft Paths", href: "/craft-paths" },
   { label: "Start with Redirection", href: "/redirection" },
   { label: "Challenges", href: "/explore?type=challenge" },

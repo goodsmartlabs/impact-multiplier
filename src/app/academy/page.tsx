@@ -119,6 +119,14 @@ function CoursesLanding() {
   const financeFlagships = featuredCourses.filter((course) => financeSlugs.includes(course.slug));
   const otherFlagships = featuredCourses.filter((course) => !financeSlugs.includes(course.slug));
   return <>
+    <Reveal as="section" variant="scaleIn" aria-labelledby="challenge-band-heading" className="mb-14 overflow-hidden rounded-[2rem] border border-ink bg-pink-dim p-6 shadow-[6px_6px_0_#111] md:flex md:items-center md:justify-between md:gap-8 md:p-8">
+      <div className="max-w-2xl">
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-pink">New · 7-Day Skill Challenge</p>
+        <h2 id="challenge-band-heading" className="mt-2 font-display text-3xl font-semibold leading-tight text-ink md:text-4xl">Pick one skill. Build one project. Create real value.</h2>
+        <p className="mt-2 text-sm leading-relaxed text-ink/75">Seven guided days in AI automation, data analytics, digital marketing, web design, process improvement or financial analysis — ending with a real project and a service you could offer.</p>
+      </div>
+      <Link href="/academy/challenge" className="im-lift group mt-5 inline-flex shrink-0 items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-bold text-white shadow-[4px_4px_0_#0964f5] md:mt-0">Choose your skill <ArrowRight className="im-nudge h-4 w-4" /></Link>
+    </Reveal>
     <section aria-labelledby="finance-flagships-heading">
       <div className="mb-4"><Reveal variant="fadeIn" as="p" className="text-xs font-bold uppercase tracking-[0.18em] text-pink">Featured by ImpactFools Academia</Reveal><TextReveal as="h2" id="finance-flagships-heading" text="Flagship Finance Programs" className="font-display text-3xl font-semibold text-ink" /><Reveal delay={0.2} as="p" className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">Build financial clarity first, then apply AI with stronger accounting judgment and practical finance tools.</Reveal></div>
       <Stagger stagger={0.1} className="mb-6 flex flex-wrap items-center gap-2 rounded-2xl border border-ink bg-white p-4 text-xs font-bold uppercase tracking-wide text-ink">
