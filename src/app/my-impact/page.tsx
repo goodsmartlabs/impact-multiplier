@@ -9,6 +9,7 @@ import { getCourseBySlug } from "@/lib/data/courses";
 import { useProfileStore } from "@/lib/store/profile-store";
 import { useHydrated } from "@/lib/use-hydrated";
 import { Reveal } from "@/components/motion/reveal";
+import { SkillChallengeSummary } from "@/components/skill-challenge/my-impact-summary";
 
 function StatTile({ label, value, tone }: { label: string; value: string | number; tone: "pink" | "blue" }) {
   return (
@@ -78,6 +79,8 @@ export default function MyImpactPage() {
           tone="blue"
         />
       </div>
+
+      <SkillChallengeSummary />
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <SectionCard icon={Sparkles} title="Currently Increasing" empty={inProgress.length === 0}>

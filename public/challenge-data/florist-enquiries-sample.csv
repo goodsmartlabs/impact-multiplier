@@ -1,0 +1,31 @@
+enquiry_id,received_at,customer_name,email,channel,enquiry_type,message,budget_estimate,responded_within_hours
+ENQ-001,2026-03-24 17:27,Kofi C.,customer1@example.com,WhatsApp,Weekly office flowers,We'd like fresh flowers for reception every Monday. How does billing work?,$50-$150,26
+ENQ-002,2026-03-15 11:53,Lina Z.,customer2@example.com,Website form,Wedding flowers,We need table centrepieces and an arch. What packages do you have?,$150-$500,4
+ENQ-003,2026-03-22 17:40,Nadia D.,customer3@example.com,Instagram DM,Corporate event,We need table centrepieces and an arch. What packages do you have?,$150-$500,
+ENQ-004,2026-03-23 18:12,Ivan O.,customer4@example.com,WhatsApp,Corporate event,Can you quote for flowers for about 80 guests next month?,,38
+ENQ-005,2026-03-06 08:44,Amara J.,customer5@example.com,Email,Birthday bouquet,Can you deliver a bouquet tomorrow afternoon?,$500+,16
+ENQ-006,2026-03-14 13:19,Chen F.,customer6@example.com,Instagram DM,Anniversary bouquet,Can you deliver a bouquet tomorrow afternoon?,,21
+ENQ-007,2026-03-14 15:38,Kofi Q.,customer7@example.com,WhatsApp,Birthday bouquet,Can you deliver a bouquet tomorrow afternoon?,,
+ENQ-008,2026-03-01 09:08,Dina B.,customer8@example.com,Instagram DM,Birthday bouquet,Can you deliver a bouquet tomorrow afternoon?,,
+ENQ-009,2026-03-16 16:35,Hana U.,customer9@example.com,Website form,Wedding flowers,We need table centrepieces and an arch. What packages do you have?,,32
+ENQ-010,2026-03-03 14:16,Nadia W.,customer10@example.com,Instagram DM,Birthday bouquet,Can you deliver a bouquet tomorrow afternoon?,$500+,
+ENQ-011,2026-03-26 11:53,Omar U.,customer11@example.com,Email,Weekly office flowers,Do you offer a monthly plan for two office vases?,$500+,8
+ENQ-012,2026-03-03 14:55,Joy N.,customer12@example.com,Website form,Funeral arrangement,Can you help with a wreath and a card message?,$50-$150,33
+ENQ-013,2026-03-15 17:06,Joy L.,customer13@example.com,Website form,Funeral arrangement,Can you help with a wreath and a card message?,,8
+ENQ-014,2026-03-06 08:50,Eli B.,customer14@example.com,Email,Wedding flowers,Can you quote for flowers for about 80 guests next month?,$50-$150,22
+ENQ-015,2026-03-02 13:52,Amara L.,customer15@example.com,WhatsApp,Funeral arrangement,We need a respectful arrangement delivered to a service on Friday.,$50-$150,11
+ENQ-016,2026-03-12 14:58,Hana X.,customer16@example.com,Email,Weekly office flowers,We'd like fresh flowers for reception every Monday. How does billing work?,$50-$150,46
+ENQ-017,2026-03-24 13:18,Moses E.,customer17@example.com,WhatsApp,Birthday bouquet,Can you deliver a bouquet tomorrow afternoon?,,
+ENQ-018,2026-03-05 16:15,Nadia C.,customer18@example.com,WhatsApp,Weekly office flowers,Do you offer a monthly plan for two office vases?,$500+,
+ENQ-019,2026-03-20 17:13,Hana D.,customer19@example.com,WhatsApp,Funeral arrangement,Can you help with a wreath and a card message?,$50-$150,24
+ENQ-020,2026-03-17 15:21,Eli T.,customer20@example.com,Website form,Birthday bouquet,What is the price range for a medium bouquet with delivery?,,29
+ENQ-021,2026-03-22 09:15,Fatima G.,customer21@example.com,Email,Wedding flowers,We need table centrepieces and an arch. What packages do you have?,$500+,43
+ENQ-022,2026-03-10 08:45,Fatima A.,customer22@example.com,Email,Funeral arrangement,Can you help with a wreath and a card message?,Under $50,39
+ENQ-023,2026-03-09 11:07,Ivan J.,customer23@example.com,Instagram DM,Anniversary bouquet,Can you deliver a bouquet tomorrow afternoon?,$150-$500,
+ENQ-024,2026-03-23 12:53,Joy X.,customer24@example.com,WhatsApp,Wedding flowers,Can you quote for flowers for about 80 guests next month?,$50-$150,46
+ENQ-025,2026-03-14 12:36,Nadia O.,customer25@example.com,Website form,Anniversary bouquet,Can you deliver a bouquet tomorrow afternoon?,$150-$500,
+ENQ-026,2026-03-04 16:29,Nadia F.,customer26@example.com,Email,Corporate event,Can you quote for flowers for about 80 guests next month?,Under $50,
+ENQ-027,2026-03-22 09:14,Amara S.,customer27@example.com,Instagram DM,Birthday bouquet,Can you deliver a bouquet tomorrow afternoon?,Under $50,
+ENQ-028,2026-03-18 14:22,Chen B.,customer28@example.com,Website form,Funeral arrangement,We need a respectful arrangement delivered to a service on Friday.,,9
+ENQ-029,2026-03-23 18:37,Amara Q.,customer29@example.com,WhatsApp,Funeral arrangement,We need a respectful arrangement delivered to a service on Friday.,Under $50,24
+ENQ-030,2026-03-11 13:49,Omar I.,customer30@example.com,Instagram DM,Corporate event,Can you quote for flowers for about 80 guests next month?,,25

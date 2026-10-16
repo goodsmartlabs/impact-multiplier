@@ -20,6 +20,12 @@ An Innergency product.
 - **Impact Engine** — the Build → Capacity → Value → Proof → Money → Action → Impact → Multiply
   flow that turns discovery and learning into demonstrated, evidence-based impact
   (`/impact-moves`).
+- **7-Day Skill Challenge** — pick one of six skills, work through Discover → Learn → Practice →
+  Identify → Build → Prove → Multiply, finish with an Impact Check and a drafted service offer
+  (`/academy/challenge`, `/academy/challenge/[skill]`, `.../day/[1-7]`, `.../impact`). Content lives
+  in `src/lib/skill-challenge/skills/`; completion rules (checklist + deliverable + project links)
+  are in `src/lib/skill-challenge/engine.ts` and covered by tests. Sample datasets are fictional and
+  regenerated with `node scripts/generate-challenge-data.mjs public/challenge-data`.
 - **My Impact** — an evidence-based profile that keeps proven capability separate from intent
   (`/my-impact`).
 - **Profile** — progressive, optional personalization that improves discovery over time
@@ -28,8 +34,9 @@ An Innergency product.
 ## Stack
 
 - Next.js (App Router) + TypeScript + Tailwind CSS v4
-- Zustand (persisted to `localStorage`) for the Impact Cart, Academy progress, Impact Moves, and
-  profile personalization
+- Zustand (persisted to `localStorage`) for the Impact Cart, Academy progress, Impact Moves,
+  Capacity Guide, 7-Day Skill Challenge progress and profile personalization. There are no user
+  accounts yet, so progress is per browser/device.
 - Static, structured seed data in `src/lib/data/` — content is kept separate from presentation,
   designed so it can move to a real backend/CMS without reshaping the UI
 
@@ -45,6 +52,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ```bash
 npm run build   # production build
 npm run lint    # eslint
+npm test        # vitest
 ```
 
 ## Chat integration
