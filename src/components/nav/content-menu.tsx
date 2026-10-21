@@ -6,8 +6,16 @@ import { AnimatePresence, motion, type Variants } from "motion/react";
 import { ChevronRight, Menu, X } from "lucide-react";
 import { DURATION, EASE_OUT, STAGGER } from "@/lib/motion";
 
+const PULSE_LINKS = [
+  { label: "All Impact Pulse updates", href: "/pulse" },
+  { label: "Your Impact Radar", href: "/pulse/radar" },
+  { label: "The Impact Brief", href: "/pulse/brief" },
+  { label: "Saved opportunities", href: "/cart" },
+] as const;
+
 const DISCOVER_LINKS = [
   { label: "Capacity Guide", href: "/capacity-guide" },
+  { label: "Explore the library", href: "/explore" },
   { label: "Skills", href: "/explore?type=skill" },
   { label: "Mental Models", href: "/explore?type=mental_model" },
   { label: "Productivity Systems", href: "/explore?type=productivity_system" },
@@ -25,6 +33,7 @@ const COURSE_LINKS = [
   { label: "Free Courses", href: "/academy?access=free" },
   { label: "Student Courses", href: "/academy?access=student" },
   { label: "Coming Soon", href: "/academy?access=coming_soon" },
+  { label: "Profile", href: "/profile" },
 ] as const;
 
 const panel: Variants = {
@@ -98,14 +107,15 @@ export function ContentMenu() {
             animate="open"
             exit="closed"
             style={{ transformOrigin: "top right" }}
-            className="absolute right-0 top-12 z-50 w-[min(21rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-ink bg-paper shadow-[6px_6px_0_0_var(--color-ink)]"
+            className="absolute right-0 top-12 z-50 max-h-[calc(100dvh-6rem)] w-[min(21rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain rounded-2xl border border-ink bg-paper shadow-[6px_6px_0_0_var(--color-ink)]"
           >
             <div className="border-b border-ink bg-pink-dim px-5 py-4">
               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-pink">Explore ImpactFools Academia</p>
               <p className="mt-1 text-sm font-semibold text-ink">What do you want to find?</p>
             </div>
 
-            <MenuSection title="Discover" links={DISCOVER_LINKS} onNavigate={() => setOpen(false)} />
+            <MenuSection title="Impact Pulse" links={PULSE_LINKS} onNavigate={() => setOpen(false)} />
+            <MenuSection title="Discover" links={DISCOVER_LINKS} onNavigate={() => setOpen(false)} bordered />
             <MenuSection title="Courses" links={COURSE_LINKS} onNavigate={() => setOpen(false)} bordered />
           </motion.div>
         )}

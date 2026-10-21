@@ -1,8 +1,11 @@
 "use client";
 
-import { Suspense, useMemo } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { DiscoveryCard } from "@/components/discovery/discovery-card";
+import { PulseCard } from "@/components/pulse/pulse-card";
+import { searchUpdates } from "@/lib/pulse/feed";
+import type { PulseUpdate } from "@/lib/pulse/types";
 import { CourseCard } from "@/components/academy/course-card";
 import { SearchBar } from "@/components/discovery/search-bar";
 import { searchCourses, searchDiscoveryItems } from "@/lib/search";
@@ -18,12 +21,27 @@ const EXAMPLE_QUERIES = [
   "business opportunities",
 ];
 
+function usePulseUpdates() {
+  const [state, setState] = useState<{ status: "loading" | "ready" | "error"; updates: PulseUpdate[] }>({ status: "loading", updates: [] });
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/pulse/updates")
+      .then((response) => (response.ok ? response.json() : Promise.reject(new Error(String(response.status)))))
+      .then((data: { updates: PulseUpdate[] }) => { if (!cancelled) setState({ status: "ready", updates: data.updates }); })
+      .catch(() => { if (!cancelled) setState({ status: "error", updates: [] }); });
+    return () => { cancelled = true; };
+  }, []);
+  return state;
+}
+
 function SearchResults() {
   const params = useSearchParams();
   const q = params.get("q") ?? "";
   const results = useMemo(() => searchDiscoveryItems(q), [q]);
   const courseResults = useMemo(() => searchCourses(q), [q]);
-  const totalResults = results.length + courseResults.length;
+  const pulse = usePulseUpdates();
+  const pulseResults = useMemo(() => (q ? searchUpdates(pulse.updates, q) : []), [pulse.updates, q]);
+  const totalResults = results.length + courseResults.length + pulseResults.length;
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 md:px-6 md:pt-10">
@@ -62,7 +80,9 @@ function SearchResults() {
           <p className="mb-4 text-xs font-medium uppercase tracking-wide text-muted">
             {totalResults} {totalResults === 1 ? "result" : "results"} for &ldquo;{q}&rdquo;
           </p>
-          {totalResults === 0 ? (
+          {pulse.status === "loading" && <p className="mb-4 text-xs text-muted" aria-live="polite">Searching Impact Pulse…</p>}
+          {pulse.status === "error" && <p className="mb-4 text-xs text-muted">Impact Pulse results couldn’t load — showing courses and library items only.</p>}
+          {totalResults === 0 && pulse.status !== "loading" ? (
             <div className="rounded-3xl border border-dashed border-line p-10 text-center text-sm text-muted">
               Nothing matched that search yet. Try a broader phrase, or browse{" "}
               <a href="/explore" className="underline">
@@ -72,6 +92,16 @@ function SearchResults() {
             </div>
           ) : (
             <div className="space-y-10">
+              {pulseResults.length > 0 && (
+                <section>
+                  <h2 className="mb-4 font-display text-2xl font-semibold text-ink">Impact Pulse</h2>
+                  <Stagger key={q} amount={0.02} stagger={0.05} className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {pulseResults.slice(0, 9).map((update) => (
+                      <StaggerItem key={update.id}><PulseCard update={update} size="compact" /></StaggerItem>
+                    ))}
+                  </Stagger>
+                </section>
+              )}
               {courseResults.length > 0 && (
                 <section>
                   <h2 className="mb-4 font-display text-2xl font-semibold text-ink">Courses</h2>

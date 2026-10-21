@@ -13,6 +13,16 @@ export interface ResolvedCartEntry {
 }
 
 export function resolveCartEntry(entry: ImpactCartEntry): ResolvedCartEntry | null {
+  if (entry.itemKind === "pulse") {
+    if (!entry.pulse) return null;
+    return {
+      entry,
+      title: entry.pulse.title,
+      slug: entry.pulse.slug,
+      href: `/pulse/${entry.pulse.slug}`,
+      categoryLabel: `IMPACT PULSE • ${entry.pulse.category.toUpperCase()}`,
+    };
+  }
   if (entry.itemKind === "discovery") {
     const item = DISCOVERY_ITEMS.find((i) => i.id === entry.itemId);
     if (!item) return null;

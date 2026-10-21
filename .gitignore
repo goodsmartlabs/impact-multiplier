@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Impact Pulse local development store (PULSE_STORE=file)
+/.data/

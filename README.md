@@ -8,6 +8,13 @@ An Innergency product.
 
 ## What's built (V1)
 
+- **Impact Pulse** — the homepage and central discovery experience: an editorial feed of trends,
+  jobs & gigs, skills in demand, courses, money moves, opportunities, AI and industry updates,
+  each answering What / Why / Who / How / Next; Impact Radar personalisation; The Impact Brief
+  newsletter; an Opportunity tracker in the Impact Cart; a protected editorial dashboard
+  (`/admin`) and an agent ingestion API. Setup, environment variables and the agent contract are
+  in [`docs/impact-pulse.md`](docs/impact-pulse.md).
+
 - **Discovery feed** — a filterable, editorial feed of skills, courses, tools, opportunities,
   grants, mental models, and more (`/`, `/explore`, `/search`).
 - **Detail pages** — deep, source-aware pages for every discovery item (`/item/[slug]`), with

@@ -312,10 +312,32 @@ export interface RedirectionResult {
 // ---------------- Impact Cart ----------------
 
 export interface ImpactCartEntry {
-  itemId: string; // discovery item id or course id (prefixed)
-  itemKind: "discovery" | "course";
+  itemId: string; // discovery item id, course id or Impact Pulse update id
+  itemKind: "discovery" | "course" | "pulse";
   note?: string;
   savedAt: string;
+  /** SAVE → EXPLORE → PLAN → ACT → TRACK progress for opportunities. */
+  status?: OpportunityTrackStatus;
+  statusUpdatedAt?: string;
+  /** Pulse updates can live in the database, so the essentials are copied at save time. */
+  pulse?: PulseCartSnapshot;
+}
+
+export type OpportunityTrackStatus = "saved" | "exploring" | "preparing" | "applied" | "interviewing" | "completed" | "closed";
+
+export interface PulseCartSnapshot {
+  slug: string;
+  title: string;
+  category: string;
+  summary: string;
+  next: string;
+  skills: string[];
+  sourceName: string;
+  sourceUrl?: string;
+  deadline?: string;
+  verification: "verified" | "unverified" | "demo";
+  relatedCourseSlugs: string[];
+  cta: { label: string; href: string };
 }
 
 // ---------------- Impact Engine / Impact Moves ----------------
