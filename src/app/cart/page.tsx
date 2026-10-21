@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCartStore } from "@/lib/store/cart-store";
 import { resolveCartEntry } from "@/lib/cart-lookup";
 import { CartItemCard } from "@/components/cart/cart-item-card";
+import { OpportunityTracker } from "@/components/cart/opportunity-tracker";
 import { FilterPills } from "@/components/discovery/filter-pills";
 import { useHydrated } from "@/lib/use-hydrated";
 import { formatDate } from "@/lib/utils";
@@ -29,8 +30,9 @@ export default function CartPage() {
   const [filter, setFilter] = useState<CartFilterKey>("all");
   const [compare, setCompare] = useState(false);
 
+  const pulseEntries = useMemo(() => entries.filter((entry) => entry.itemKind === "pulse" && entry.pulse), [entries]);
   const resolved = useMemo(
-    () => entries.map(resolveCartEntry).filter((r): r is NonNullable<typeof r> => !!r),
+    () => entries.filter((entry) => entry.itemKind !== "pulse").map(resolveCartEntry).filter((r): r is NonNullable<typeof r> => !!r),
     [entries]
   );
 
@@ -53,19 +55,19 @@ export default function CartPage() {
           Your Impact Cart
         </Reveal>
         <p className="mt-2 text-sm text-muted md:text-base">
-          Your saved learning interests, ready to shape into a focused path. This is not a checkout.
+          Saved opportunities, learning and ideas — ready to plan, act on and track. This is not a checkout.
         </p>
       </div>
 
+      {pulseEntries.length > 0 && <OpportunityTracker entries={pulseEntries} />}
+
       {resolved.length === 0 ? (
         <div className="rounded-3xl border border-dashed border-line p-10 text-center">
-          <p className="text-sm text-muted">Nothing saved yet.</p>
-          <Link
-            href="/explore"
-            className="mt-3 inline-block rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper"
-          >
-            Start exploring
-          </Link>
+          <p className="text-sm text-muted">{pulseEntries.length ? "No saved courses or library items yet." : "Nothing saved yet."}</p>
+          <div className="mt-3 flex flex-wrap justify-center gap-2">
+            <Link href="/pulse" className="inline-block rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper">Browse Impact Pulse</Link>
+            <Link href="/explore" className="inline-block rounded-full border border-ink px-4 py-2 text-sm font-semibold">Explore the library</Link>
+          </div>
         </div>
       ) : (
         <>

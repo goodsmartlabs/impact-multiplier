@@ -15,7 +15,7 @@ export function SaveButton({
   className,
 }: {
   itemId: string;
-  itemKind: "discovery" | "course";
+  itemKind: "discovery" | "course" | "pulse";
   size?: "sm" | "md";
   className?: string;
 }) {
