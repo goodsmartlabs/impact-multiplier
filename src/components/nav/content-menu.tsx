@@ -25,6 +25,7 @@ const DISCOVER_LINKS = [
 ] as const;
 
 const COURSE_LINKS = [
+  { label: "7-Day Build Challenge", href: "/build-challenge" },
   { label: "All Courses", href: "/academy?access=all" },
   { label: "7-Day Skill Challenge", href: "/academy/challenge" },
   { label: "Craft Paths", href: "/craft-paths" },
@@ -155,3 +156,4 @@ function MenuSection({
     </div>
   );
 }
+

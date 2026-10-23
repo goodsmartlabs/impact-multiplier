@@ -33,6 +33,8 @@ An Innergency product.
   in `src/lib/skill-challenge/skills/`; completion rules (checklist + deliverable + project links)
   are in `src/lib/skill-challenge/engine.ts` and covered by tests. Sample datasets are fictional and
   regenerated with `node scripts/generate-challenge-data.mjs public/challenge-data`.
+- **7-Day Build Challenge** — a one-active-build execution workspace that turns one selected idea
+  into a scoped, proven and shipped output across seven adaptive stages (`/build-challenge`).
 - **My Impact** — an evidence-based profile that keeps proven capability separate from intent
   (`/my-impact`).
 - **Profile** — progressive, optional personalization that improves discovery over time
@@ -80,3 +82,4 @@ Discovery items and opportunities in this build are **sample data**, clearly mar
 relevant, with `sourceName`/`sourceUrl`/`lastVerified` fields modeled so real, verified sources can
 replace them later. Time-sensitive opportunities (grants, scholarships, fellowships, jobs) compute
 their status (`Open` / `Closing Soon` / `Upcoming` / `Expired`) from their deadline.
+

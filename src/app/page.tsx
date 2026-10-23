@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Hammer } from "lucide-react";
 import { CraftHero } from "@/components/home/craft-hero";
 import { NeedDiscovery } from "@/components/home/need-discovery";
 import { OfferWorlds } from "@/components/home/offer-worlds";
@@ -49,6 +49,17 @@ export default async function Home() {
 
       <OfferWorlds />
 
+      <section className="border-b border-ink bg-blue-dim px-4 py-10 md:px-6">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-3xl border-2 border-ink bg-paper p-6 shadow-[7px_7px_0_var(--im-pink)] md:flex-row md:items-center md:justify-between md:p-8">
+          <div className="max-w-3xl">
+            <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-blue"><Hammer className="h-4 w-4" /> The 7-Day Build Challenge</p>
+            <h2 className="mt-2 font-display text-4xl font-semibold uppercase md:text-6xl">7 days. One build.</h2>
+            <p className="mt-3 text-sm font-semibold md:text-base">Stop opening ideas. Start finishing them.</p>
+          </div>
+          <Link href="/build-challenge" className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-ink px-6 text-sm font-bold text-white">Start building <ArrowRight className="h-4 w-4" /></Link>
+        </div>
+      </section>
+
       <NeedDiscovery />
 
       <section className="border-y border-ink bg-blue-dim px-4 py-12 md:px-6 md:py-16">
@@ -64,3 +75,4 @@ export default async function Home() {
     </div>
   );
 }
+
