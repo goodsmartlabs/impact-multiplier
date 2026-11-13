@@ -10,7 +10,7 @@ An Innergency product.
 
 - **Impact Pulse** — the homepage and central discovery experience: an editorial feed of trends,
   jobs & gigs, skills in demand, courses, money moves, opportunities, AI and industry updates,
-  each answering What / Why / Who / How / Next; Impact Radar personalisation; The Impact Brief
+  each answering What / Why / Who / How / Next; Impact Radar personalisation; the ImpactFools
   newsletter; an Opportunity tracker in the Impact Cart; a protected editorial dashboard
   (`/admin`) and an agent ingestion API. Setup, environment variables and the agent contract are
   in [`docs/impact-pulse.md`](docs/impact-pulse.md).
@@ -39,6 +39,19 @@ An Innergency product.
   (`/my-impact`).
 - **Profile** — progressive, optional personalization that improves discovery over time
   (`/profile`).
+
+## Newsletter engine
+
+**What’s Hot 🔥** publishes on Mondays and **Your Weekend Top 3 🎯** on Fridays, both at 07:00 Africa/Juba. Supporting pieces:
+
+- **FIND MY TOP 3** (`/newsletter/top-3`): a five-question wizard that returns three weekend projects.
+- **Weekend plan dashboard** (`/newsletter/my-plan`): tracks progress on saved projects.
+- **Double opt-in email subscriptions**, delivered through Resend.
+- **Daily Vercel cron scheduler.**
+- **Admin approval and run log** (`/admin/newsletter`).
+- **Rulo Social export API.**
+
+The newsletter replaced The Impact Brief. How it works and how to configure it are in [`docs/newsletter.md`](docs/newsletter.md).
 
 ## Stack
 

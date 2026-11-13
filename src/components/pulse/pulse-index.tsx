@@ -22,7 +22,7 @@ export function PulseIndex({ updates, category }: { updates: PulseUpdate[]; cate
           </Reveal>
           <Reveal immediate delay={0.2} className="mt-6 flex flex-wrap gap-2 text-sm font-bold">
             <Link href="/pulse/radar" className="im-press inline-flex items-center gap-1.5 rounded-full border border-ink bg-white px-4 py-2"><Radar className="h-4 w-4" />Your Impact Radar</Link>
-            <Link href="/pulse/brief" className="im-press inline-flex items-center gap-1.5 rounded-full border border-ink bg-white px-4 py-2"><Mail className="h-4 w-4" />The Impact Brief</Link>
+            <Link href="/newsletter" className="im-press inline-flex items-center gap-1.5 rounded-full border border-ink bg-white px-4 py-2"><Mail className="h-4 w-4" />Newsletter</Link>
             <Link href="/cart" className="group inline-flex items-center gap-1 px-2 py-2"><span className="im-underline">Your saved opportunities</span><ArrowRight className="im-nudge h-4 w-4" /></Link>
           </Reveal>
         </div>

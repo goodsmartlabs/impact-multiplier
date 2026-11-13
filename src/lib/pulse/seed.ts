@@ -1,4 +1,4 @@
-import type { BriefSections, NewsletterEdition, PulseUpdate } from "./types";
+import type { PulseUpdate } from "./types";
 
 /**
  * DEMONSTRATION CONTENT.
@@ -363,38 +363,4 @@ export const DEMO_UPDATES: PulseUpdate[] = [
     relatedCourseSlugs: ["build-strong-portfolio-with-ai", "land-jobs-with-ai"],
     cta: { label: "Build your proof", href: "/academy/challenge" },
   }),
-];
-
-const sections: BriefSections = {
-  whatsHot: [
-    { slug: "small-businesses-automating-admin", title: "Small businesses are handing their admin to AI-assisted workflows", note: "Setup skills are in a strong position." },
-    { slug: "data-skills-outside-data-teams", title: "Data skills are becoming expected far beyond the data team", note: "Reporting is turning into a baseline skill." },
-    { slug: "finance-teams-automation-judgement", title: "Finance: automation is shifting work from data entry to judgement", note: "Review and analysis gain value." },
-  ],
-  skillWorthBuilding: [{ slug: "skill-workflow-automation", title: "Workflow automation", note: "Transferable, quick to prove, useful everywhere." }],
-  opportunities: [
-    { slug: "example-fellowship-format", title: "How fellowship listings will look", note: "Verified opportunities will appear here." },
-    { slug: "how-to-judge-a-grant", title: "How to tell a real grant from a scam", note: "Use before every application." },
-    { slug: "example-remote-bookkeeping-assistant", title: "Example remote bookkeeping listing", note: "Format preview — not a real vacancy." },
-    { slug: "example-freelance-website-refresh", title: "Example freelance website gig", note: "Format preview — not a real project." },
-    { title: "7-Day Skill Challenge", note: "Build one project in a week.", href: "/academy/challenge" },
-  ],
-  learnSomething: [{ slug: "free-course-excel-dashboards", title: "Excel Dashboards for Beginners", note: "Free in the Academy." }],
-  moneyMove: [{ slug: "money-move-automation-setup-service", title: "Package one automation as a fixed-scope service", note: "Sell an outcome, not a tool." }],
-  powerMove: [{ title: "Automate one task you repeat every week", note: "Pick it today, build it by Sunday, write down the minutes saved (as an estimate).", href: "/academy/challenge/ai-automation" }],
-};
-
-export const DEMO_EDITIONS: NewsletterEdition[] = [
-  {
-    id: "demo-edition-preview",
-    slug: "preview-edition",
-    title: "Preview edition: what The Impact Brief will look like",
-    intro: "This is a demonstration edition built from Impact Pulse’s sample content. It was not emailed to anyone — real editions will appear here once the editorial team publishes them.",
-    sections,
-    status: "published",
-    demo: true,
-    publishedAt: DEMO_DATE,
-    createdAt: `${DEMO_DATE}T00:00:00.000Z`,
-    updatedAt: `${DEMO_DATE}T00:00:00.000Z`,
-  },
 ];

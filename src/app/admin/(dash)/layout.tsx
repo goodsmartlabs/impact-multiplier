@@ -3,13 +3,13 @@ import { Database, LogOut, TriangleAlert } from "lucide-react";
 import { logout } from "@/app/admin/actions";
 import { requireAdmin } from "@/lib/server/admin-auth";
 import { storeStatus } from "@/lib/server/pulse/repository";
-import { emailDeliveryConfigured } from "@/lib/server/pulse/email";
+import { emailConfigured } from "@/lib/server/newsletter/config";
 
 const NAV = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/updates", label: "Updates" },
   { href: "/admin/submissions", label: "Review queue" },
-  { href: "/admin/newsletter", label: "Impact Brief" },
+  { href: "/admin/newsletter", label: "Newsletter" },
   { href: "/admin/subscribers", label: "Subscribers" },
 ];
 
@@ -31,10 +31,10 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
         </div>
       </div>
       {!storage.configured && (
-        <p role="alert" className="mt-4 flex items-start gap-2 rounded-2xl border border-pink bg-pink-dim p-4 text-sm"><TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-pink" /><span>No database is connected, so nothing can be saved. Apply <code>supabase/migrations/202610210001_create_impact_pulse.sql</code> to a Supabase project and set <code>SUPABASE_URL</code> and <code>SUPABASE_SECRET_KEY</code>.</span></p>
+        <p role="alert" className="mt-4 flex items-start gap-2 rounded-2xl border border-pink bg-pink-dim p-4 text-sm"><TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-pink" /><span>No database is connected, so nothing can be saved. Apply the migrations in <code>supabase/migrations/</code> to a Supabase project and set <code>SUPABASE_URL</code> and <code>SUPABASE_SECRET_KEY</code>.</span></p>
       )}
       {storage.kind === "file" && <p className="mt-4 rounded-2xl border border-ink/30 bg-white p-3 text-xs">Local development store (<code>.data/pulse-dev.json</code>). Not used in production.</p>}
-      {!emailDeliveryConfigured() && <p className="mt-2 text-xs text-muted">Email delivery isn’t configured — publishing an edition updates the web archive only.</p>}
+      {!emailConfigured() && <p className="mt-2 text-xs text-muted">Email delivery isn’t configured (RESEND_API_KEY, NEWSLETTER_FROM_EMAIL) — published editions go to the website only, and confirmation emails can’t be sent.</p>}
       <div className="mt-6">{children}</div>
     </div>
   );

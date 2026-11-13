@@ -3,9 +3,8 @@ import { COURSES } from "@/lib/data/courses";
 import { SKILL_IDS } from "@/lib/skill-challenge";
 import { PULSE_CATEGORIES } from "./categories";
 import { deadlineLabel, filterByCategory, isExpired, isLive, lifecycle, paginate, pickFeatured, searchUpdates, sortFeed } from "./feed";
-import { composeEditionDraft, parseSectionLines, sectionToLines } from "./newsletter";
 import { EMPTY_PREFERENCES, ruleBasedRecommender } from "./radar";
-import { DEMO_EDITIONS, DEMO_UPDATES } from "./seed";
+import { DEMO_UPDATES } from "./seed";
 import { isSafeHref, slugify, validateUpdateInput } from "./validate";
 import type { PulseUpdate } from "./types";
 
@@ -77,7 +76,6 @@ describe("demo content honesty", () => {
       expect(update.sourceUrl).toBeUndefined();
       expect(update.deadline).toBeUndefined();
     }
-    expect(DEMO_EDITIONS.every((edition) => edition.demo)).toBe(true);
   });
 
   it("covers all eight categories with the full Impact Signal and varied CTAs", () => {
@@ -142,22 +140,6 @@ describe("Impact Radar", () => {
     const remote = make({ id: "remote", category: "jobs", job: { remote: "remote" }, skills: ["Bookkeeping"] });
     const result = ruleBasedRecommender.recommend([onsite, remote], { ...EMPTY_PREFERENCES, existingSkills: ["Bookkeeping"], remote: "remote_only" });
     expect(result.map((item) => item.update.id)).toEqual(["remote"]);
-  });
-});
-
-describe("The Impact Brief", () => {
-  it("round-trips editor lines and rejects unsafe targets", () => {
-    const parsed = parseSectionLines("Skill A | why it matters | skill-a\nCourse | free | /academy/x\nBad | x | javascript:alert(1)");
-    expect(parsed.items).toHaveLength(2);
-    expect(parsed.errors).toHaveLength(1);
-    expect(sectionToLines(parsed.items)).toContain("Skill A | why it matters | skill-a");
-  });
-
-  it("drafts editions from live, non-demo updates only", () => {
-    const draft = composeEditionDraft([...DEMO_UPDATES, make({ id: "real", category: "skills", status: "published" })], "2026-10-21T00:00:00.000Z");
-    expect(draft.status).toBe("draft");
-    expect(draft.sections.skillWorthBuilding.map((item) => item.slug)).toEqual(["x"]);
-    expect(draft.sections.whatsHot).toHaveLength(0);
   });
 });
 

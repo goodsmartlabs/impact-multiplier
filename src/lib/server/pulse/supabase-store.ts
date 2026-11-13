@@ -92,11 +92,16 @@ function toSubscriber(row: Row): NewsletterSubscriber {
     source: (row.source as string) ?? undefined,
     createdAt: row.created_at as string,
     unsubscribedAt: (row.unsubscribed_at as string) ?? undefined,
+    consentAt: (row.consent_at as string) ?? undefined,
+    verifiedAt: (row.verified_at as string) ?? undefined,
+    verifyToken: (row.verify_token as string) ?? undefined,
+    goals: (row.goals as string[]) ?? [],
+    editions: (row.editions as string[]) ?? ["whats_hot", "weekend_top3"],
   };
 }
 
 function fromSubscriber(subscriber: Partial<NewsletterSubscriber>): Row {
-  const map: Record<string, string> = { id: "id", email: "email", name: "name", interests: "interests", status: "status", unsubscribeToken: "unsubscribe_token", source: "source", createdAt: "created_at", unsubscribedAt: "unsubscribed_at" };
+  const map: Record<string, string> = { id: "id", email: "email", name: "name", interests: "interests", status: "status", unsubscribeToken: "unsubscribe_token", source: "source", createdAt: "created_at", unsubscribedAt: "unsubscribed_at", consentAt: "consent_at", verifiedAt: "verified_at", verifyToken: "verify_token", goals: "goals", editions: "editions" };
   const row: Row = {};
   for (const [key, value] of Object.entries(subscriber)) if (map[key]) row[map[key]] = value ?? null;
   return row;
@@ -168,7 +173,7 @@ export function createSupabaseStore(url: string, secret: string): PulseStore {
       return toEdition(rows[0]);
     },
     async findSubscriber(by) {
-      const query = by.email ? `email=eq.${encodeURIComponent(by.email)}` : by.token ? `unsubscribe_token=eq.${encodeURIComponent(by.token)}` : null;
+      const query = by.email ? `email=eq.${encodeURIComponent(by.email)}` : by.token ? `unsubscribe_token=eq.${encodeURIComponent(by.token)}` : by.verifyToken ? `verify_token=eq.${encodeURIComponent(by.verifyToken)}` : null;
       if (!query) return null;
       const rows = await request<Row[]>(`newsletter_subscribers?select=*&${query}&limit=1`, { read: { fresh: true } });
       return rows[0] ? toSubscriber(rows[0]) : null;
@@ -184,7 +189,7 @@ export function createSupabaseStore(url: string, secret: string): PulseStore {
       return toSubscriber(rows[0]);
     },
     async listSubscribers() {
-      const rows = await request<Row[]>("newsletter_subscribers?select=*&order=created_at.desc&limit=1000", { read: { fresh: true } });
+      const rows = await request<Row[]>("newsletter_subscribers?select=*&order=created_at.desc&limit=10000", { read: { fresh: true } });
       return rows.map(toSubscriber);
     },
     async recordEvent(updateId, type) {

@@ -5,10 +5,10 @@ import { NeedDiscovery } from "@/components/home/need-discovery";
 import { OfferWorlds } from "@/components/home/offer-worlds";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
-import { BriefSignup } from "@/components/pulse/brief-signup";
 import { DemoNotice } from "@/components/pulse/demo-notice";
 import { ImpactRadar } from "@/components/pulse/impact-radar";
 import { JourneyBand } from "@/components/pulse/journey-band";
+import { NewsletterPreview } from "@/components/newsletter/newsletter-preview";
 import { PulseFeed } from "@/components/pulse/pulse-feed";
 import { PulseHero } from "@/components/pulse/pulse-hero";
 import { pickFeatured } from "@/lib/pulse/feed";
@@ -39,8 +39,8 @@ export default async function Home() {
       </section>
 
       <div className="mx-auto max-w-7xl space-y-12 px-4 pb-16 md:px-6">
+        <NewsletterPreview />
         <ImpactRadar updates={updates} />
-        <BriefSignup />
       </div>
 
       <JourneyBand />

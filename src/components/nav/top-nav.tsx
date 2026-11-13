@@ -35,10 +35,10 @@ export function TopNav() {
       >
         <Link href="/" className="group flex shrink-0 items-center gap-2.5" aria-label="ImpactFools Academia home">
           <BrandLogo priority className="im-mascot h-11" />
-          <BrandWordmark className="hidden text-[1.75rem] lg:block" />
+          <BrandWordmark className="hidden text-[1.75rem] xl:block" />
         </Link>
 
-        <nav className="ml-12 flex flex-1 items-center gap-1">
+        <nav className="ml-4 flex flex-1 items-center gap-0.5 xl:ml-10 xl:gap-1">
           {NAV_LINKS.map((link) => {
             const active =
               link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
@@ -48,11 +48,12 @@ export function TopNav() {
                 href={link.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "group relative px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors",
+                  "group relative whitespace-nowrap px-2 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors xl:px-3 xl:text-[11px] xl:tracking-[0.14em]",
+                  link.tabletHidden && "hidden lg:block",
                   active ? "text-ink" : "text-muted hover:text-ink"
                 )}
               >
-                {link.label}
+                {link.short ? <><span className="lg:hidden">{link.short}</span><span className="hidden lg:inline">{link.label}</span></> : link.label}
                 {/* hover underline grows from the left; the active one slides between links */}
                 <span
                   aria-hidden="true"

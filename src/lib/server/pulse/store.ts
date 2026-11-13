@@ -30,7 +30,7 @@ export interface PulseStore {
   getEdition(idOrSlug: string, options?: ReadOptions): Promise<NewsletterEdition | null>;
   upsertEdition(edition: NewsletterEdition): Promise<NewsletterEdition>;
 
-  findSubscriber(by: { email?: string; token?: string }): Promise<NewsletterSubscriber | null>;
+  findSubscriber(by: { email?: string; token?: string; verifyToken?: string }): Promise<NewsletterSubscriber | null>;
   insertSubscriber(subscriber: NewsletterSubscriber): Promise<NewsletterSubscriber>;
   patchSubscriber(id: string, patch: Partial<NewsletterSubscriber>): Promise<NewsletterSubscriber>;
   listSubscribers(): Promise<NewsletterSubscriber[]>;

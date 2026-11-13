@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Building2, CalendarClock, FlaskConical, GraduationCap, MapPin, ShieldCheck, Users } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
+import { NewsletterNudge } from "@/components/newsletter/newsletter-nudge";
 import { StartImpactMoveButton } from "@/components/discovery/start-impact-move-button";
 import { SignalList } from "@/components/pulse/impact-signal";
 import { CategoryChip, PulseCard, PulseCta, SourceLink, VerificationBadge } from "@/components/pulse/pulse-card";
@@ -153,6 +154,7 @@ export default async function PulseUpdatePage({ params }: { params: Params }) {
           <ul className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{related.map((item) => <li key={item.id}><PulseCard update={item} size="compact" /></li>)}</ul>
         </section>
       )}
+      <div className="mx-auto mt-12 max-w-7xl px-4 md:px-6"><NewsletterNudge context="opportunity" /></div>
     </article>
   );
 }

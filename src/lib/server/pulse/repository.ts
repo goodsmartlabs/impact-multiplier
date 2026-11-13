@@ -1,8 +1,8 @@
 import { randomBytes } from "node:crypto";
 import { isLive, sortFeed } from "@/lib/pulse/feed";
-import { DEMO_EDITIONS, DEMO_UPDATES } from "@/lib/pulse/seed";
+import { DEMO_UPDATES } from "@/lib/pulse/seed";
 import { slugify } from "@/lib/pulse/validate";
-import type { NewsletterEdition, PulseCategory, PulseUpdate, PulseUpdateInput } from "@/lib/pulse/types";
+import type { PulseCategory, PulseUpdate, PulseUpdateInput } from "@/lib/pulse/types";
 import { createFileStore } from "./file-store";
 import { notConfiguredStore, type PulseStore } from "./store";
 import { createSupabaseStore } from "./supabase-store";
@@ -54,18 +54,6 @@ export async function getPublicUpdate(slug: string): Promise<PulseUpdate | null>
   if (stored && (stored.status === "published" || stored.status === "expired")) return stored;
   if (!showDemo()) return null;
   return DEMO_UPDATES.find((update) => update.slug === slug) ?? null;
-}
-
-export async function getPublicEditions(): Promise<NewsletterEdition[]> {
-  const stored = await safe(() => getPulseStore().listEditions({ statuses: ["published"] }), []);
-  const demo = showDemo() ? DEMO_EDITIONS.filter((edition) => !stored.some((item) => item.slug === edition.slug)) : [];
-  return [...stored, ...demo].sort((a, b) => Date.parse(b.publishedAt ?? b.createdAt) - Date.parse(a.publishedAt ?? a.createdAt));
-}
-
-export async function getPublicEdition(slug: string): Promise<NewsletterEdition | null> {
-  const stored = await safe(() => getPulseStore().getEdition(slug), null);
-  if (stored?.status === "published") return stored;
-  return showDemo() ? DEMO_EDITIONS.find((edition) => edition.slug === slug) ?? null : null;
 }
 
 /* ---------- Writes (admin + ingestion) ---------- */

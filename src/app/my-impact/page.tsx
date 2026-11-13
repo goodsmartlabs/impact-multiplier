@@ -2,6 +2,7 @@
 
 import { type ComponentType, type ReactNode } from "react";
 import Link from "next/link";
+import { NewsletterNudge } from "@/components/newsletter/newsletter-nudge";
 import { Award, Hammer, Lightbulb, Sparkles, TrendingUp, Users } from "lucide-react";
 import { useImpactMovesStore } from "@/lib/store/impact-moves-store";
 import { useAcademyStore } from "@/lib/store/academy-store";
@@ -81,6 +82,8 @@ export default function MyImpactPage() {
       </div>
 
       <SkillChallengeSummary />
+
+      <div className="mb-8"><NewsletterNudge context="dashboard" /></div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <SectionCard icon={Sparkles} title="Currently Increasing" empty={inProgress.length === 0}>
