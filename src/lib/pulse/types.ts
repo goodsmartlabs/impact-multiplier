@@ -115,7 +115,8 @@ export interface NewsletterEdition {
   updatedAt: string;
 }
 
-export type SubscriberStatus = "active" | "unsubscribed";
+/** `pending` until the address is confirmed (double opt-in). Only verified, active subscribers receive email. */
+export type SubscriberStatus = "pending" | "active" | "unsubscribed";
 
 export interface NewsletterSubscriber {
   id: string;
@@ -127,6 +128,13 @@ export interface NewsletterSubscriber {
   source?: string;
   createdAt: string;
   unsubscribedAt?: string;
+  consentAt?: string;
+  verifiedAt?: string;
+  verifyToken?: string;
+  /** FIND MY TOP 3 goal ids, used to personalise the Friday link. */
+  goals?: string[];
+  /** Which editions to email: "whats_hot", "weekend_top3". */
+  editions?: string[];
 }
 
 export type PulseEventType = "view" | "save" | "cta_click" | "source_click";

@@ -10,16 +10,16 @@ DISCOVER → UNDERSTAND → LEARN → ACT → MULTIPLY.
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Impact Pulse homepage: hero + search, featured story, filterable feed, Impact Radar, Impact Brief signup, then the existing ImpactFools brand/services sections |
+| `/` | Impact Pulse homepage: hero + search, featured story, filterable feed, newsletter preview + signup, Impact Radar, then the existing ImpactFools brand/services sections |
 | `/pulse` | Full feed with search, filters and “Load more” |
 | `/pulse/category/[category]` | Category pages (trending, jobs, skills, learning, money, opportunities, ai, industry) |
 | `/pulse/[slug]` | Article page: Impact Signal, skills, Academy courses, CTA, save, source, JSON-LD `Article` |
 | `/pulse/radar` | Impact Radar preferences + explained recommendations |
-| `/pulse/brief`, `/pulse/brief/[slug]` | The Impact Brief archive and editions |
+| `/newsletter` … | The newsletter (see `newsletter.md`); `/pulse/brief…` redirects there |
 | `/pulse/brief/manage?token=…` | Subscriber preferences and unsubscribe (token link, no login) |
 | `/pulse/standards` | Editorial standards, labels, expiry rules and agent policy |
 | `/cart` | Impact Cart, now with the Opportunity tracker (Saved → … → Closed) |
-| `/admin` | Protected editorial dashboard (overview, updates, review queue, Impact Brief, subscribers) |
+| `/admin` | Protected editorial dashboard (overview, updates, review queue, newsletter, subscribers) |
 | `POST /api/pulse/ingest` | Agent ingestion (bearer token) |
 | `POST /api/newsletter/subscribe`, `POST /api/newsletter/manage` | Subscriptions |
 | `POST /api/pulse/events` | Anonymous engagement counts |
@@ -104,15 +104,9 @@ Up to 50 records per call. Every accepted record is stored as `pending_review` a
 Every recommendation lists the reasons it appears. Preferences are stored in the browser
 (`impactfools-radar`) because ImpactFools has no user accounts yet.
 
-## The Impact Brief
+## Newsletter
 
-Sections: What’s Hot (3), Skill Worth Building (1), Opportunities Worth Exploring (5),
-Learn Something (1), Money Move (1), Your Power Move (1). Editors draft an edition from live,
-non-demo updates, edit it and publish to the web archive.
-
-**Email delivery is not connected.** `src/lib/server/pulse/email.ts` is the integration point
-(e.g. Resend or Postmark); until then nothing is emailed and the UI says so. When delivery is
-added, switch to double opt-in before sending. Subscribers can export as CSV from `/admin/subscribers`.
+The Impact Brief has been replaced by the two-edition newsletter engine (Monday What’s Hot, Friday Weekend Top 3), which uses verified Impact Pulse records as its research source. See [`newsletter.md`](newsletter.md).
 
 ## Demonstration content
 

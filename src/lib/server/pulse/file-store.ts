@@ -82,7 +82,7 @@ export function createFileStore(file = path.join(process.cwd(), ".data", "pulse-
       }),
     async findSubscriber(by) {
       const { subscribers } = await load();
-      return subscribers.find((subscriber) => (by.email && subscriber.email === by.email) || (by.token && subscriber.unsubscribeToken === by.token)) ?? null;
+      return subscribers.find((subscriber) => (by.email && subscriber.email === by.email) || (by.token && subscriber.unsubscribeToken === by.token) || (by.verifyToken && subscriber.verifyToken === by.verifyToken)) ?? null;
     },
     insertSubscriber: (subscriber) =>
       mutate((data) => {

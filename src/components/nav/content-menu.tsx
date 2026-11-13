@@ -6,10 +6,15 @@ import { AnimatePresence, motion, type Variants } from "motion/react";
 import { ChevronRight, Menu, X } from "lucide-react";
 import { DURATION, EASE_OUT, STAGGER } from "@/lib/motion";
 
+const NEWSLETTER_LINKS = [
+  { label: "Monday: What’s Hot 🔥", href: "/newsletter" },
+  { label: "Friday: Find my Top 3 🎯", href: "/newsletter/top-3" },
+  { label: "My weekend plan", href: "/newsletter/my-plan" },
+] as const;
+
 const PULSE_LINKS = [
   { label: "All Impact Pulse updates", href: "/pulse" },
   { label: "Your Impact Radar", href: "/pulse/radar" },
-  { label: "The Impact Brief", href: "/pulse/brief" },
   { label: "Saved opportunities", href: "/cart" },
 ] as const;
 
@@ -115,7 +120,8 @@ export function ContentMenu() {
               <p className="mt-1 text-sm font-semibold text-ink">What do you want to find?</p>
             </div>
 
-            <MenuSection title="Impact Pulse" links={PULSE_LINKS} onNavigate={() => setOpen(false)} />
+            <MenuSection title="Newsletter" links={NEWSLETTER_LINKS} onNavigate={() => setOpen(false)} />
+            <MenuSection title="Impact Pulse" links={PULSE_LINKS} onNavigate={() => setOpen(false)} bordered />
             <MenuSection title="Discover" links={DISCOVER_LINKS} onNavigate={() => setOpen(false)} bordered />
             <MenuSection title="Courses" links={COURSE_LINKS} onNavigate={() => setOpen(false)} bordered />
           </motion.div>

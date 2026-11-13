@@ -4,11 +4,15 @@ import { headers } from "next/headers";
 import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { checkPassword, endSession, requireAdmin, startSession } from "@/lib/server/admin-auth";
-import { createUpdate, getPulseStore, newToken } from "@/lib/server/pulse/repository";
+import { createUpdate, getPulseStore } from "@/lib/server/pulse/repository";
 import { PULSE_CACHE_TAG } from "@/lib/server/pulse/supabase-store";
-import { slugify, validateUpdateInput } from "@/lib/pulse/validate";
-import { composeEditionDraft, parseSectionLines } from "@/lib/pulse/newsletter";
-import type { BriefSections, NewsletterEdition, PulseStatus } from "@/lib/pulse/types";
+import { validateUpdateInput } from "@/lib/pulse/validate";
+import type { PulseStatus } from "@/lib/pulse/types";
+import { validateIssueContent } from "@/lib/newsletter/compose";
+import { isEditionKind, jubaClock, upcomingIssueDate } from "@/lib/newsletter/schedule";
+import type { EditionKind, NewsletterIssue } from "@/lib/newsletter/types";
+import { approveIssue, prepareIssue, runSchedule, sendIssue } from "@/lib/server/newsletter/pipeline";
+import { getNewsletterStore, NEWSLETTER_CACHE_TAG } from "@/lib/server/newsletter/store";
 
 export type FormState = { ok?: boolean; errors?: string[]; message?: string };
 
@@ -133,52 +137,96 @@ export async function expirePastDeadline() {
   refreshPublic();
 }
 
-/* ---------- Newsletter ---------- */
+/* ---------- Newsletter engine ---------- */
 
-export async function composeEdition() {
-  await requireAdmin();
-  const store = getPulseStore();
-  const updates = await store.listUpdates({ statuses: ["published"] }, { fresh: true });
-  const now = new Date().toISOString();
-  const draft = composeEditionDraft(updates, now);
-  const saved = await store.upsertEdition({ ...draft, slug: `${draft.slug}-${newToken().slice(0, 6).toLowerCase().replace(/[^a-z0-9]/g, "x")}` });
-  redirect(`/admin/newsletter/${saved.id}`);
+function refreshNewsletter() {
+  updateTag(NEWSLETTER_CACHE_TAG);
+  revalidatePath("/", "layout");
 }
 
-export async function saveEdition(_: FormState, formData: FormData): Promise<FormState> {
+const asKind = (value: FormDataEntryValue | null): EditionKind | null => (isEditionKind(value) ? value : null);
+
+/** Prepare (or regenerate) the next issue of an edition now, instead of waiting for the scheduler. */
+export async function prepareNextIssue(formData: FormData) {
   await requireAdmin();
-  const store = getPulseStore();
+  const kind = asKind(formData.get("kind"));
+  if (!kind) return;
+  const issueDate = upcomingIssueDate(kind, jubaClock(new Date()).date);
+  const result = await prepareIssue(kind, issueDate, { trigger: "admin", regenerate: formData.get("regenerate") === "1" });
+  refreshNewsletter();
+  if (result.issue) redirect(`/admin/newsletter/${result.issue.id}`);
+  redirect(`/admin/newsletter?message=${encodeURIComponent(result.message)}`);
+}
+
+export async function regenerateIssue(formData: FormData) {
+  await requireAdmin();
   const id = String(formData.get("id") ?? "");
-  const existing = await store.getEdition(id, { fresh: true });
-  if (!existing) return { errors: ["Edition not found."] };
+  const issue = await getNewsletterStore().getIssue(id, { fresh: true });
+  if (!issue) return;
+  await prepareIssue(issue.kind, issue.issueDate, { trigger: "admin", regenerate: true });
+  refreshNewsletter();
+  redirect(`/admin/newsletter/${id}`);
+}
 
-  const title = String(formData.get("title") ?? "").trim();
-  const slug = slugify(String(formData.get("slug") ?? ""));
-  const intro = String(formData.get("intro") ?? "").trim().slice(0, 1200);
-  const status = String(formData.get("status") ?? "draft") as NewsletterEdition["status"];
-  const errors: string[] = [];
-  if (title.length < 4) errors.push("Title must be at least 4 characters.");
-  if (!slug || slug === "manage") errors.push("Choose a valid slug.");
-  if (!["draft", "published", "archived"].includes(status)) errors.push("Unknown status.");
+export async function approveIssueAction(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  const result = await approveIssue(id, { by: "editor", publishNow: formData.get("now") === "1" });
+  refreshNewsletter();
+  redirect(`/admin/newsletter/${id}?message=${encodeURIComponent(result.message)}`);
+}
 
-  const sections = {} as BriefSections;
-  for (const key of ["whatsHot", "skillWorthBuilding", "opportunities", "learnSomething", "moneyMove", "powerMove"] as const) {
-    const parsed = parseSectionLines(String(formData.get(`section.${key}`) ?? ""));
-    errors.push(...parsed.errors.map((error) => `${key}: ${error}`));
-    sections[key] = parsed.items;
+export async function unscheduleIssue(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  await getNewsletterStore().patchIssue(id, { status: "awaiting_approval", approvedAt: undefined, approvedBy: undefined }, ["scheduled"]);
+  refreshNewsletter();
+  redirect(`/admin/newsletter/${id}`);
+}
+
+/** Withdraw a published issue from the site. Emails already sent can't be recalled. */
+export async function archiveIssue(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  await getNewsletterStore().patchIssue(id, { status: "archived" }, ["published"]);
+  refreshNewsletter();
+  redirect(`/admin/newsletter/${id}`);
+}
+
+export async function sendIssueAction(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  const issue = await getNewsletterStore().getIssue(id, { fresh: true });
+  if (!issue) return;
+  const result = await sendIssue(issue, { trigger: "admin" });
+  redirect(`/admin/newsletter/${id}?message=${encodeURIComponent(result.message)}`);
+}
+
+/** Save editorial changes to an unpublished issue's structured content. */
+export async function saveIssueContent(_: FormState, formData: FormData): Promise<FormState> {
+  await requireAdmin();
+  const store = getNewsletterStore();
+  const id = String(formData.get("id") ?? "");
+  const issue = await store.getIssue(id, { fresh: true });
+  if (!issue) return { errors: ["Issue not found."] };
+  if (!["draft", "awaiting_approval", "failed", "scheduled"].includes(issue.status)) return { errors: ["Published issues can’t be edited. Archive it and prepare a new one instead."] };
+  let content: unknown;
+  try {
+    content = JSON.parse(String(formData.get("content") ?? ""));
+  } catch {
+    return { errors: ["Content isn’t valid JSON."] };
   }
+  const errors = validateIssueContent(content, issue.kind);
   if (errors.length) return { errors };
+  const title = String(formData.get("title") ?? "").trim().slice(0, 200) || issue.title;
+  await store.patchIssue(issue.id, { content: content as NewsletterIssue["content"], title, status: "awaiting_approval", failureReason: undefined, approvedAt: undefined, approvedBy: undefined }, ["draft", "awaiting_approval", "failed", "scheduled"]);
+  refreshNewsletter();
+  return { ok: true, message: "Saved. The issue is back in the approval queue." };
+}
 
-  await store.upsertEdition({
-    ...existing,
-    title,
-    slug,
-    intro,
-    sections,
-    status,
-    publishedAt: status === "published" ? existing.publishedAt ?? new Date().toISOString().slice(0, 10) : existing.publishedAt,
-    updatedAt: new Date().toISOString(),
-  });
-  refreshPublic();
-  return { ok: true, message: status === "published" ? "Saved and published to the web archive. No emails were sent (delivery isn’t configured)." : "Saved." };
+export async function runSchedulerNow() {
+  await requireAdmin();
+  const results = await runSchedule({ trigger: "admin" });
+  refreshNewsletter();
+  redirect(`/admin/newsletter?message=${encodeURIComponent(results.map((result) => `${result.action}${result.kind ? ` ${result.kind}` : ""}: ${result.outcome} — ${result.message}`).join(" | "))}`);
 }

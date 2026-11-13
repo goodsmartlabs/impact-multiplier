@@ -29,7 +29,7 @@ export default async function AdminOverview() {
         <Stat label="Pending review" value={count("pending_review")} href="/admin/submissions" />
         <Stat label="Drafts" value={count("draft")} href="/admin/updates?status=draft" />
         <Stat label="Expired" value={count("expired")} href="/admin/updates?status=expired" />
-        <Stat label="Active subscribers" value={subscribers.filter((s) => s.status === "active").length} href="/admin/subscribers" />
+        <Stat label="Confirmed subscribers" value={subscribers.filter((s) => s.status === "active" && s.verifiedAt).length} href="/admin/subscribers" />
         <Stat label="Demo items live" value={process.env.PULSE_HIDE_DEMO === "true" ? 0 : DEMO_UPDATES.length} />
       </section>
 
@@ -45,7 +45,7 @@ export default async function AdminOverview() {
           <div className="mt-3 flex flex-wrap gap-2 text-sm font-bold">
             <Link href="/admin/updates/new" className="im-press rounded-full bg-ink px-4 py-2 text-white">New update</Link>
             <Link href="/admin/submissions" className="im-press rounded-full border border-ink px-4 py-2">Review queue</Link>
-            <Link href="/admin/newsletter" className="im-press rounded-full border border-ink px-4 py-2">Compose Impact Brief</Link>
+            <Link href="/admin/newsletter" className="im-press rounded-full border border-ink px-4 py-2">Newsletter engine</Link>
           </div>
         </div>
       </section>

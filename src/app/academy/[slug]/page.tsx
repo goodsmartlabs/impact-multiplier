@@ -1,6 +1,7 @@
 "use client";
 
 import { use } from "react";
+import { NewsletterNudge } from "@/components/newsletter/newsletter-nudge";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CheckCircle2, Circle, ExternalLink } from "lucide-react";
@@ -246,6 +247,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
             </div>
           </DetailSection>
         )}
+        <div className="mt-8"><NewsletterNudge context="course" /></div>
       </div>
     </div>
   );

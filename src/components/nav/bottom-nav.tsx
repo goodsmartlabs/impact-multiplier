@@ -12,7 +12,7 @@ export function BottomNav() {
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper/95 backdrop-blur pb-[env(safe-area-inset-bottom)] md:hidden">
-      <div className="mx-auto grid max-w-6xl grid-cols-6">
+      <div className="mx-auto grid max-w-6xl grid-cols-7">
         {NAV_LINKS.map((link) => {
           const active =
             link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
@@ -29,14 +29,14 @@ export function BottomNav() {
                   layoutId="bottom-nav-active"
                   aria-hidden="true"
                   transition={SPRING_SOFT}
-                  className="absolute top-[5px] h-7 w-12 rounded-full bg-pink-dim"
+                  className="absolute top-[5px] h-7 w-10 rounded-full bg-pink-dim"
                 />
               )}
               <Icon
                 className={cn("relative h-5 w-5 transition-colors", active ? "text-pink" : "text-muted")}
                 strokeWidth={active ? 2.4 : 2}
               />
-              <span className={cn("relative max-w-[4rem] text-center text-[9px] leading-tight transition-colors", active ? "text-ink" : "text-muted")}>{link.label}</span>
+              <span className={cn("relative max-w-[3.5rem] text-center text-[9px] leading-tight transition-colors", active ? "text-ink" : "text-muted")}>{link.short ?? link.label}</span>
             </Link>
           );
         })}
